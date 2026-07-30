@@ -22,8 +22,12 @@ dotfiles/
 ├── niri/                # Niri 窗口管理器配置
 ├── kitty/               # Kitty 终端配置
 ├── DankMaterialShell/   # DMS Shell 配置
-├── install.sh          # 一键软链接安装脚本
-└── README.md           # 仓库说明文档
+├── fish/                # fish 配置
+├── fastfetch/           # fastfetch 配置
+├── superfile/           # superfile 配置
+├── matugen/             # matugen 配置
+├── init_install.sh      # 一键软链接安装脚本
+└── README.md            # 仓库说明文档
 ```
 
 # 一、首次初始化 Dotfiles（配置迁移）
