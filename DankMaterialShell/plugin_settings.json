@@ -1,0 +1,19 @@
+{
+  "linuxWallpaperEngine": {
+    "enabled": true,
+    "activeType": "scene",
+    "monitorScenes": {
+      "HDMI-A-2": "3041426346",
+      "eDP-1": "3041426346",
+      "HDMI-A-1": "3041426346"
+    },
+    "outputSettings": {
+      "HDMI-A-2": {
+        "fps": 60
+      },
+      "eDP-1": {
+        "scaling": "default"
+      }
+    }
+  }
+}
