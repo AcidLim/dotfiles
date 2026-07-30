@@ -20,6 +20,8 @@ configs=(
     "niri"
     "kitty"
     "DankMaterialShell"
+    "fish"
+    "superfile"
 )
 
 for name in "${configs[@]}"; do
