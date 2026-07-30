@@ -23,6 +23,7 @@ configs=(
     "fish"
     "superfile"
     "fastfetch"
+    "matugen"
 )
 
 for name in "${configs[@]}"; do
