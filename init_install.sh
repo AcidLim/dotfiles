@@ -22,6 +22,7 @@ configs=(
     "DankMaterialShell"
     "fish"
     "superfile"
+    "fastfetch"
 )
 
 for name in "${configs[@]}"; do
