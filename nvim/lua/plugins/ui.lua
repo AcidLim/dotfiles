@@ -119,7 +119,7 @@ return {
           offsets = {
             {
               filetype = "NvimTree",
-              text = "ShenEternity & 文件树",
+              text = "Nvim FileTree",
               highlight = "Directory",
               text_align = "left",
             },
