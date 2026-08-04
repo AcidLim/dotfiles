@@ -19,7 +19,7 @@ function cat
 	command bat $argv
 end
 function ls
-	command eza --icons $argv
+	command eza --icons=auto --color=auto $argv
 end
 
 function lt
