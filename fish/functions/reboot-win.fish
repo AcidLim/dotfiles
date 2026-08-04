@@ -1,6 +1,6 @@
 function reboot-win
     # 获取所有 Windows Boot Manager EFI 启动项
-    set win_entries (efibootmgr | grep -i 'Windows Boot Manager')
+    set win_entries (efibootmgr | grep -i 'Windows Boot Manager' | string collect)
 
     if test (count $win_entries) -eq 0
         echo "未找到 Windows Boot Manager EFI 启动项"
@@ -16,7 +16,7 @@ function reboot-win
         set entry $win_entries[$i]
 
         # 提取 BootXXXX
-        set id (string match -r 'Boot[0-9A-Fa-f]+' $entry | string replace 'Boot' '')
+        set id (string match -m 1 -r 'Boot[0-9A-Fa-f]{4}' $entry | string replace 'Boot' '')
 
         set ids $ids $id
 
@@ -46,13 +46,19 @@ function reboot-win
         return 1
     end
 
-    sudo efibootmgr --bootnext $selected
+    sudo efibootmgr --bootnext "$selected" | grep -E "BootNext|BootCurrent"
 
     if test $status -ne 0
         echo "设置 BootNext 失败"
         return 1
     end
 
-    echo "正在重启..."
+    echo "BootNext 设置成功"
+
+    for i in 3 2 1
+        echo "将在 $i 秒后重启..."
+        sleep 1
+    end    
+
     systemctl reboot
 end
