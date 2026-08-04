@@ -16,9 +16,9 @@
   "controlCenterTileColorMode": "primary",
   "buttonColorMode": "primary",
   "cornerRadius": 12,
-  "niriLayoutGapsOverride": 9,
+  "niriLayoutGapsOverride": 8,
   "niriLayoutRadiusOverride": 13,
-  "niriLayoutBorderSize": 3,
+  "niriLayoutBorderSize": 2,
   "hyprlandLayoutGapsOverride": -1,
   "hyprlandLayoutGapsOutOverride": -1,
   "hyprlandLayoutRadiusOverride": -1,
@@ -165,7 +165,7 @@
       "enabled": true,
       "width": 50,
       "instanceId": "mqvyrmfthkim7o3z6t0hm9zit82pu",
-      "mountPath": "/boot/efi"
+      "mountPath": "/"
     }
   ],
   "showWorkspaceIndex": false,
@@ -400,11 +400,6 @@
   "fadeToDpmsEnabled": true,
   "fadeToDpmsGracePeriod": 5,
   "launchPrefix": "",
-  "brightnessDevicePins": {},
-  "wifiNetworkPins": {},
-  "bluetoothDevicePins": {},
-  "audioInputDevicePins": {},
-  "audioOutputDevicePins": {},
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
   "syncModeWithPortal": true,
@@ -596,7 +591,7 @@
   "hyprlandOutputSettings": {},
   "displayProfiles": {},
   "activeDisplayProfile": {
-    "niri": "auto_23b970fb"
+    "niri": "auto_eed335bb"
   },
   "displayProfileAutoSelect": true,
   "displayShowDisconnected": false,
@@ -878,5 +873,5 @@
   "barInsetPaddingShared": -1,
   "barInsetPaddingSyncAll": false,
   "frameBarInsetPadding": -1,
-  "configVersion": 12
+  "configVersion": 13
 }

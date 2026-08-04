@@ -7,8 +7,8 @@ window-rule {
     opacity 0.80
     open-floating true
     open-focused true
-    max-width 1200
-    max-height 800
+    min-width 1200
+    min-height 800
     background-effect {
         saturation 1
     }
@@ -31,4 +31,42 @@ window-rule {
 window-rule {
     match app-id="^code$"
     opacity 0.90
+}
+
+// @id=wr_1785850400364990676 @name=QQ
+window-rule {
+    match app-id="^QQ$"
+    opacity 0.85
+    open-floating true
+    min-width 1200
+    min-height 800
+}
+
+// @id=wr_1785851569212190134 @name=jetbrains-rustrover startup
+window-rule {
+    match app-id="^jetbrains-rustrover$" title="^(欢迎访问|Welcome to) RustRover$"
+    open-floating true
+}
+
+// @id=wr_1785852793621584544 @name=jetbrains-studio
+window-rule {
+    match app-id="^jetbrains-studio$" title="^(欢迎访问|Welcome to) Android Studio$"
+    open-floating true
+}
+
+// @id=wr_1785853049017886608 @name=com.follow.clash
+window-rule {
+    match app-id="^com.follow.clash$"
+    open-floating true
+    min-width 1200
+    min-height 800
+}
+
+// @id=wr_1785853551266731001 @name=localsend
+window-rule {
+    match app-id="^localsend$"
+    open-floating true
+    min-width 1200
+    min-height 800
+    default-floating-position x=700 y=280
 }
