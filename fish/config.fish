@@ -1,7 +1,7 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
-set fish_greeting ""
+set fish_greeting "Welcome back, Acid."
 set -p PATH ~/.local/bin
 starship init fish | source
 zoxide init fish --cmd cd | source
