@@ -1,2 +1,15 @@
 # DMS plugins
 DankMaterialShell/plugins/
+
+#fastfetch var_config
+fastfetch/config.jsonc
+
+#kitty var_config
+kitty/dank-theme.conf
+kitty/dank-tabs.conf
+
+#niri/dms var_config
+niri/dms/colors.kdl
+
+#DMS var_config
+DankMaterialShell/firefox.css
