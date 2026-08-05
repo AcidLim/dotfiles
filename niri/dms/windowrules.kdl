@@ -35,7 +35,7 @@ window-rule {
 
 // @id=wr_1785850400364990676 @name=QQ
 window-rule {
-    match app-id="^QQ$"
+    match app-id="^QQ$" title="^QQ$"
     opacity 0.85
     open-floating true
     min-width 1200
