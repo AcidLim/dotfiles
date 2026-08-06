@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Niri (Noctalia)
+Comment=Niri with Noctalia Shell
+Exec=niri-noctalia-session
+Type=Application
+DesktopNames=niri
