@@ -5,7 +5,7 @@
 
 set -e
 
-CONFIG="$HOME/.config/noctalia/script/matugen/config.json"
+CONFIG="$HOME/.config/noctalia/scripts/matugen/config.json"
 LOG="$HOME/.local/state/noctalia/matugen.log"
 
 mkdir -p "$(dirname "$LOG")"
