@@ -94,7 +94,7 @@ behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
 
 [hooks]
 theme_mode_changed = ["~/.config/noctalia/theme-sync.sh"]
-wallpaper_changed = ["~/.config/noctalia/script/matugen.sh"]
+wallpaper_changed = ["~/.config/noctalia/script/matugen/matugen.sh"]
 
 [hot_corners.bottom_right]
 action = "window_switcher"
