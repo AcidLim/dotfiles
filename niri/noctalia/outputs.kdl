@@ -1,0 +1,22 @@
+// 这是显示器设置
+// 运行niri msg outputs可以获取显示器信息
+// 以下是一个配置示例
+
+output "HDMI-A-1" {
+    mode "2560x1440@144.002"
+    scale 1
+    position x=0 y=0
+    layout {
+        gaps 8
+    }
+}
+
+output "eDP-2" {
+    mode "2560x1600@165.000"
+    scale 1.25
+    position x=2560 y=0
+    layout {
+        gaps 8
+    }
+}
+

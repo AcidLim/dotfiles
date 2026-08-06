@@ -1,13 +1,3 @@
-//  ██████  ██   ██  ██████  ███████ ██ ███    ██ 
-//  ██      ██   ██ ██    ██ ██   ██    ██ ██  ██ 
-//  ███████ ███████ ██    ██ ██████  ██ ██ ██  ██ 
-//       ██ ██   ██ ██    ██ ██   ██ ██ ██  ██ ██ 
-//  ██████  ██   ██  ██████  ██   ██ ██ ██   ████ 
-
-// 自25.11版本起，niri的配置文件支持了拆分，每一条include都代表把已经拆分出去的配置文件嵌入进来。
-
-include "layout.kdl"
-include "animations.kdl"
 // 截图保存位置
 screenshot-path "~/Pictures/Screenshots/Niri-screenshots/%Y-%m-%d_%H-%M-%S.png"
 // 环境变量
@@ -20,7 +10,7 @@ environment {
     LANG "zh_CN.UTF-8"
     LC_CTYPE "en_US.UTF-8" //这一项可以解决漏字问题，但是也许会导致steam之类的x11应用无法使用中文输入法
     // 输入法环境变量
-    XMODIFIERS "@im=fcitx"
+    //XMODIFIERS "@im=fcitx"
     // qt主题
     QT_QPA_PLATFORMTHEME "gtk3"
     QT_QPA_PLATFORMTHEME_QT6 "gtk3"
@@ -29,7 +19,7 @@ environment {
     // GTK软件使用的渲染器，可以解决n卡双显卡导致的GTK应用启动缓慢问题，AMD或Intel单显卡不需要这行设置可以注释掉
     //GSK_RENDERER "gl"
     // 默认文本编辑器
-    EDITOR "vim"
+    EDITOR "Neovim"
     
 }
 
@@ -169,5 +159,8 @@ include "dms/outputs.kdl"
 include "dms/colors.kdl"
 
 // 取消下面这行的注释启动shorin预先准备好的blur配置
-include "blur.kdl"
+include "dms/blur.kdl"
 
+include "dms/layout.kdl"
+include "./dms.kdl"
+include "dms/animations.kdl" 
