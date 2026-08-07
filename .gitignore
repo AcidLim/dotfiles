@@ -12,6 +12,7 @@ kitty/current-theme.conf
 
 #niri/dms var_config
 niri/dms/colors.kdl
+niri/dms/outputs.kdl
 
 #DMS var_config
 DankMaterialShell/firefox.css
