@@ -170,8 +170,6 @@ chmod +x init_install.sh
 
 - 将 Matugen 配色钩子脚本封装为独立 Noctalia 插件，解除硬编码脚本依赖
 
-- 为 noctalia 制作显示器布局插件
-
 - 重构壁纸脚本，复用底层资源获取函数，通过环境变量区分双会话环境
 
 - 为双会话增加专属环境变量标识，统一管控主题、壁纸、插件行为
@@ -185,4 +183,3 @@ chmod +x init_install.sh
 - 主题工具：Matugen
 
 - 环境：Linux(CachyOS) 系统、Wayland 显示协议、greeted 会话管理器
-
