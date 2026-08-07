@@ -1,4 +1,4 @@
-# Niri Wayland 双会话 Dotfiles 配置文档
+# Niri Wayland 双会话 Dotfiles 配置文档[写给自己看的∗︎˚(* ˃̤൬˂̤ *)˚∗︎]
 
 ## 📖 dotfiles简介
 
