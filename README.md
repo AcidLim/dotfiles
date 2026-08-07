@@ -159,7 +159,7 @@ dotfiles/
 
 3. **Wayland 会话部署**：将桌面会话文件复制到 `/usr/share/wayland-sessions/`，供显示管理器识别加载
 
-### 一键安装命令
+### 一键安装命令(施工中，未完成！！)
 
 ```Plain Text
 chmod +x init_install.sh
