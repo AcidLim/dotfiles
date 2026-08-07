@@ -2,7 +2,7 @@
 
 ## 📖 dotfiles简介
 
-本项目为 **Niri Wayland 桌面环境** 定制双会话配置方案，包含 `noctalia` 定制美化会话与 `dms` 轻量化默认会话。整套配置实现了自动化安装、壁纸随机切换、Matugen 动态主题配色、会话环境隔离等功能，全程轻量化、可复用、可一键部署，适配 Linux Wayland 桌面生态。
+本项目为 **Niri Wayland 桌面环境** 定制双会话配置方案，包含 `noctalia` 会话与 `dms` 会话。整套配置实现了自动化安装、壁纸随机切换、Matugen 动态主题配色、会话环境隔离(依旧施工中)等功能，全程轻量化、可复用、可一键部署，适配 Linux Wayland 桌面生态。
 
 所有配置通过软链接统一管理，安装脚本安全可靠，采用**单文件删除\-即时链接**机制，避免全局配置丢失风险。
 
@@ -33,19 +33,19 @@ greeted 显示管理器 → Wayland 会话文件 → 系统可执行会话脚本
 
 ```Plain Text
 greeted
-├─ niri-noctalia.desktop  # 美化会话入口
-│  └─ /usr/local/bin/niri-noctalia-session  # 美化会话启动脚本
-└─ niri-dms.desktop       # 轻量化会话入口
-   └─ /usr/local/bin/niri-dms-session       # 轻量化会话启动脚本
+├─ niri-noctalia.desktop  # Noctalia会话入口
+│  └─ /usr/local/bin/niri-noctalia-session  # Noctalia会话启动脚本
+└─ niri-dms.desktop       # DankMaterialShell会话入口
+   └─ /usr/local/bin/niri-dms-session       # DankMaterialShell会话启动脚本
 ```
 
 ### 2\. 主题配色生成机制
 
-#### DMS 轻量化会话
+#### DMS 会话
 
 完全交由 Matugen 全自动管理，无需自定义配置，自动读取当前壁纸、生成并应用全套系统配色，开箱即用。
 
-#### Noctalia 美化会话
+#### Noctalia 会话
 
 采用钩子联动机制，支持个性化配置，后续可迭代为 Noctalia 插件：
 
@@ -61,9 +61,9 @@ greeted
 
 双会话独立壁纸脚本，环境隔离，避免配置覆盖冲突：
 
-- Noctalia 会话壁纸脚本：`.local/bin/random-anime-wallpaper-noctalia`
+- Noctalia 随机壁纸脚本：`.local/bin/random-anime-wallpaper-noctalia`
 
-- DMS 会话壁纸脚本：`.local/bin/random-anime-wallpaper-dms`
+- DMS 随机壁纸脚本：`.local/bin/random-anime-wallpaper-dms`
 
 **执行逻辑**：脚本获取随机动漫壁纸资源 → 调用 对应Shell IPC 命令更换壁纸 → 触发配色钩子重载主题。
 
@@ -76,73 +76,65 @@ dotfiles/
 ├── init_install.sh                 # 项目一键安装入口脚本
 ├── bin/                            # 系统可执行脚本 & 安装脚本
 │   ├── install.sh
-│   ├── niri-dms-session            # DMS 轻量化会话启动器
-│   └── niri-noctalia-session       # Noctalia 美化会话启动器
+│   ├── niri-dms-session            # DMS 会话启动器
+│   └── niri-noctalia-session       # Noctalia 会话启动器
 ├── local_bin/                      # 下载并切换随机壁纸
 │   ├── random-anime-wallpaper-dms
 │   └── random-anime-wallpaper-noctalia
-├── DankMaterialShell/              # 桌面定制材质美化配置
-│   ├── firefox.css
-│   ├── monitors.json
-│   ├── plugin_settings.json
-│   ├── settings.json
-│   └── plugins/linuxWallpaperEngine/ # 动态壁纸引擎插件
-├── fastfetch/                     # 系统信息展示配置
+├── DankMaterialShell/              # DMS配置
+│   └── settings.json
+├── fastfetch/                      # 系统信息展示配置
 │   ├── config.jsonc
-│   ├── logo                        # 自定义Logo软链接目录
+│   ├── logo                        # 自定义Logo软链接目录，软链接至~/Pictures/fastfetch_logo/logo.png
 │   └── tips
-├── fish/                          # Fish Shell 完整配置
+├── fish/                           # Fish 完整配置
 │   ├── completions/
 │   ├── conf.d/
 │   ├── config.fish
 │   ├── fish_variables
-│   └── functions/                 # 自定义 Shell 函数
-├── kitty/                         # Kitty 终端配色与配置
-│   ├── kitty.conf
-│   ├── dank-tabs.conf
-│   ├── dank-theme.conf
-│   ├── current-theme.conf
-│   └── themes/                     # 多套主题配色
-├── matugen/                       # Matugen 动态主题生成核心配置
+│   └── functions/                  # 自定义 fish 函数
+├── kitty/
+│   └── kitty.conf                  # Kitty 终端配色与配置
+├── matugen/                        # Matugen 动态主题生成核心配置
 │   ├── config.toml
-│   └── templates/                  # 全平台配色模板（终端/状态栏/图标/工具）
-├── niri/                          # Niri 窗口管理器双会话完整配置
+│   └── templates/                  # 配色模板（终端/状态栏/图标/工具）
+├── niri/                           # Niri 窗口管理器双会话完整配置
 │   ├── config.kdl
 │   ├── cfg/                        # 通用基础配置
-│   ├── dms/                        # DMS 轻量化会话专属配置
-│   ├── noctalia/                   # Noctalia 美化会话专属配置
+│   ├── dms/                        # DMS 会话配置
+│   ├── noctalia/                   # Noctalia 会话配置
 │   ├── scripts/                    # Niri 自定义工具脚本
 │   ├── dms.kdl
 │   ├── niri-dms.kdl
 │   ├── niri-noctalia.kdl
 │   └── noctalia.kdl
-├── noctalia/                      # Noctalia 桌面组件配置
+├── noctalia/                       # Noctalia 配置
 │   ├── noctalia-config.toml
 │   ├── colors.json
 │   ├── plugins.json
 │   ├── user-templates.toml
-│   └── scripts/matugen/           # 壁纸钩子 + 动态配色脚本
-├── nvim/                          # Neovim 完整 Lazy 配置
+│   └── scripts/matugen/            # 动态配色脚本
+├── nvim/                           # Neovim 完整 Lazy 配置
 │   ├── init.lua
 │   ├── lazy-lock.json
 │   ├── lua/config/
 │   └── lua/plugins/
-├── superfile/                     # Superfile 文件管理器配置
+├── superfile/                      # Superfile 文件管理器配置
 │   ├── config.toml
 │   ├── hotkeys.toml
-│   └── theme/                      # 海量预设主题
-├── Preview/                       # 桌面效果图展示
+│   └── theme/                      # 预设主题
+├── Preview/                        # 桌面效果图展示
 │   ├── niri-dms.png
 │   └── niri-noctalia.png
-├── wayland-sessions/              # Wayland 会话入口文件
+├── wayland-sessions/               # Wayland 会话入口文件
 │   ├── niri-dms.desktop
 │   └── niri-noctalia.desktop
-├── xdg-desktop-portal/            # XDG 桌面门户适配配置
+├── xdg-desktop-portal/             # XDG 桌面门户适配配置
 │   └── niri-portals.conf
-├── mimeapps.list                  # 默认应用关联配置
-├── user-dirs.dirs                 # 用户目录路径配置
+├── mimeapps.list                   # 默认应用关联配置
+├── user-dirs.dirs                  # 用户目录路径配置
 ├── user-dirs.locale
-└── xdg-terminals.list             # 终端程序优先级配置
+└── xdg-terminals.list              # 终端程序优先级配置
 ```
 
 ## ⚙️ 安装流程说明
