@@ -1,249 +1,185 @@
-# My Dotfiles 配置管理仓库
+# Niri Wayland 双会话 Dotfiles 配置文档
 
-个人 Linux 环境配置文件统一管理仓库，用于备份、同步、迁移桌面环境配置，实现多设备配置一键恢复。
+## 📖 dotfiles简介
 
-## 当前设备环境
+本项目为 **Niri Wayland 桌面环境** 定制双会话配置方案，包含 `noctalia` 定制美化会话与 `dms` 轻量化默认会话。整套配置实现了自动化安装、壁纸随机切换、Matugen 动态主题配色、会话环境隔离等功能，全程轻量化、可复用、可一键部署，适配 Linux Wayland 桌面生态。
 
-- **操作系统**：CachyOS
+所有配置通过软链接统一管理，安装脚本安全可靠，采用**单文件删除\-即时链接**机制，避免全局配置丢失风险。
 
-- **窗口管理器**：Niri
+## ✨ 核心功能特性
 
-- **终端 Shell**：DankMaterialShell
+- **双会话隔离**：独立 Noctalia 美化会话 / DMS 轻量化会话，环境完全隔离，互不冲突
 
-- **代码编辑器**：Neovim
+- **动态主题配色**：基于 Matugen 自动提取壁纸色调，生成系统全套主题配色
 
-- **终端模拟器**：Kitty
+- **壁纸钩子联动**：Noctalia 会话支持壁纸更换钩子，自动重载配色方案
 
-## 仓库目录结构
+- **随机动漫壁纸**：两套独立壁纸脚本，分别适配双会话，通过 Niri IPC 命令更换壁纸
+
+- **安全一键安装**：分步式安装逻辑，删一项、链接一项，保障配置稳定性
+
+- **标准化部署**：自动部署会话启动脚本、Wayland 会话入口文件、用户配置
+
+## 🖼️ 效果预览
+
+![Niri DMS 会话预览](./Preview/niri-dms.png)
+![Niri Noctalia 会话预览](./Preview/niri-noctalia.png)
+
+## 🔧 整体架构流程
+
+### 1\. 桌面启动链路
+
+greeted 显示管理器 → Wayland 会话文件 → 系统可执行会话脚本，完整启动链路如下：
+
+```Plain Text
+greeted
+├─ niri-noctalia.desktop  # 美化会话入口
+│  └─ /usr/local/bin/niri-noctalia-session  # 美化会话启动脚本
+└─ niri-dms.desktop       # 轻量化会话入口
+   └─ /usr/local/bin/niri-dms-session       # 轻量化会话启动脚本
+```
+
+### 2\. 主题配色生成机制
+
+#### DMS 轻量化会话
+
+完全交由 Matugen 全自动管理，无需自定义配置，自动读取当前壁纸、生成并应用全套系统配色，开箱即用。
+
+#### Noctalia 美化会话
+
+采用钩子联动机制，支持个性化配置，后续可迭代为 Noctalia 官方插件：
+
+1. 监听壁纸更换 Hook 事件
+
+2. 执行专属配色脚本：`.config/noctalia/scripts/matugen/matugen.sh`
+
+3. 通过同目录 `config.json` 自定义 Matugen 配色规则
+
+4. 自动生成并应用适配当前壁纸的系统主题
+
+### 3\. 随机壁纸机制
+
+双会话独立壁纸脚本，环境隔离，避免配置覆盖冲突：
+
+- Noctalia 会话壁纸脚本：`.local/bin/random-anime-wallpaper-noctalia`
+
+- DMS 会话壁纸脚本：`.local/bin/random-anime-wallpaper-dms`
+
+**执行逻辑**：脚本获取随机动漫壁纸资源 → 调用 对应Shell IPC 命令更换壁纸 → 触发配色钩子重载主题。
+
+核心 IPC 壁纸更换命令：`noctalia msg wallpaper-set [壁纸路径]` `dms ipc call wallpaper set `
+
+## 📁 主要目录结构
 
 ```Plain Text
 dotfiles/
-├── nvim/                # Neovim 完整配置
-├── niri/                # Niri 窗口管理器配置
-├── kitty/               # Kitty 终端配置
-├── DankMaterialShell/   # DMS Shell 配置
-├── fish/                # fish 配置
-├── fastfetch/           # fastfetch 配置
-├── superfile/           # superfile 配置
-├── matugen/             # matugen 配置
-├── init_install.sh      # 一键软链接安装脚本
-└── README.md            # 仓库说明文档
-```
+├── init_install.sh                 # 项目一键安装入口脚本
+├── bin/                            # 系统可执行脚本 & 安装脚本
+│   ├── install.sh
+│   ├── niri-dms-session            # DMS 轻量化会话启动器
+│   └── niri-noctalia-session       # Noctalia 美化会话启动器
+├── local_bin/                      # 下载并切换随机壁纸
+│   ├── random-anime-wallpaper-dms
+│   └── random-anime-wallpaper-noctalia
+├── DankMaterialShell/              # 桌面定制材质美化配置
+│   ├── firefox.css
+│   ├── monitors.json
+│   ├── plugin_settings.json
+│   ├── settings.json
+│   └── plugins/linuxWallpaperEngine/ # 动态壁纸引擎插件
+├── fastfetch/                     # 系统信息展示配置
+│   ├── config.jsonc
+│   ├── logo                        # 自定义Logo软链接目录
+│   └── tips
+├── fish/                          # Fish Shell 完整配置
+│   ├── completions/
+│   ├── conf.d/
+│   ├── config.fish
+│   ├── fish_variables
+│   └── functions/                 # 自定义 Shell 函数
+├── kitty/                         # Kitty 终端配色与配置
+│   ├── kitty.conf
+│   ├── dank-tabs.conf
+│   ├── dank-theme.conf
+│   ├── current-theme.conf
+│   └── themes/                     # 多套主题配色
+├── matugen/                       # Matugen 动态主题生成核心配置
+│   ├── config.toml
+│   └── templates/                  # 全平台配色模板（终端/状态栏/图标/工具）
+├── niri/                          # Niri 窗口管理器双会话完整配置
+│   ├── config.kdl
+│   ├── cfg/                        # 通用基础配置
+│   ├── dms/                        # DMS 轻量化会话专属配置
+│   ├── noctalia/                   # Noctalia 美化会话专属配置
+│   ├── scripts/                    # Niri 自定义工具脚本
+│   ├── dms.kdl
+│   ├── niri-dms.kdl
+│   ├── niri-noctalia.kdl
+│   └── noctalia.kdl
+├── noctalia/                      # Noctalia 桌面组件配置
+│   ├── noctalia-config.toml
+│   ├── colors.json
+│   ├── plugins.json
+│   ├── user-templates.toml
+│   └── scripts/matugen/           # 壁纸钩子 + 动态配色脚本
+├── nvim/                          # Neovim 完整 Lazy 配置
+│   ├── init.lua
+│   ├── lazy-lock.json
+│   ├── lua/config/
+│   └── lua/plugins/
+├── superfile/                     # Superfile 文件管理器配置
+│   ├── config.toml
+│   ├── hotkeys.toml
+│   └── theme/                      # 海量预设主题
+├── Preview/                       # 桌面效果图展示
+│   ├── niri-dms.png
+│   └── niri-noctalia.png
+├── wayland-sessions/              # Wayland 会话入口文件
+│   ├── niri-dms.desktop
+│   └── niri-noctalia.desktop
+├── xdg-desktop-portal/            # XDG 桌面门户适配配置
+│   └── niri-portals.conf
+├── mimeapps.list                  # 默认应用关联配置
+├── user-dirs.dirs                 # 用户目录路径配置
+├── user-dirs.locale
+└── xdg-terminals.list             # 终端程序优先级配置```
 
-# 一、首次初始化 Dotfiles（配置迁移）
+## ⚙️ 安装流程说明
 
-## 1\.1 创建仓库根目录
+### 安装核心规则
 
-在用户家目录创建 `dotfiles` 文件夹，用于统一存放所有配置文件：
+**禁止批量删除所有配置**：采用 **单配置删除\+即时软链接** 机制，处理完一项配置再处理下一项，最大程度避免配置丢失、系统异常。
 
-```Plain Text
-mkdir ~/dotfiles
-cd ~/dotfiles
-```
+### 分步安装逻辑
 
-## 1\.2 迁移本地已有配置
+1. **用户配置软链接**：遍历 `dotfiles/config/` 目录，逐个删除用户旧配置，即时创建新软链接到 `~/.config/`
 
-将系统 `.config` 目录下的个人配置移动到 dotfiles 仓库目录：
+2. **会话脚本部署**：将双会话启动脚本软链接至 `/usr/local/bin/`，覆盖旧版本文件
 
-```Plain Text
-# 迁移 Neovim 配置
-mv ~/.config/nvim ~/dotfiles/nvim
+3. **Wayland 会话部署**：将桌面会话文件复制到 `/usr/share/wayland-sessions/`，供显示管理器识别加载
 
-# 迁移 Niri 窗口管理器配置
-mv ~/.config/niri ~/dotfiles/niri
-
-# 迁移 Kitty 终端配置
-mv ~/.config/kitty ~/dotfiles/kitty
-
-# 迁移 DankMaterialShell 配置
-mv ~/.config/DankMaterialShell ~/dotfiles/DankMaterialShell
-```
-
-# 二、创建配置软链接
-
-通过软链接让系统默认配置目录 `~/.config` 关联到 `~/dotfiles` 仓库，后续修改仓库配置即可实时生效，无需重复复制文件。
-
-```Plain Text
-# 创建 Neovim 软链接
-ln -s ~/dotfiles/nvim ~/.config/nvim
-
-# 创建 Niri 软链接
-ln -s ~/dotfiles/niri ~/.config/niri
-
-# 创建 Kitty 软链接
-ln -s ~/dotfiles/kitty ~/.config/kitty
-
-# 创建 DMS 软链接
-ln -s ~/dotfiles/DankMaterialShell ~/.config/DankMaterialShell
-```
-
-## 验证软链接
-
-执行以下命令查看链接状态：
-
-```Plain Text
-ls -l ~/.config
-```
-
-输出包含 `xxx -> /home/用户名/dotfiles/xxx` 即代表软链接创建成功。
-
-# 三、初始化本地 Git 仓库
-
-进入仓库目录，初始化 Git 版本管理：
-
-```Plain Text
-cd ~/dotfiles
-
-# 初始化本地仓库
-git init
-
-# 添加所有配置文件到暂存区
-git add .
-
-# 首次提交版本
-git commit -m "initial dotfiles: 初始化个人环境配置"
-```
-
-# 四、配置 GitHub SSH 密钥
-
-## 4\.1 检查已有密钥
+### 一键安装命令
 
 ```Plain Text
-ls ~/.ssh
+chmod +x init_install.sh
+./init_install.sh
 ```
 
-若存在 `id_ed25519`、`id_ed25519.pub`，可直接使用现有密钥。
+## 🔄 未来迭代计划
 
-## 4\.2 生成新 SSH 密钥
+- 将 Matugen 配色钩子脚本封装为独立 Noctalia 插件，解除硬编码脚本依赖
 
-替换为你的 GitHub 注册邮箱：
+- 重构壁纸脚本，复用底层资源获取函数，通过环境变量区分双会话环境
 
-```Plain Text
-ssh-keygen -t ed25519 -C "你的GitHub邮箱"
-```
+- 为双会话增加专属环境变量标识，统一管控主题、壁纸、插件行为
 
-## 4\.3 配置 GitHub 公钥
+- 增加安装校验机制，自动检测配置完整性与依赖缺失
 
-查看并复制公钥内容：
+## 📌 依赖说明
 
-```Plain Text
-cat ~/.ssh/id_ed25519.pub
-```
+- 桌面环境：Niri Wayland Compositor
 
-进入 GitHub 官网：`Settings → SSH and GPG keys → New SSH key`，粘贴公钥并保存。
+- 主题工具：Matugen
 
-## 4\.4 测试 SSH 连接
+- 环境：Linux(CachyOS) 系统、Wayland 显示协议、greeted 会话管理器
 
-```Plain Text
-ssh -T git@github.com
-```
-
-提示 `Hi 用户名! You've successfully authenticated` 即配置成功。
-
-# 五、关联远程 GitHub 仓库
-
-## 5\.1 绑定远程仓库
-
-替换为你的 GitHub 仓库地址：
-
-```Plain Text
-git remote add origin git@github.com:你的用户名/dotfiles.git
-```
-
-## 5\.2 验证远程地址
-
-```Plain Text
-git remote -v
-```
-
-## 5\.3 首次推送代码
-
-```Plain Text
-# 设置默认主分支
-git branch -M main
-
-# 推送到远程仓库
-git push -u origin main
-```
-
-# 六、日常配置更新与同步
-
-修改配置后，通过以下命令同步到远程仓库：
-
-```Plain Text
-# 查看文件修改状态
-git status
-
-# 查看详细修改内容
-git diff
-
-# 提交所有修改
-git add .
-git commit -m "update: 更新xxx配置"
-
-# 同步到 GitHub
-git push
-```
-
-# 七、配置 Git 忽略文件
-
-## 7\.1 创建 \.gitignore 文件
-
-```Plain Text
-nvim .gitignore
-```
-
-## 7\.2 基础忽略规则
-
-```Plain Text
-# DMS 独立插件目录（子仓库无需上传）
-DankMaterialShell/plugins/
-# 缓存文件
-.cache/
-# 日志文件
-*.log
-```
-
-## 7\.3 清理已提交的子仓库文件
-
-DMS 插件多为独立 Git 子仓库，直接提交会触发 `embedded git repository` 报错，执行以下命令仅从 Git 移除记录、保留本地文件：
-
-```Plain Text
-git rm -r --cached -f DankMaterialShell/plugins
-```
-
-# 八、新设备环境迁移恢复
-
-## 8\.1 安装基础依赖软件
-
-新设备需提前安装对应环境软件：`git、nvim、niri、kitty、DankMaterialShell`
-
-## 8\.2 克隆远程配置仓库
-
-```Plain Text
-git clone git@github.com:你的用户名/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-```
-
-## 8\.3 执行一键安装脚本
-
-```Plain Text
-# 赋予脚本执行权限
-chmod +x install.sh
-
-# 运行配置恢复脚本
-./install.sh
-```
-
-脚本会自动删除系统默认配置、创建全局软链接，一键恢复个人定制环境。
-
-# 九、多设备配置同步更新
-
-其他设备需要同步最新配置时，执行拉取命令即可，软链接配置会实时生效：
-
-```Plain Text
-cd ~/dotfiles
-git pull
-```
-
-> （注：部分内容可能由 AI 生成）
