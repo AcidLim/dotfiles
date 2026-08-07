@@ -2,16 +2,17 @@
 window-rule {
     match app-id="^thunar$"
     opacity 0.80
-    min-width 1200
-    min-height 800
+    default-window-height { fixed 800; }
+    default-column-width { fixed 1500; }
+    open-floating true
 }
 
 // @id=wr_1784567810532189293 @name=org.gnome.Nautilus
 window-rule {
     match app-id="^org.gnome.Nautilus$"
     opacity 0.80
-    min-width 1200
-    min-height 800
+    default-window-height { fixed 800; }
+    default-column-width { fixed 1500; }
 }
 
 // @id=wr_1784567880984479404 @name=code
@@ -24,9 +25,9 @@ window-rule {
 window-rule {
     match app-id="^QQ$" title="^QQ$"
     opacity 0.85
+    default-window-height { fixed 800; }
+    default-column-width { fixed 1200; }
     open-floating true
-    min-width 1200
-    min-height 800
 }
 
 // @id=wr_1785851569212190134 @name=jetbrains-rustrover startup
@@ -44,16 +45,16 @@ window-rule {
 // @id=wr_1785853049017886608 @name=com.follow.clash
 window-rule {
     match app-id="^com.follow.clash$"
+    default-window-height { fixed 800; }
+    default-column-width { fixed 1200; }
     open-floating true
-    min-width 1200
-    min-height 800
 }
 
 // @id=wr_1785853551266731001 @name=localsend
 window-rule {
     match app-id="^localsend$"
+    default-window-height { fixed 800; }
+    default-column-width { fixed 1200; }
     open-floating true
-    min-width 1200
-    min-height 800
     default-floating-position x=700 y=280
 }
