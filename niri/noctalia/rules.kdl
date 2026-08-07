@@ -19,6 +19,16 @@ layer-rule {
     }
 }
 
+layer-rule {
+    match namespace="^noctalia-bar-main$"
+    opacity 1.0
+    geometry-corner-radius 0
+    shadow { off; }
+    background-effect {
+        blur false
+    }
+}
+
 // ==========================================
 // 特定应用规则
 // ==========================================
