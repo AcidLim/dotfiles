@@ -16,6 +16,11 @@ niri/dms/outputs.kdl
 
 #DMS var_config
 DankMaterialShell/firefox.css
+DankMaterialShell/.changelog-1.4
+DankMaterialShell/.changelog-1.5
+DankMaterialShell/.firstlaunch
+DankMaterialShell/monitors.json
+DankMaterialShell/plugin_settings.json
 
 #Noctalia
 niri/noctalia.kdl
