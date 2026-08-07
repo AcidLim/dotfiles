@@ -6,7 +6,42 @@ blur_intensity = 0.68999998457729816
 tint_intensity = 0.0
 
 [bar]
-order = ["bar"]
+order = ["main", "bar"]
+
+[bar.main]
+position           = "right"       # top | bottom | left | right
+enabled            = true
+reserve_space      = true        # reserve compositor exclusive zone / push windows away
+layer              = "top"       # top | overlay; overlay appears above fullscreen apps
+
+thickness          = 40          # bar cross-axis size in pixels (height for horizontal, width for vertical)
+background_opacity = 0.7        # 0.0 (transparent) to 1.0 (opaque)
+border             = "outline"   # color role or #RRGGBB for the bar outline
+border_width       = 0.0         # inside outline width in pixels; 0 disables it
+shadow             = true        # cast the global [shell.shadow]
+panel_overlap      = 12           # logical px an attached panel overlaps the bar edge to hide the seam
+margin_ends        = 100         # inset from each end of the bar along its main axis
+margin_edge        = 10           # distance from the nearest screen edge (positive values float the bar)
+margin_opposite_edge = 0         # extra reserved space on the inward side of the bar (below for top, above for bottom)
+padding            = 14          # main-axis padding from bar edges to start/end widget sections
+widget_spacing     = 10           # gap between widgets within a section
+scale              = 1.1         # content scale multiplier for icons and text
+font_weight        = 500         # CSS weight 100–1000 (e.g. 400 regular, 700 bold); primary label weight for bar widgets
+font_family        = "JetBrains Mono"          # typeface for this bar's widgets; empty inherits the global font
+
+# Default capsule style for all widgets on this bar (see Widget Capsule section)
+#capsule            = false
+#capsule_fill       = "surface_variant"
+#capsule_thickness  = 0.76          # capsule size across the bar as a fraction of bar thickness (1.0 fills the bar)
+#capsule_radius     = 8.0            # omit for automatic pill radius
+#capsule_opacity    = 1.0
+#capsule_foreground = "secondary"
+# capsule_border   = "outline"   # omit this key for no border by default
+
+start  = ["launcher", "wallpaper", "workspaces"]
+center = ["clock"]
+end    = ["media", "tray", "network", "volume", "brightness", "battery","notifications", "control-center", "session"]
+
 
 [bar.bar]
 background_opacity = 0.0
@@ -18,7 +53,7 @@ capsule_opacity = 0.79
 capsule_padding = 10.0
 capsule_radius = 80
 capsule_thickness = 0.95999998226761818
-enabled = true
+enabled = false
 panel_overlap = 12
 font_family = "JetBrains Mono"
 margin_ends = 14
@@ -37,6 +72,7 @@ end = [
 center = ["clock"]
 start = ["launcher", "workspaces", "active_window"]
 thickness = 36
+
 
 [battery.device."/org/freedesktop/UPower/devices/battery_hidpp_battery_0"]
 warning_threshold = 30
@@ -127,6 +163,9 @@ scale = 0.90000000596046448
 [osd.kinds]
 media = false
 
+[notification]
+position = "bottom_right"
+
 [shell]
 font_family = "Noto Sans CJK SC"
 polkit_agent = true
@@ -137,11 +176,15 @@ auto_sync = true
 privilege_command = "pkexec"
 
 [shell.panel]
+transparency_mode = "glass"
+
 control_center_placement = "floating"
-control_center_position = "top_right"
+open_near_click_control_center = true
+
+control_center_position = "auto"
 session_placement = "floating"
 session_position = "center"
-transparency_mode = "soft"
+
 wallpaper_placement = "floating"
 wallpaper_position = "center"
 
@@ -195,26 +238,8 @@ source = "wallpaper"
 wallpaper_scheme = "m3-content"
 
 [theme.templates]
-builtin_ids = ["kitty", "qt", "starship"]
+builtin_ids = ["niri"]
 community_ids = []
-
-# NyxMellow 动态 fcitx5 皮肤（mellow 形状 + Material You 自动取色）
-# 路径中的 /home/user 为占位符，由 lib/deploy.sh 在部署时替换为实际 $HOME
-[theme.templates.user.nyxmellow_theme]
-index = 0
-input_path = "/home/user/.local/share/fcitx5/themes/nyxmellow/templates/theme.conf"
-output_path = "/home/user/.local/share/fcitx5/themes/nyxmellow/theme.conf"
-
-[theme.templates.user.nyxmellow_panel]
-index = 1
-input_path = "/home/user/.local/share/fcitx5/themes/nyxmellow/templates/panel.svg"
-output_path = "/home/user/.local/share/fcitx5/themes/nyxmellow/panel.svg"
-
-[theme.templates.user.nyxmellow_highlight]
-index = 2
-input_path = "/home/user/.local/share/fcitx5/themes/nyxmellow/templates/highlight.svg"
-output_path = "/home/user/.local/share/fcitx5/themes/nyxmellow/highlight.svg"
-post_hook = "if pgrep -x fcitx5 >/dev/null 2>&1; then pkill -x fcitx5; sleep 1; fcitx5 -d >/dev/null 2>&1 & fi"
 
 [wallpaper]
 directory = "/home/acid/Pictures/Wallpapers"
@@ -224,11 +249,24 @@ fill_mode = "crop"
 [plugins]
 enabled = ["noctalia/mpvpaper"]
 
+#小组件设置
+[widget.launcher]
+glyph = "menu-3"                # 使用 Tabler Icons 的 menu‑2 菜单图标
+custom_image_colorize = true    # 如果后续设置自定义图片，则允许图标跟随主题上色
+
+[widget.workspaces]
+style = "regular"
+capsule = true
+capsule_opacity = 0.3
+display = "none"
+
 [widget.active_window]
 min_length = 0
 
 [widget.clock]
-format = "{:%a, %d %b %H:%M}"
+# 显示格式：简写星期, 日期 简写月份 时:分:秒
+format = "{:%a, %d %b %H:%M:%S}"
+vertical_format = "{:%H\n%M\n%S}"
 
 [widget.tray]
 detached_panel = true
@@ -240,6 +278,7 @@ capsule = false
 [widget.mpvpaper]
 type = "noctalia/mpvpaper:mpvpaper"
 
+#插件设置
 [plugin_settings."noctalia/mpvpaper"]
 mpv_options = "--script=~/.config/noctalia/mpv-hook.lua"
 picker_placement = "floating"
