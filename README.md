@@ -142,7 +142,8 @@ dotfiles/
 ├── mimeapps.list                  # 默认应用关联配置
 ├── user-dirs.dirs                 # 用户目录路径配置
 ├── user-dirs.locale
-└── xdg-terminals.list             # 终端程序优先级配置```
+└── xdg-terminals.list             # 终端程序优先级配置
+```
 
 ## ⚙️ 安装流程说明
 
