@@ -8,6 +8,7 @@ fastfetch/config.jsonc
 kitty/dank-theme.conf
 kitty/dank-tabs.conf
 kitty/themes
+kitty/current-theme.conf
 
 #niri/dms var_config
 niri/dms/colors.kdl
