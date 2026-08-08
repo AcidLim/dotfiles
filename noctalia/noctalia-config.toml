@@ -251,7 +251,7 @@ enabled = ["noctalia/mpvpaper"]
 
 #小组件设置
 [widget.launcher]
-glyph = "menu-3"                # 使用 Tabler Icons 的 menu‑2 菜单图标
+glyph = "brand-apple"             
 custom_image_colorize = true    # 如果后续设置自定义图片，则允许图标跟随主题上色
 
 [widget.workspaces]
