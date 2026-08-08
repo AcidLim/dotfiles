@@ -62,4 +62,9 @@ layer-rule {
     }
 }
 
+//noctalia(v5.0) Blurred Overview Wallpaper
+layer-rule {
+  match namespace="^noctalia-backdrop"
+  place-within-backdrop true
+}
 // --- NIRI BLUR END ---

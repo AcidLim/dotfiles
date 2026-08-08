@@ -2,6 +2,7 @@
 enable_overdrive = true
 
 [backdrop]
+enabled = true
 blur_intensity = 0.68999998457729816
 tint_intensity = 0.0
 
