@@ -30,4 +30,36 @@ layer-rule {
 	blur true
     }
 }
+
+//layer-rule {
+//    match namespace="^noctalia-wallpaper*"
+//    place-within-backdrop true
+//}
+
+layer-rule {
+    match namespace="^mpvpaper$"
+    place-within-backdrop true
+}
+
+// noctalia(v5.0.0) 状态栏的命名空间
+layer-rule {
+    match namespace="^noctalia-bar-bar$"
+    opacity 1.0
+    geometry-corner-radius 0
+    shadow { off; }
+    background-effect {
+        blur false
+    }
+}
+
+layer-rule {
+    match namespace="^noctalia-bar-main$"
+    opacity 1.0
+    geometry-corner-radius 0
+    shadow { off; }
+    background-effect {
+        blur false
+    }
+}
+
 // --- NIRI BLUR END ---

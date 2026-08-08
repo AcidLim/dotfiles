@@ -70,3 +70,10 @@ window-rule {
     min-height 800
     default-floating-position x=700 y=280
 }
+
+window-rule {
+    match app-id="^nm-connection-editor$"
+    default-window-height { fixed 800; }
+    default-column-width { fixed 1500; }
+    open-floating true
+}
