@@ -24,7 +24,7 @@ recent-windows {
         Mod+Tab         { next-window scope="workspace"; }
         Mod+Shift+Tab   { previous-window scope="workspace"; }
         // grave是波浪键，显示当前应用的所有窗口
-        Mod+grave       { next-window     filter="app-id"; }
+        Mod+grave       { next-window filter="app-id"; }
         Mod+Shift+grave { previous-window filter="app-id"; }
     }
 }

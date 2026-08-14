@@ -5,6 +5,7 @@
 
 window-rule {
     match app-id=r"dev.noctalia.Noctalia"
+    opacity 0.9
     open-floating true
 }
 
@@ -136,7 +137,7 @@ window-rule {
 window-rule {
     match app-id="steam" title="Friends List"
     match app-id="steam" title="好友列表"
-    default-column-width { proportion 0.20; }
+    default-column-width { proportion 0.2; }
 }
 
 // QQ 资料卡 / 天气窗口不抢占焦点

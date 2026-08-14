@@ -4,42 +4,45 @@ binds {
     Mod+Shift+Slash hotkey-overlay-title="快捷键教程 Keybind tutorial" { spawn "~/.config/niri/scripts/niri-binds"; }
 
     // alt+tab切换窗口
-    Alt+Tab hotkey-overlay-title="跳转窗口 swich windows" {spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "windows";}
+    Alt+Tab hotkey-overlay-title="跳转窗口 swich windows" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "windows"; }
     // 特殊功能
-    Mod+F1 hotkey-overlay-title="开关输入法 Toggle fcitx" {spawn-sh "pkill fcitx5 || fcitx5 ";}
+    Mod+F1 hotkey-overlay-title="开关输入法 Toggle fcitx" { spawn-sh "pkill fcitx5 || fcitx5 "; }
     Mod+F2 hotkey-overlay-title="设置 Settings" { spawn "noctalia" "msg" "settings-toggle"; }
-    Mod+F3 hotkey-overlay-title="录屏 Screen record" { spawn "shorin-screenrec-menu";}
-    Mod+F5 hotkey-overlay-title="快速存档 Quick save" {spawn "quicksave";}
-    Mod+F8 hotkey-overlay-title="快速读档 Quick load" {spawn "quickload";}
+    Mod+F3 hotkey-overlay-title="录屏 Screen record" { spawn "shorin-screenrec-menu"; }
+    Mod+F5 hotkey-overlay-title="快速存档 Quick save" { spawn "quicksave"; }
+    Mod+F8 hotkey-overlay-title="快速读档 Quick load" { spawn "quickload"; }
     Mod+P hotkey-overlay-title="提取窗口信息 Pick information" { spawn "~/.config/niri/scripts/niri-pick" "focus"; }
 
     // 临时开一个浮动终端
-    Mod+Slash hotkey-overlay-title="临时终端 Quick Terminal" {spawn "kitty" "--single-instance" "--class" "quickterminal";}
+    Mod+Slash hotkey-overlay-title="临时终端 Quick Terminal" { spawn "kitty" "--single-instance" "--class" "quickterminal"; }
     //打开浏览器
-    Mod+B hotkey-overlay-title="浏览器 Browser" { spawn "firefox"; }        
+    Mod+B hotkey-overlay-title="浏览器 Browser" { spawn "firefox"; }
+        
     //opencode ai助手
-    Mod+Alt+O hotkey-overlay-title="AI助手 opencode agent" { spawn "kitty" "--class" "opencode" "-e" "opencode"; }        
+    Mod+Alt+O hotkey-overlay-title="AI助手 opencode agent" { spawn "kitty" "--class" "opencode" "-e" "opencode"; }
+        
     Mod+T hotkey-overlay-title="共享终端 Terminal" { spawn "kitty" "--single-instance"; }
     Mod+return hotkey-overlay-title="独立终端 Terminal" { spawn "kitty"; }
     // 文档管理器。如果有thunar的话会优先打开thunar，没有的话会打开nautilus
     Mod+Alt+E hotkey-overlay-title="文档管理器 Filemanager" { spawn-sh "thunar || env GSK_RENDERER=gl GTK_IM_MODULE=fcitx  nautilus"; }
     // 另一个打开nautilus的快捷键，主要是为了在同时安装thunar和nautilus的情况下打开naultilus
-    Mod+E hotkey-overlay-title=null {spawn "env" "GSK_RENDERER=gl" "GTK_IM_MODULE=fcitx"  "nautilus" "--new-window";}
+    Mod+E hotkey-overlay-title=null { spawn "env" "GSK_RENDERER=gl" "GTK_IM_MODULE=fcitx" "nautilus" "--new-window"; }
    
     Mod+Z hotkey-overlay-title="程序菜单 Applauncher" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     // 壁纸选择
-    Mod+Alt+W hotkey-overlay-title="壁纸切换 Wallpaper" { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }   
+    Mod+Alt+W hotkey-overlay-title="壁纸切换 Wallpaper" { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
+   
     // 随机切换壁纸
-    Mod+F10 hotkey-overlay-title="随机切换壁纸 Random wallpaper" { spawn "noctalia" "msg" "wallpaper-random";}
+    Mod+F10 hotkey-overlay-title="随机切换壁纸 Random wallpaper" { spawn "noctalia" "msg" "wallpaper-random"; }
     // 随机下载壁纸
-    Mod+Shift+F10 hotkey-overlay-title="随机下载壁纸 Random Download wallpaper" { spawn "~/.local/bin/random-anime-wallpaper-noctalia";}
+    Mod+Shift+F10 hotkey-overlay-title="随机下载壁纸 Random Download wallpaper" { spawn "~/.local/bin/random-anime-wallpaper-noctalia"; }
 
     Mod+O hotkey-overlay-title="切换总览界面 toggle overview" repeat=false { toggle-overview; }
     Mod+G repeat=false { toggle-overview; }
     // 关闭聚焦窗口
     Mod+Q hotkey-overlay-title="关闭聚焦窗口 Close focus window" repeat=false { close-window; }
-    Alt+F4  hotkey-overlay-title="强制杀死窗口 Force kill -9 window" repeat=false { spawn "~/.config/niri/scripts/niri-force-kill-window"; }
-    Alt+Shift+F4  hotkey-overlay-title="强制杀死窗口以及关联进程 Force kill -9 a window tree" repeat=false { spawn "~/.config/niri/scripts/niri-force-kill-window" "-f"; }
+    Alt+F4 hotkey-overlay-title="强制杀死窗口 Force kill -9 window" repeat=false { spawn "~/.config/niri/scripts/niri-force-kill-window"; }
+    Alt+Shift+F4 hotkey-overlay-title="强制杀死窗口以及关联进程 Force kill -9 a window tree" repeat=false { spawn "~/.config/niri/scripts/niri-force-kill-window" "-f"; }
 
     // niri-sidebar扩展相关
     // 警告：这是实验性功能
@@ -47,9 +50,9 @@ binds {
     Mod+Alt+S hotkey-overlay-title="收起窗口 Move to Sidebar" { spawn "niri-sidebar" "toggle-window"; }
     Mod+M hotkey-overlay-title="收起窗口 Move to Sidebar" { spawn "niri-sidebar" "toggle-window"; }
     // 切换 收起/展开侧边栏
-    Mod+Alt+Z hotkey-overlay-title="展开/收起侧边栏 Toggle Sidebar" { spawn "niri-sidebar" "toggle-visibility";}
+    Mod+Alt+Z hotkey-overlay-title="展开/收起侧边栏 Toggle Sidebar" { spawn "niri-sidebar" "toggle-visibility"; }
     // 反向排序侧边栏
-    Mod+Alt+X hotkey-overlay-title=null { spawn "niri-sidebar" "flip";}
+    Mod+Alt+X hotkey-overlay-title=null { spawn "niri-sidebar" "flip"; }
     // 重新排列侧边栏中的窗口（侧边栏中的窗口本质是一个浮动窗口，你有时候可能会把它移动到别的地方
     // 例如 ctrl+c居中。此时按下此键可以重新排列）
     Mod+Alt+R hotkey-overlay-title="重置侧边栏 Reorder Sidebar"  { spawn "niri-sidebar" "reorder"; }
@@ -141,14 +144,14 @@ binds {
     Mod+Shift+Alt+Left  { move-workspace-to-monitor-left; }
 
     // mod+shitf+滚轮上下切换工作区
-    Mod+Shift+WheelScrollDown  hotkey-overlay-title="切换工作区 Change workspaces"    cooldown-ms=150 { focus-workspace-down; }
-    Mod+Shift+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Shift+WheelScrollDown hotkey-overlay-title="切换工作区 Change workspaces" cooldown-ms=150 { focus-workspace-down; }
+    Mod+Shift+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
     //再加上ctrl移动窗口
     Mod+Ctrl+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Ctrl+Shift+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
 
     // mod+滚轮上下 左右切换聚焦
-    Mod+WheelScrollDown   hotkey-overlay-title="滚轮切换聚焦 Change focus with wheel"   { focus-column-right; }
+    Mod+WheelScrollDown hotkey-overlay-title="滚轮切换聚焦 Change focus with wheel"   { focus-column-right; }
     Mod+WheelScrollUp        { focus-column-left; }
     // 再加上ctrl移动colume
     Mod+Ctrl+WheelScrollDown { move-column-right; }
@@ -176,13 +179,13 @@ binds {
     Mod+MouseBack    { focus-window-down; }
     
     // 按照预设切换窗口宽度
-    Mod+R  hotkey-overlay-title="按预设切换宽度 Switch width " { switch-preset-column-width; }
+    Mod+R hotkey-overlay-title="按预设切换宽度 Switch width " { switch-preset-column-width; }
     // 按照预设切换窗口高度
     Mod+Shift+R  { switch-preset-window-height; }
     // 重置窗口高度
     Mod+Ctrl+R { reset-window-height; }
 
-    Mod+F  hotkey-overlay-title="最大化 maximize" { maximize-column; }
+    Mod+F hotkey-overlay-title="最大化 maximize" { maximize-column; }
     Mod+Alt+F hotkey-overlay-title="全屏 fullscreen"  { fullscreen-window; }
 
     // 增加窗口宽度占满空闲空间
@@ -200,7 +203,7 @@ binds {
     Mod+Shift+Equal { set-window-height "+5%"; }
 
     // 切换浮动模式
-    Mod+V   hotkey-overlay-title="切换浮动 Toggle floating"    { toggle-window-floating; }
+    Mod+V hotkey-overlay-title="切换浮动 Toggle floating"    { toggle-window-floating; }
     // 在浮动模式和非浮动模式之间切换聚焦
     Mod+Shift+V hotkey-overlay-title=null { switch-focus-between-floating-and-tiling; }
     Mod+N hotkey-overlay-title="切换浮动聚焦 Change focus to floating" { switch-focus-between-floating-and-tiling; }
@@ -208,13 +211,13 @@ binds {
     Mod+Alt+N hotkey-overlay-title=null { switch-focus-between-floating-and-tiling; }
 
     // 截图相关
-    Mod+Alt+A  hotkey-overlay-title="选取区域截图 Select screenshot"  {spawn-sh "niri msg action screenshot --show-pointer false && pkill -f -USR1 screenshot-sound.sh";}
-    Mod+Alt+Ctrl+A  hotkey-overlay-title="截取聚焦窗口 Focus-window screenshot" { spawn-sh "niri msg action screenshot-window && pkill -f -USR1 screenshot-sound.sh"; }
-    Mod+Alt+Ctrl+Shift+A  hotkey-overlay-title="截取显示器 Monitor screenshot" { spawn-sh "niri msg action screenshot-screen --show-pointer false && pkill -f -USR1 screenshot-sound.sh"; }
-    Print  hotkey-overlay-title=null {spawn-sh "niri msg action screenshot --show-pointer false && pkill -f -USR1 screenshot-sound.sh";}
-    Ctrl+Print  hotkey-overlay-title=null { spawn-sh "niri msg action screenshot-window --show-pointer false && pkill -f -USR1 screenshot-sound.sh"; }
-    Shift+Print  hotkey-overlay-title=null { spawn-sh "niri msg action screenshot-screen --show-pointer false && pkill -f -USR1 screenshot-sound.sh"; }
-    Mod+Shift+S  hotkey-overlay-title="截图后按下此键进行编辑 Edit the image after screenshot" { spawn-sh "wl-paste | satty -f -";}
+    Mod+Alt+A hotkey-overlay-title="选取区域截图 Select screenshot"  { spawn-sh "niri msg action screenshot --show-pointer false && pkill -f -USR1 screenshot-sound.sh"; }
+    Mod+Alt+Ctrl+A hotkey-overlay-title="截取聚焦窗口 Focus-window screenshot" { spawn-sh "niri msg action screenshot-window && pkill -f -USR1 screenshot-sound.sh"; }
+    Mod+Alt+Ctrl+Shift+A hotkey-overlay-title="截取显示器 Monitor screenshot" { spawn-sh "niri msg action screenshot-screen --show-pointer false && pkill -f -USR1 screenshot-sound.sh"; }
+    Print hotkey-overlay-title=null { spawn-sh "niri msg action screenshot --show-pointer false && pkill -f -USR1 screenshot-sound.sh"; }
+    Ctrl+Print hotkey-overlay-title=null { spawn-sh "niri msg action screenshot-window --show-pointer false && pkill -f -USR1 screenshot-sound.sh"; }
+    Shift+Print hotkey-overlay-title=null { spawn-sh "niri msg action screenshot-screen --show-pointer false && pkill -f -USR1 screenshot-sound.sh"; }
+    Mod+Shift+S hotkey-overlay-title="截图后按下此键进行编辑 Edit the image after screenshot" { spawn-sh "wl-paste | satty -f -"; }
 
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+E hotkey-overlay-title="退出niri Quit niri" { quit; }
@@ -226,16 +229,17 @@ binds {
     // 锁屏
     Mod+Alt+L hotkey-overlay-title="锁屏 Lock Screen" { spawn "noctalia" "msg" "session" "lock"; }
     // 锁屏、关闭显示器、休眠
-    Mod+Alt+P hotkey-overlay-title="挂起 Suspend" { spawn-sh "niri msg action power-off-monitors && qs -c noctalia-shell ipc call lockScreen lock && systemctl suspend";}
+    Mod+Alt+P hotkey-overlay-title="挂起 Suspend" { spawn-sh "niri msg action power-off-monitors && qs -c noctalia-shell ipc call lockScreen lock && systemctl suspend"; }
 
     // === 媒体控制 ===
     XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
     XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
     XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioNext { spawn "noctalia" "msg" "media" "next";}
-    XF86AudioPrev { spawn "noctalia" "msg" "media" "previous";} 
-    XF86AudioPause { spawn "noctalia" "msg" "media" "toggle";}
-    XF86AudioPlay { spawn "noctalia" "msg" "media" "toggle";}
+    XF86AudioNext { spawn "noctalia" "msg" "media" "next"; }
+    XF86AudioPrev { spawn "noctalia" "msg" "media" "previous"; }
+ 
+    XF86AudioPause { spawn "noctalia" "msg" "media" "toggle"; }
+    XF86AudioPlay { spawn "noctalia" "msg" "media" "toggle"; }
 
     XF86MonBrightnessUp allow-when-locked=true { spawn "sh" "-c" "ddcutil setvcp 10 + 10"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "sh" "-c" "ddcutil setvcp 10 - 10"; }
@@ -274,5 +278,4 @@ binds {
     Mod+Ctrl+7 { move-column-to-workspace 7; }
     Mod+Ctrl+8 { move-column-to-workspace 8; }
     Mod+Ctrl+9 { move-column-to-workspace 9; }
-
 }

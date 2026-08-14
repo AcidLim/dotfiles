@@ -258,8 +258,9 @@ custom_image_colorize = true    # 如果后续设置自定义图片，则允许�
 [widget.workspaces]
 style = "regular"
 capsule = true
-capsule_opacity = 0.3
-display = "none"
+capsule_opacity = 0.5
+show_labels = false      # false = unlabeled pills (Focus Hint: app icon only)
+label_source = "id"     # id | name
 
 [widget.active_window]
 min_length = 0

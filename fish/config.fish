@@ -38,28 +38,12 @@ end
 function 滚
 	sysup 
 end
-function raw
-	command ~/.local/bin/random-anime-wallpaper-dms $argv
-end
-
-function 安装
-	command yay -S $argv
-end
-
-function 卸载
-	command yay -Rns $argv
-end 
+#function raw
+#	command ~/.local/bin/random-anime-wallpaper-dms $argv
+#end
 
 function hmcl
 	bash /home/acid/Games/Minecraft/HMCL/hmcl.sh &; disown
-end
-
-function steam-fix
-    set -x STEAM_WEBKIT_DISABLE_COMPOSITING_MODE 1
-    set -x GDK_BACKEND x11
-    set -x __GL_THREADED_OPTIMIZATIONS 0
-
-    steam
 end
 
 function mirror-update

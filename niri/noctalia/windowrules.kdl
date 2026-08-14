@@ -20,13 +20,12 @@ layer-rule {
 window-rule {
     match app-id="imv"
     open-floating true
-    }
+}
 // steam 好友列表
 window-rule {
     match app-id="steam" title="Friends List"
     match app-id="steam" title="好友列表"
-    default-column-width { proportion 0.20; }
-
+    default-column-width { proportion 0.2; }
 }
 //shorinclip剪贴板TUI 
 window-rule {
@@ -48,7 +47,7 @@ window-rule {
     match app-id="floating-term"
     match app-id="nm-connection-editor"
     match app-id="niri-quick-switch"
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r"firefox$" title="^Picture-in-Picture$"
     match app-id="steam" title="Friends List"
     match app-id="blueberry.py" title="蓝牙"
     match app-id="blueman-manager"
@@ -91,7 +90,7 @@ window-rule {
 window-rule {
     match app-id="bluetui"
     match app-id="impala"
-default-column-width { fixed 800; }
+    default-column-width { fixed 800; }
     default-window-height { fixed 800; }
 	open-floating true
 }
@@ -134,36 +133,37 @@ window-rule {
     // This regular expression is intentionally made as specific as possible,
     // since this is the default config, and we want no false positives.
     // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
+    match app-id=r"^org\.wezfurlong\.wezterm$"
+    default-column-width {
+    }
 }
 window-rule {
-    match app-id=r#"^org\.gnome\."#
+    match app-id=r"^org\.gnome\."
     draw-border-with-background false
     geometry-corner-radius 12
     clip-to-geometry true
 }
 window-rule {
-    match app-id=r#"^gnome-control-center$"#
-    match app-id=r#"^pavucontrol$"#
-    match app-id=r#"^nm-connection-editor$"#
+    match app-id=r"^gnome-control-center$"
+    match app-id=r"^pavucontrol$"
+    match app-id=r"^nm-connection-editor$"
     default-column-width { proportion 0.5; }
     open-floating false
 }
 window-rule {
-    match app-id=r#"^gnome-calculator$"#
-    match app-id=r#"^galculator$"#
-    match app-id=r#"^blueman-manager$"#
-    match app-id=r#"^xdg-desktop-portal$"#
+    match app-id=r"^gnome-calculator$"
+    match app-id=r"^galculator$"
+    match app-id=r"^blueman-manager$"
+    match app-id=r"^xdg-desktop-portal$"
     open-floating true
 }
 window-rule {
-    match app-id=r#"^steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
+    match app-id=r"^steam$" title=r"^notificationtoasts_\d+_desktop$"
     default-floating-position x=10 y=10 relative-to="bottom-right"
     open-focused false
 }
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id=r"^org\.wezfurlong\.wezterm$"
     match app-id="Alacritty"
     match app-id="zen"
     match app-id="com.mitchellh.ghostty"
@@ -171,19 +171,19 @@ window-rule {
     draw-border-with-background false
 }
 window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r"firefox$" title="^Picture-in-Picture$"
     match app-id="zoom"
     open-floating true
 }
 // Open dms windows as floating by default
 window-rule {
-    match app-id=r#"org.quickshell$"#
+    match app-id=r"org.quickshell$"
     open-floating true
 }
 
 // steam好友弹窗修复
 window-rule {
-    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    match app-id="steam" title=r"^notificationtoasts_\d+_desktop$"
     default-floating-position x=10 y=10 relative-to="bottom-right"
     open-focused false
 }
