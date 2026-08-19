@@ -129,7 +129,13 @@
     },
     {
       "type": "disk",
-      "key": " └ 󰋊  DIS ",
+      "key": " ├ 󰋊  DIS ",
+      "keyColor": "{{colors.secondary_fixed.default.hex}}",
+      //"outputColor": "{{colors.secondary_fixed_dim.default.hex}}"
+    },
+    {
+      "type": "locale",
+      "key": " └ 󰗊  LOC ",
       "keyColor": "{{colors.secondary_fixed.default.hex}}",
       //"outputColor": "{{colors.secondary_fixed_dim.default.hex}}"
     },
