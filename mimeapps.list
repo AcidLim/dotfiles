@@ -34,6 +34,7 @@ x-scheme-handler/file=org.gnome.Nautilus.desktop
 x-scheme-handler/jetbrains=jetbrainsd.desktop
 x-scheme-handler/mihomo=sparkle.desktop
 x-scheme-handler/sparkle=sparkle.desktop
+text/css=nvim.desktop
 
 [Added Associations]
 application/json=vim.desktop;nvim.desktop;
@@ -72,5 +73,6 @@ x-scheme-handler/clash-verge=clash-verge.desktop;
 x-scheme-handler/file=thunar.desktop;org.gnome.Nautilus.desktop;
 application/gzip=org.gnome.FileRoller.desktop;
 text/x-shellscript=nvim.desktop;
+text/css=nvim.desktop;
 
 [Removed Associations]

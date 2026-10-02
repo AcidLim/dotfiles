@@ -71,9 +71,16 @@ window-rule {
     default-floating-position x=700 y=280
 }
 
+// @id=dms_rule_9 @name=
 window-rule {
     match app-id="^nm-connection-editor$"
-    default-window-height { fixed 800; }
+    open-floating true
     default-column-width { fixed 1500; }
+    default-window-height { fixed 800; }
+}
+
+// @id=dms-floating-windows @name=DMS Floating Windows
+window-rule {
+    match app-id="^com.danklinux.dms$"
     open-floating true
 }

@@ -13,6 +13,7 @@ kitty/current-theme.conf
 #niri/dms var_config
 niri/dms/colors.kdl
 niri/dms/outputs.kdl
+niri/dms/input.kdl
 
 #DMS var_config
 DankMaterialShell/firefox.css
@@ -21,6 +22,7 @@ DankMaterialShell/.changelog-1.5
 DankMaterialShell/.firstlaunch
 DankMaterialShell/monitors.json
 DankMaterialShell/plugin_settings.json
+DankMaterialShell/.changelog-*
 
 #Noctalia
 niri/noctalia.kdl

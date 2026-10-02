@@ -150,6 +150,7 @@ window-rule {
 // QQ 群聊的聊天记录以浮动模式打开
 window-rule {
     match app-id="QQ" title="群聊的聊天记录"
+    match app-id="QQ" title="文件"
     open-floating true
 }
 

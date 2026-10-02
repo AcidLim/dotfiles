@@ -16,7 +16,7 @@ binds {
     // 临时开一个浮动终端
     Mod+Slash hotkey-overlay-title="临时终端 Quick Terminal" { spawn "kitty" "--single-instance" "--class" "quickterminal"; }
     //打开浏览器
-    Mod+B hotkey-overlay-title="浏览器 Browser" { spawn "firefox"; }
+    Mod+B hotkey-overlay-title="浏览器 Browser" { spawn "microsoft-edge-stable"; }
         
     //opencode ai助手
     Mod+Alt+O hotkey-overlay-title="AI助手 opencode agent" { spawn "kitty" "--class" "opencode" "-e" "opencode"; }
@@ -232,8 +232,8 @@ binds {
     Mod+Alt+P hotkey-overlay-title="挂起 Suspend" { spawn-sh "niri msg action power-off-monitors && qs -c noctalia-shell ipc call lockScreen lock && systemctl suspend"; }
 
     // === 媒体控制 ===
-    XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
-    XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "3%+"; }
+    XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "3%-"; }
     XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioNext { spawn "noctalia" "msg" "media" "next"; }
     XF86AudioPrev { spawn "noctalia" "msg" "media" "previous"; }
