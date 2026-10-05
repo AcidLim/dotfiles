@@ -237,13 +237,14 @@
 "Mod+Alt+N" = "window-focus-switch-floating"
 
 # 截图相关（Umbriel 无内置截图，使用 grim + slurp）
-"Mod+Alt+A" = "spawn:grim -g \"$(slurp)\" && pkill -f -USR1 screenshot-sound.sh"  #选取区域截图
-"Mod+Alt+Ctrl+A" = "spawn:grim -g \"$(slurp -w 0)\" && pkill -f -USR1 screenshot-sound.sh"  #选取聚焦窗口
-"Mod+Alt+Ctrl+Shift+A" = "spawn:grim && pkill -f -USR1 screenshot-sound.sh"  #截取显示器
-"Print" = "spawn:grim -g \"$(slurp)\" && pkill -f -USR1 screenshot-sound.sh"
-"Ctrl+Print" = "spawn:grim -g \"$(slurp -w 0)\" && pkill -f -USR1 screenshot-sound.sh"
-"Shift+Print" = "spawn:grim && pkill -f -USR1 screenshot-sound.sh"
-"Mod+Shift+S" = "spawn:wl-paste | satty -f -"  #截图后使用此快捷键编辑
+# 保存目录：~/Pictures/Screenshots
+"Mod+Alt+A" = "spawn:mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"  #选取区域截图
+"Mod+Alt+Ctrl+A" = "spawn:mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp -w 0)\" ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"  #截取聚焦窗口
+"Mod+Alt+Ctrl+Shift+A" = "spawn:mkdir -p ~/Pictures/Screenshots && grim ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"  #截取显示器
+"Print" = "spawn:mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"
+"Ctrl+Print" = "spawn:mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp -w 0)\" ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"
+"Shift+Print" = "spawn:mkdir -p ~/Pictures/Screenshots && grim ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"
+"Mod+Shift+S" = "spawn:mkdir -p ~/Pictures/Screenshots && wl-paste | satty -f - --output-filename ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png"  #截图后使用此快捷键编辑"Mod+Shift+S" = "spawn:wl-paste | satty -f -"  #截图后使用此快捷键编辑
 
 "Mod+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
 "Mod+Shift+E" = "session-quit"
