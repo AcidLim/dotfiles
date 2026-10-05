@@ -30,5 +30,9 @@ niri/noctalia.kdl
 #该项可运行noctalia/scripts/generate-outputs下的脚本自动生成合适outputs
 niri/noctalia/outputs.kdl 
 
-#暂时不跟踪Umbriel
-umbriel/
+#Umbriel的noctalia模板，在noctalia设置里启动模板自动生成
+umbriel/noctalia.toml
+
+#备份文件
+umbriel/config.toml.bak
+
