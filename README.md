@@ -1,10 +1,12 @@
-# Niri Wayland 双会话 Dotfiles 配置文档[写给自己看的∗︎˚(* ˃̤൬˂̤ *)˚∗︎]
+# Niri Wayland 双会话 Dotfiles 配置文档[此README将在不久后重写]
 
 ## 📖 dotfiles简介
 
 本项目为 **Niri Wayland 桌面环境** 定制双会话配置方案，包含 `noctalia` 会话与 `dms` 会话。整套配置实现了自动化安装、壁纸随机切换、Matugen 动态主题配色、会话环境隔离(依旧施工中)等功能，全程轻量化、可复用、可一键部署，适配 Linux Wayland 桌面生态。
 
 所有配置通过软链接统一管理，安装脚本安全可靠，采用**单文件删除\-即时链接**机制，避免全局配置丢失风险。
+
+**新增Umbriel合成器配置**
 
 ## ✨ 核心功能特性
 
@@ -24,8 +26,11 @@
 
 ![Niri DMS 会话预览](./Preview/niri-dms.png)
 ![Niri Noctalia 会话预览](./Preview/niri-noctalia.png)
+![Umbriel Noctalia 会话预览](.Preview/Umbriel-noctalia.png)
 
 ## 🔧 整体架构流程
+
+**以下内容将在将来更新！！！**
 
 ### 1\. 桌面启动链路
 
