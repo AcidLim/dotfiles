@@ -51,8 +51,12 @@ function mirror-update
 end
 
 #cava custom
-function cava1
-  cava -p ~/.config/cava/config1
+function cavam
+  cava -p ~/.config/cava/configM
+end
+
+function cavah
+  cava -p ~/.config/cava/configH
 end
 
 # pnpm
