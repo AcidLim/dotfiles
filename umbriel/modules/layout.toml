@@ -1,0 +1,34 @@
+# 布局配置 / 对应 niri 的 layout.txt
+
+[layout]
+# niri: gaps 10
+gap = 10
+# niri: preset-column-widths { proportion 0.33333 / 0.5 / 0.66667 }
+extent_presets = [0.33333, 0.5, 0.66667]
+
+[layout.scrolling]
+# niri: default-column-width { proportion 0.5; }
+default_extent_fraction = 0.5
+# niri: center-focused-column "never"
+center_focused = "never"
+
+# niri: preset-window-heights { }（空）→ Umbriel 的高度复用 extent_presets，无需单独配置。
+# niri: struts { }（空）→ Umbriel 的 [layout.struts] 默认即为 0，无需单独配置。
+
+# ---- 焦点环 / 边框 / 阴影 ----
+# niri 里 focus-ring 宽度为 2，而 border 是 off，所以实际生效的是这条 2px 焦点环。
+# Umbriel 不区分 focus-ring 与 border，统一由 appearance.border_width 控制。
+[appearance]
+border_width = 2
+
+# niri: shadow { on; softness 20; spread 2; offset x=-4 y=-4; color "rgba(0, 0, 0, 0.7)" }
+# 注意：niri 的 shadow spread 在 Umbriel 中没有对应项（已省略）。
+[appearance.shadow]
+enabled = true
+softness = 20
+offset_x = -4
+offset_y = -4
+
+[colors]
+# niri 阴影颜色 rgba(0, 0, 0, 0.7) → 0.7 * 255 ≈ B3
+shadow = "#000000B3"

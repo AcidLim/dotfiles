@@ -1,0 +1,54 @@
+# 模糊配置 / 对应 niri 的 blur.txt
+#
+# ⚠️ 重要提示：你的 config.toml 里已经写了一份 [appearance.blur]
+#    （enabled/optimized/passes/radius/noise/brightness/contrast/saturation）。
+#    按 Umbriel 的规则，被包含的文件先应用、包含它的主文件最后应用，
+#    因此 config.toml 里的值会 覆盖 本文件下面的 [appearance.blur]。
+#    若想让本文件生效，请删除 config.toml 第 73-81 行的 [appearance.blur] 段
+#    （详见交付说明中的问题清单）。
+
+# niri: blur { passes 3; offset 3; noise 0.02; saturation 1.5 }
+# niri 的 offset 没有直接对应项，这里近似映射到 Umbriel 的 radius。
+[appearance.blur]
+enabled = true
+optimized = true
+passes = 3
+radius = 3
+noise = 0.02
+saturation = 1.5
+
+# niri: 全局窗口规则，让所有普通窗口以 xray 形式显示 blur。
+# niri 的 xray true 对应 Umbriel 的 blur_optimized = true（共享一份缓存背景模糊）。
+[[window_rule]]
+blur = true
+blur_optimized = true
+
+# niri: 浮动窗口的 xray + blur 规则
+[[window_rule]]
+match.is_floating = true
+blur = true
+blur_optimized = true
+
+# niri: fuzzle/launcher 专属 layer 规则
+# niri 还设置了 geometry-corner-radius 8，Umbriel 的 layer_rule 没有圆角项（见报告）。
+[[layer_rule]]
+match.namespace = "^launcher$"
+blur = true
+blur_optimized = false
+
+# niri: noctalia(v5.0) 状态栏的命名空间
+# niri 还设置了 opacity 1.0 / geometry-corner-radius 0 / shadow off，
+# 这些在 Umbriel 的 layer_rule 中都没有对应项（见报告）。
+[[layer_rule]]
+match.namespace = "^noctalia-bar-bar$"
+blur = false
+
+[[layer_rule]]
+match.namespace = "^noctalia-bar-main$"
+blur = false
+
+# ---- 以下 niri layer 规则在 Umbriel 中没有对应项，无法迁移 ----
+# niri: layer-rule { match namespace="^mpvpaper$"; place-within-backdrop true }
+#         Umbriel 的 layer_rule 不支持 place-within-backdrop。
+# niri: layer-rule { match namespace="^noctalia-backdrop"; place-within-backdrop true }
+#         Umbriel 的 layer_rule 不支持 place-within-backdrop。

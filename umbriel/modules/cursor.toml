@@ -1,0 +1,10 @@
+# 光标配置 / 对应 niri 的 cursor.txt
+#
+# niri:  xcursor-theme "breeze_cursors"
+# niri:  xcursor-size 30
+# niri:  hide-after-inactive-ms 15000
+
+[input.cursor]
+theme = "breeze_cursors"
+size = 30
+hide_timeout_ms = 15000

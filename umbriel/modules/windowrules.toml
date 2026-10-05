@@ -1,0 +1,528 @@
+# ============================================================
+# Umbriel window rules — 从 niri 迁移
+# ============================================================
+
+# ---------- 全局默认 ----------
+[[window_rule]]
+# 全局圆角
+corner_radius = 8
+
+# ---------- imv ----------
+[[window_rule]]
+match.app_id = "^imv$"
+default_floating = true
+
+# ---------- Steam 好友列表 ----------
+[[window_rule]]
+match.app_id = "^steam$"
+match.title = "^Friends List$"
+default_scrolling_extent = 0.2
+
+[[window_rule]]
+match.app_id = "^steam$"
+match.title = "^好友列表$"
+default_scrolling_extent = 0.2
+
+# ---------- shorinclip 剪贴板 TUI ----------
+[[window_rule]]
+match.app_id = "^shorinclip$"
+default_floating = true
+default_floating_size_px = { width = 625, height = 700 }
+default_position = { x = 0, y = 18, anchor = "top" }
+
+# ---------- 以浮动模式打开的一批软件 ----------
+[[window_rule]]
+match.app_id = "^com\\.gabm\\.satty$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^media_info$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^video2gif$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^floating-term$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^nm-connection-editor$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^niri-quick-switch$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "firefox$"
+match.title = "^Picture-in-Picture$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^steam$"
+match.title = "^Friends List$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^blueberry\\.py$"
+match.title = "^蓝牙$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^blueman-manager$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^flameshot$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^com\\.github\\.hluk\\.copyq$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^be\\.alexandervanhee\\.gradia$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^org\\.pulseaudio\\.pavucontrol$"
+match.title = "^音量控制$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^org\\.gnome\\.clocks$"
+match.title = "^时钟$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^fcitx$"
+match.title = "^Fcitx5 Input Window$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^org\\.gnome\\.FileRoller$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^thunar$"
+match.title = "^文件操作进度$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^waypaper$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^clipse-gui$"
+default_floating = true
+
+[[window_rule]]
+match.title = "^群聊的聊天记录$"
+default_floating = true
+
+[[window_rule]]
+match.title = "^聊天记录$"
+default_floating = true
+
+[[window_rule]]
+match.title = "^群相册$"
+default_floating = true
+
+[[window_rule]]
+match.title = "^日历$"
+default_floating = true
+
+[[window_rule]]
+match.title = "^重命名$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^btrfs-assistant$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^markpix$"
+default_floating = true
+
+[[window_rule]]
+match.title = "^Steam 设置$"
+default_floating = true
+
+[[window_rule]]
+match.title = "^另存为$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^better_control\\.py$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^niri-hotkey-menu$"
+default_floating = true
+
+# ---------- 开启后不聚焦 ----------
+[[window_rule]]
+match.app_id = "^QQ$"
+match.title = "^资料卡$"
+default_focused = false
+
+[[window_rule]]
+match.app_id = "^QQ$"
+match.title = "^天气$"
+default_focused = false
+
+# ---------- 快速终端 ----------
+[[window_rule]]
+match.app_id = "^quickterminal$"
+default_floating = true
+default_position = { x = 20, y = 20, anchor = "top" }
+
+# ---------- bluetui / impala ----------
+[[window_rule]]
+match.app_id = "^bluetui$"
+default_floating = true
+default_floating_size_px = { width = 800, height = 800 }
+
+[[window_rule]]
+match.app_id = "^impala$"
+default_floating = true
+default_floating_size_px = { width = 800, height = 800 }
+
+# ---------- clipse ----------
+[[window_rule]]
+match.app_id = "^clipse$"
+default_floating = true
+default_floating_size_px = { width = 625, height = 700 }
+
+# ---------- waydroid / gsr ui ----------
+[[window_rule]]
+match.title = "^gsr ui$"
+default_fullscreen = true
+default_floating = true
+border_effect = "off"
+shadow = false
+
+[[window_rule]]
+match.app_id = "^waydroid$"
+default_fullscreen = true
+default_floating = true
+border_effect = "off"
+shadow = false
+
+# ---------- 图片/视频查看器，取消透明度并浮动 ----------
+[[window_rule]]
+match.title = "^图片查看器$"
+default_floating = true
+opacity = 1.0
+
+[[window_rule]]
+match.title = "^画中画$"
+default_floating = true
+opacity = 1.0
+
+[[window_rule]]
+match.title = "^图片和视频$"
+default_floating = true
+opacity = 1.0
+
+[[window_rule]]
+match.title = "^视频播放器$"
+default_floating = true
+opacity = 1.0
+
+[[window_rule]]
+match.app_id = "^mpv$"
+opacity = 1.0
+
+[[window_rule]]
+match.app_id = "^celluloid$"
+opacity = 1.0
+
+# ---------- WezTerm 默认 ----------
+[[window_rule]]
+match.app_id = "^org\\.wezfurlong\\.wezterm$"
+
+# ---------- GNOME 应用圆角 ----------
+[[window_rule]]
+match.app_id = "^org\\.gnome\\."
+corner_radius = 12
+
+# ---------- gnome-control-center / pavucontrol / nm-connection-editor ----------
+[[window_rule]]
+match.app_id = "^gnome-control-center$"
+default_scrolling_extent = 0.5
+default_floating = false
+
+[[window_rule]]
+match.app_id = "^pavucontrol$"
+default_scrolling_extent = 0.5
+default_floating = false
+
+[[window_rule]]
+match.app_id = "^nm-connection-editor$"
+default_scrolling_extent = 0.5
+default_floating = false
+
+# ---------- 计算器 / 蓝牙 / portal ----------
+[[window_rule]]
+match.app_id = "^gnome-calculator$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^galculator$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^blueman-manager$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^xdg-desktop-portal$"
+default_floating = true
+
+# ---------- Steam 通知 toast ----------
+[[window_rule]]
+match.app_id = "^steam$"
+match.title = "^notificationtoasts_\\d+_desktop$"
+default_position = { x = 10, y = 10, anchor = "bottom_right" }
+default_focused = false
+
+# ---------- 终端类 ----------
+[[window_rule]]
+match.app_id = "^org\\.wezfurlong\\.wezterm$"
+
+[[window_rule]]
+match.app_id = "^Alacritty$"
+
+[[window_rule]]
+match.app_id = "^zen$"
+
+[[window_rule]]
+match.app_id = "^com\\.mitchellh\\.ghostty$"
+
+[[window_rule]]
+match.app_id = "^kitty$"
+
+# ---------- Firefox PiP / zoom ----------
+[[window_rule]]
+match.app_id = "firefox$"
+match.title = "^Picture-in-Picture$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^zoom$"
+default_floating = true
+
+# ---------- quickshell ----------
+[[window_rule]]
+match.app_id = "org\\.quickshell$"
+default_floating = true
+
+# ============================================================
+# rules.txt 中的额外规则
+# ============================================================
+
+[[window_rule]]
+match.app_id = "^dev\\.noctalia\\.Noctalia$"
+opacity = 0.9
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^org\\.gnome\\.Calculator$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^org\\.gnome\\.Nautilus$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^wine$"
+default_floating = true
+default_floating_size = { width = 1.0 }
+
+# ---------- 玻璃模糊 ----------
+[[window_rule]]
+match.app_id = "^org\\.pwmt\\.zathura$"
+opacity = 0.8
+blur = true
+
+[[window_rule]]
+match.app_id = "^codium$"
+opacity = 0.85
+blur = true
+
+[[window_rule]]
+match.app_id = "^steam$"
+opacity = 0.9
+blur = true
+
+[[window_rule]]
+match.app_id = "^obsidian$"
+opacity = 0.9
+blur = true
+
+[[window_rule]]
+match.app_id = "^app\\.zen_browser\\.zen$"
+blur = true
+
+[[window_rule]]
+match.app_id = "^org\\.gnome\\.Nautilus$"
+blur = true
+
+# ---------- 游戏：强制无模糊、不透明 ----------
+[[window_rule]]
+match.app_id = "^steam_app_.*"
+opacity = 1.0
+blur = false
+
+[[window_rule]]
+match.app_id = "^gamescope$"
+opacity = 1.0
+blur = false
+
+[[window_rule]]
+match.app_id = "^wine$"
+opacity = 1.0
+blur = false
+
+[[window_rule]]
+match.title = "[Gg]enshin [Ii]mpact|[Zz]enless [Zz]one [Zz]ero|[Vv]ictoria 3|[Mm]inecraft|[Ee]ndfield"
+opacity = 1.0
+blur = false
+
+# ---------- 画中画 / 视频 ----------
+[[window_rule]]
+match.title = "(画中画|Picture-in-Picture)"
+default_floating = true
+opacity = 1.0
+default_position = { x = 20, y = 20, anchor = "bottom_right" }
+
+[[window_rule]]
+match.app_id = "^org\\.kde\\.kdenlive$"
+opacity = 1.0
+
+[[window_rule]]
+match.app_id = "^mpv$"
+opacity = 1.0
+
+[[window_rule]]
+match.app_id = "^kazumi$"
+opacity = 1.0
+
+[[window_rule]]
+match.app_id = "^celluloid$"
+opacity = 1.0
+
+[[window_rule]]
+match.app_id = "^virt-manager$"
+opacity = 1.0
+
+# ---------- 图片/视频查看器 ----------
+[[window_rule]]
+match.title = "(图片查看器|Image Viewer|图片和视频|Image and Video Viewer|视频播放器|Video Player|Videos)"
+default_floating = true
+opacity = 1.0
+
+[[window_rule]]
+match.app_id = "^org\\.gnome\\.Loupe$"
+default_floating = true
+opacity = 1.0
+
+[[window_rule]]
+match.app_id = "^org\\.gnome\\.Totem$"
+default_floating = true
+opacity = 1.0
+
+[[window_rule]]
+match.app_id = "^org\\.gnome\\.Photos$"
+default_floating = true
+opacity = 1.0
+
+# ---------- QQ 群聊记录 / 文件 ----------
+[[window_rule]]
+match.app_id = "^QQ$"
+match.title = "^群聊的聊天记录$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^QQ$"
+match.title = "^文件$"
+default_floating = true
+
+# ---------- Ente Auth ----------
+[[window_rule]]
+match.app_id = "^io\\.ente\\.auth$"
+default_floating = true
+default_floating_size_px = { width = 532, height = 925 }
+
+# ============================================================
+# customwindowrules.txt
+# ============================================================
+
+[[window_rule]]
+match.app_id = "^thunar$"
+opacity = 0.8
+default_floating = true
+default_floating_size_px = { width = 1500, height = 800 }
+
+[[window_rule]]
+match.app_id = "^org\\.gnome\\.Nautilus$"
+opacity = 0.8
+#default_scrolling_extent_px = 1500
+default_floating_size_px = { width = 1500, height = 800 }
+
+[[window_rule]]
+match.app_id = "^code$"
+opacity = 0.9
+
+[[window_rule]]
+match.app_id = "^QQ$"
+match.title = "^QQ$"
+opacity = 0.85
+default_floating = true
+default_floating_size_px = { width = 1200, height = 800 }
+
+[[window_rule]]
+match.app_id = "^jetbrains-rustrover$"
+match.title = "^(欢迎访问|Welcome to) RustRover$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^jetbrains-studio$"
+match.title = "^(欢迎访问|Welcome to) Android Studio$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^com\\.follow\\.clash$"
+default_floating = true
+default_floating_size_px = { width = 1200, height = 800 }
+
+[[window_rule]]
+match.app_id = "^localsend$"
+default_floating = true
+default_floating_size_px = { width = 1200, height = 800 }
+opacity = 0.8
+default_position = { x = 700, y = 280, anchor = "top_left" }
+
+[[window_rule]]
+match.app_id = "^nm-connection-editor$"
+default_floating = true
+default_floating_size_px = { width = 1500, height = 800 }
+opacity = 0.8
+
+[[window_rule]]
+match.app_id = "^io\\.github\\.nirimod$"
+default_floating = true
+default_floating_size_px = { width = 1500, height = 800 }
+opacity = 0.8
+
+[[window_rule]]
+match.app_id = "^xdg-desktop-portal-gtk$"
+default_scrolling_extent_px = 1500
+opacity = 0.85
+
+[[window_rule]]
+match.app_id = "^scrcpy$"
+default_floating = true

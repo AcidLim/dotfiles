@@ -1,0 +1,29 @@
+# 显示器配置 / 对应 niri 的 outputs.txt
+#
+# 该文件由 niri 的 generate-outputs.sh 生成，这里按原样逐条搬运。
+# 说明：niri 的 output."<name>" { layout { gaps 8 } } 在 Umbriel 中没有对应项
+#       （Umbriel 的窗口间隙是全局的 layout.gap，已在 layout.toml 中设置）。
+# Umbriel 的 mode 支持小数刷新率，故保留 niri 的原始数值。
+# 用 `umbriel outputs` 可在会话内查看实际连接的输出名与可用模式。
+
+[output.HDMI-A-2]
+mode = "2560x1440@144.002"
+scale = 1.0
+position = [0, 0]
+
+[output.eDP-1]
+mode = "2560x1600@165.000"
+scale = 1.25
+position = [2560, 0]
+
+[output.HDMI-A-1]
+mode = "2560x1440@144.002"
+scale = 1.0
+transform = "normal"
+position = [0, 0]
+
+[output.eDP-2]
+mode = "2560x1600@165.000"
+scale = 1.25
+transform = "normal"
+position = [2560, 0]

@@ -1,0 +1,43 @@
+# 动画配置 / 对应 niri 的 animations.txt
+#
+# Umbriel 的弹簧曲线写作 "spring:<阻尼>,<刚度>"，语义与 niri 的
+# spring damping-ratio=<阻尼> stiffness=<刚度> 一致（阻尼 < 1 会回弹）。
+# niri 的 epsilon 在 Umbriel 中没有对应项。
+
+[animation]
+# niri 未禁用动画（//off 处于注释状态）
+enabled = true
+
+# niri: workspace-switch { spring damping-ratio=0.82 stiffness=400 }
+[animation.workspaces]
+curve = "spring:0.82,400"
+
+# niri: window-open { spring damping-ratio=1.0 stiffness=1000 }
+# （niri 中被 /- 注释掉的 duration-ms 150 / ease-out-expo 版本不生效）
+[animation.windows_in]
+curve = "spring:1,1000"
+
+# niri: window-close { spring damping-ratio=0.8 stiffness=400 }
+[animation.windows_out]
+curve = "spring:0.8,400"
+
+# niri: window-movement { spring damping-ratio=1.0 stiffness=800 }
+# Umbriel 把 niri 的 window-movement、window-resize 以及
+# horizontal-view-movement（滚动布局随聚焦滑动）合并为同一个 windows_move 事件，
+# 因此这里只能取其中一个值，此处采用 window-movement 的参数。
+[animation.windows_move]
+curve = "spring:1,800"
+
+# niri: overview-open-close { spring damping-ratio=1.0 stiffness=900 }
+[animation.overview]
+curve = "spring:1,900"
+
+# ---- 以下 niri 设置项在 Umbriel 中没有对应项，无法迁移 ----
+# niri: slowdown 0.98114514
+#         Umbriel 没有全局动画速度倍率。
+# niri: horizontal-view-movement { spring damping-ratio=0.84 stiffness=400 }
+#         已合并进上面的 windows_move，无法单独设置。
+# niri: window-resize { spring damping-ratio=0.9 stiffness=500 }
+#         已合并进上面的 windows_move，无法单独设置。
+# niri: screenshot-ui-open { duration-ms 300; curve "ease-out-quad" }
+#         Umbriel 没有内置截图界面（截图交给 grim/slurp 等外部工具）。

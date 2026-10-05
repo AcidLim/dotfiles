@@ -1,0 +1,26 @@
+# 窗口切换 / 对应 niri 的 supertab.txt（recent-windows 缩略图切换器）
+#
+# Umbriel 没有内置的缩略图窗口切换器，也没有 recent-windows 的
+# debounce-ms / open-delay-ms / highlight { padding, corner-radius } /
+# previews { max-height, max-scale } 等设置项，因此这些参数无法迁移。
+# 这里用 Umbriel 原生的顺序聚焦动作来近似 niri 的 next-window / previous-window。
+#
+# 若需要真正带缩略图的切换器：Noctalia 提供了 window-switcher 覆盖层
+# （你的 bind.toml 里 Alt+Tab 已经用 `noctalia msg window-switcher hold` 实现了）。
+# 也可以把下面两条改成 spawn:noctalia msg window-switcher 来使用它。
+#
+# 注意：niri 的 next-window scope="workspace" 是「最近使用」顺序，
+#       而 Umbriel 的 window-focus-next/previous 是「布局顺序」，语义略有差别。
+
+[keybinds]
+# niri: Mod+Tab         { next-window scope="workspace"; }
+"Mod+Tab" = "window-focus-next"
+
+# niri: Mod+Shift+Tab   { previous-window scope="workspace"; }
+"Mod+Shift+Tab" = "window-focus-previous"
+
+# ---- 以下 niri 绑定在 Umbriel 中没有对应项，无法迁移 ----
+# niri: Mod+grave       { next-window filter="app-id"; }
+# niri: Mod+Shift+grave { previous-window filter="app-id"; }
+#         Umbriel 没有「按 app-id 过滤」的窗口切换动作。
+#（Toggle overview 的 Mod+O / Mod+G 在你已写的 bind.toml 中。）

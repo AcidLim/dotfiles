@@ -1,0 +1,88 @@
+[include]
+files = [
+    "modules/cursor.toml",
+    "modules/outputs.toml",
+    "modules/layout.toml",
+    "modules/animations.toml",
+    "modules/blur.toml",
+    "modules/windowrules.toml",
+    "modules/binds.toml",
+    "modules/supertab.toml"
+]
+
+[general]
+autostart = [
+    "noctalia",
+    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
+    "sh -c 'systemctl --user set-environment XDG_SESSION_CLASS=user'",
+    "fcitx5",
+    "sh -c '~/.config/niri/scripts/screenshot-sound.sh'",
+    "xhost +si:localuser:root",
+    "sh -c 'sleep 3 && noctalia msg wallpaper-random'",
+    "systemctl --user start linuxqq-clipsync",
+]
+mod_key = "Super"
+xwayland = true
+xwayland_native_resolution = false
+show_cheatsheet = false
+focus_on_activate = false
+honor_restored_maximize = false
+
+[environment]
+LANGUAGE = "zh_CN:en"
+LANG = "zh_CN.UTF-8"
+XMODIFIERS = "@im=fcitx"
+QT_QPA_PLATFORMTHEME = "gtk3"
+QT_QPA_PLATFORMTHEME_QT6 = "gtk3"
+QS_ICON_THEME = "Adwaita"
+EDITOR = "nvim"
+
+[input]
+middle_click_paste = false
+client_window_drag = true
+window_drag_toggle = "none"
+
+[input.keyboard]
+layout = ""
+variant = ""
+options = ""
+repeat_rate = 35
+repeat_delay = 250
+numlock_toggle = true
+track_layout = "global"
+
+[input.touchpad]
+tap = true
+natural_scroll = true
+
+[input.mouse]
+natural_scroll = false
+left_handed = false
+accel_profile = "flat"
+sensitivity = -0.15
+scroll_wheel_step = 60
+
+[input.focus]
+follows_mouse = false
+
+[appearance]
+prefer_no_csd = true
+border_width = 2
+corner_radius = 10
+
+#[appearance.blur]
+#enabled = true
+#optimized = true
+#passes = 3
+#radius = 3
+#noise = 0.02
+#brightness = 0.9
+#contrast = 0.9
+#saturation = 1.1
+
+# bind.toml 里 Mod+Alt+S / Mod+M / Mod+Alt+Z 引用的侧边栏 scratchpad
+[[scratchpad]]
+name = "sidebar"
+
+[include.optional]
+files = ["noctalia.toml"]
