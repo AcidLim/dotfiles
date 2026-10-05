@@ -50,11 +50,18 @@ function mirror-update
 	sudo cachyos-rate-mirrors
 end
 
-#cava custom
+#cava custom（默认20 - 16000Hz）
+#低频段(40 - 256)
+function caval
+  cava -p ~/.config/cava/configL
+end
+
+#中频段(512 - 1000)
 function cavam
   cava -p ~/.config/cava/configM
 end
 
+#高频段(2000 - 4000)
 function cavah
   cava -p ~/.config/cava/configH
 end
