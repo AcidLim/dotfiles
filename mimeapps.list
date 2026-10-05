@@ -28,13 +28,15 @@ video/quicktime=mpv.desktop
 video/webm=mpv.desktop
 video/x-matroska=mpv.desktop
 video/x-msvideo=mpv.desktop
-x-scheme-handler/clash=clash-verge.desktop
+x-scheme-handler/clash=flclash-url-handler.desktop
 x-scheme-handler/clash-verge=clash-verge.desktop
 x-scheme-handler/file=org.gnome.Nautilus.desktop
 x-scheme-handler/jetbrains=jetbrainsd.desktop
 x-scheme-handler/mihomo=sparkle.desktop
 x-scheme-handler/sparkle=sparkle.desktop
 text/css=nvim.desktop
+x-scheme-handler/clashmeta=flclash-url-handler.desktop
+x-scheme-handler/flclash=flclash-url-handler.desktop
 
 [Added Associations]
 application/json=vim.desktop;nvim.desktop;
