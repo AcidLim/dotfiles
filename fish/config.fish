@@ -50,4 +50,14 @@ function mirror-update
 	sudo cachyos-rate-mirrors
 end
 
+#cava custom
+function cava1
+  cava -p ~/.config/cava/config1
+end
 
+# pnpm
+set -gx PNPM_HOME '/home/acid/.local/share/pnpm'
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end
