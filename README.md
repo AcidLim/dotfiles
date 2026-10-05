@@ -26,7 +26,7 @@
 
 ![Niri DMS 会话预览](./Preview/niri-dms.png)
 ![Niri Noctalia 会话预览](./Preview/niri-noctalia.png)
-![Umbriel Noctalia 会话预览](.Preview/Umbriel-noctalia.png)
+![Umbriel Noctalia 会话预览](.Preview/umbriel-noctalia.png)
 
 ## 🔧 整体架构流程
 
