@@ -9,12 +9,22 @@
 
 # niri: blur { passes 3; offset 3; noise 0.02; saturation 1.5 }
 # niri 的 offset 没有直接对应项，这里近似映射到 Umbriel 的 radius。
+#[appearance.blur]
+#enabled = true
+#optimized = true
+#passes = 3
+#radius = 3
+#noise = 0.02
+#saturation = 1.5
+
 [appearance.blur]
 enabled = true
 optimized = true
 passes = 3
 radius = 3
 noise = 0.02
+brightness = 0.9
+contrast = 0.9
 saturation = 1.5
 
 # niri: 全局窗口规则，让所有普通窗口以 xray 形式显示 blur。
@@ -52,3 +62,10 @@ blur = false
 #         Umbriel 的 layer_rule 不支持 place-within-backdrop。
 # niri: layer-rule { match namespace="^noctalia-backdrop"; place-within-backdrop true }
 #         Umbriel 的 layer_rule 不支持 place-within-backdrop。
+
+#Nocralia Shell组件的blur效果
+[[layer_rule]]
+match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+blur = true
+blur_ignore_alpha = 0.5 
+blur_optimized = false
