@@ -82,7 +82,7 @@ corner_radius = 10
 
 # bind.toml 里 Mod+Alt+S / Mod+M / Mod+Alt+Z 引用的侧边栏 scratchpad
 [[scratchpad]]
-name = "sidebar"
+name = "stash"
 
 [include.optional]
 files = ["noctalia.toml"]
