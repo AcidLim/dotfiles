@@ -162,17 +162,6 @@ default_floating = true
 match.app_id = "^niri-hotkey-menu$"
 default_floating = true
 
-# ---------- 开启后不聚焦 ----------
-[[window_rule]]
-match.app_id = "^QQ$"
-match.title = "^资料卡$"
-default_focused = false
-
-[[window_rule]]
-match.app_id = "^QQ$"
-match.title = "^天气$"
-default_focused = false
-
 # ---------- 快速终端 ----------
 [[window_rule]]
 match.app_id = "^quickterminal$"
@@ -440,7 +429,7 @@ match.app_id = "^org\\.gnome\\.Photos$"
 default_floating = true
 opacity = 1.0
 
-# ---------- QQ 群聊记录 / 文件 ----------
+# ---------- QQ ----------
 [[window_rule]]
 match.app_id = "^QQ$"
 match.title = "^群聊的聊天记录$"
@@ -450,6 +439,32 @@ default_floating = true
 match.app_id = "^QQ$"
 match.title = "^文件$"
 default_floating = true
+
+[[window_rule]]
+match.app_id = "^QQ$"
+match.title = "^设置$"
+default_floating = true
+default_floating_size_px = { width = 800, height = 1000 }
+
+[[window_rule]]
+match.app_id = "^QQ$"
+match.title = "^QQ$"
+opacity = 0.85
+default_floating = true
+default_floating_size_px = { width = 1200, height = 800 }
+
+# ===开启后不聚焦 ===
+[[window_rule]]
+match.app_id = "^QQ$"
+match.title = "^资料卡$"
+default_focused = false
+
+[[window_rule]]
+match.app_id = "^QQ$"
+match.title = "^天气$"
+default_focused = false
+default_floating = true
+default_floating_size_px = { width = 800, height = 1000 }
 
 # ---------- Ente Auth ----------
 [[window_rule]]
@@ -476,13 +491,6 @@ default_floating_size_px = { width = 1500, height = 800 }
 [[window_rule]]
 match.app_id = "^code$"
 opacity = 0.9
-
-[[window_rule]]
-match.app_id = "^QQ$"
-match.title = "^QQ$"
-opacity = 0.85
-default_floating = true
-default_floating_size_px = { width = 1200, height = 800 }
 
 [[window_rule]]
 match.app_id = "^jetbrains-rustrover$"
