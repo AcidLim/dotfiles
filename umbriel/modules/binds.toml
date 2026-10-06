@@ -51,19 +51,22 @@
 #"Alt+F4" = { action = "spawn:~/.config/niri/scripts/niri-force-kill-window", repeat = false }
 #"Alt+Shift+F4" = { action = "spawn:~/.config/niri/scripts/niri-force-kill-window -f", repeat = false }
 
-# scratchpad
-# 切换 移动聚焦窗口至侧边栏（移入/移出 scratchpad）
-"Mod+Alt+S" = "window-toggle-scratchpad:sidebar"
-"Mod+M" = "window-toggle-scratchpad:sidebar"
+# ===== 暂存区 (scratchpad) =====
+# 这不是 niri-sidebar 那种贴屏幕边缘、与瓦片窗口共存的常驻侧边栏。
+# Umbriel 的 scratchpad 会把窗口移出工作区，按需整组以浮层显示/隐藏；
+# 没有 flip / reorder，且窗口必须先 restore 回工作区才能用布局类动作。
+# 把聚焦窗口 收进/取回 暂存区
+"Mod+Alt+S" = "window-toggle-scratchpad:stash"
+"Mod+M" = "window-toggle-scratchpad:stash"
 
-# 切换 收起/展开侧边栏（显示/隐藏 scratchpad）
-"Mod+Alt+Z" = "scratchpad-toggle:sidebar"
+# 显示/隐藏暂存区
+"Mod+N" = "scratchpad-toggle:stash"
 
-# 反向排序侧边栏：Umbriel 无直接排序动作
-#"Mod+Alt+X" = "scratchpad-focus-next:sidebar"
+# niri-sidebar 的 flip（反向排序）：Umbriel 无对应动作
+#"Mod+Alt+X" = "scratchpad-focus-next:stash"
 
-# 重新排列侧边栏中的窗口：Umbriel 无直接重排动作
-#"Mod+Alt+R" = "window-restore-from-scratchpad:sidebar"
+# niri-sidebar 的 reorder（重新贴合）：Umbriel 无对应动作
+#"Mod+Alt+R" = "window-restore-from-scratchpad:stash"
 
 # mod+鼠标中键 关闭窗口
 "Mod+MouseMiddle" = "window-close"
@@ -232,19 +235,18 @@
 
 # 在浮动模式和非浮动模式之间切换聚焦
 "Mod+Shift+V" = "window-focus-switch-floating"
-"Mod+N" = "window-focus-switch-floating"
+#"Mod+N" = "window-focus-switch-floating"
 "Alt+grave" = "window-focus-switch-floating"
 "Mod+Alt+N" = "window-focus-switch-floating"
 
 # 截图相关（Umbriel 无内置截图，使用 grim + slurp）
-# 保存目录：~/Pictures/Screenshots
-"Mod+Alt+A" = "spawn:mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"  #选取区域截图
-"Mod+Alt+Ctrl+A" = "spawn:mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp -w 0)\" ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"  #截取聚焦窗口
-"Mod+Alt+Ctrl+Shift+A" = "spawn:mkdir -p ~/Pictures/Screenshots && grim ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"  #截取显示器
-"Print" = "spawn:mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"
-"Ctrl+Print" = "spawn:mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp -w 0)\" ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"
-"Shift+Print" = "spawn:mkdir -p ~/Pictures/Screenshots && grim ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png && pkill -f -USR1 screenshot-sound.sh"
-"Mod+Shift+S" = "spawn:mkdir -p ~/Pictures/Screenshots && wl-paste | satty -f - --output-filename ~/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png"  #截图后使用此快捷键编辑"Mod+Shift+S" = "spawn:wl-paste | satty -f -"  #截图后使用此快捷键编辑
+"Mod+Alt+A" = "spawn:grim -g \"$(slurp)\" && pkill -f -USR1 screenshot-sound.sh"  #选取区域截图
+"Mod+Alt+Ctrl+A" = "spawn:grim -g \"$(slurp -w 0)\" && pkill -f -USR1 screenshot-sound.sh"  #选取聚焦窗口
+"Mod+Alt+Ctrl+Shift+A" = "spawn:grim && pkill -f -USR1 screenshot-sound.sh"  #截取显示器
+"Print" = "spawn:grim -g \"$(slurp)\" && pkill -f -USR1 screenshot-sound.sh"
+"Ctrl+Print" = "spawn:grim -g \"$(slurp -w 0)\" && pkill -f -USR1 screenshot-sound.sh"
+"Shift+Print" = "spawn:grim && pkill -f -USR1 screenshot-sound.sh"
+"Mod+Shift+S" = "spawn:wl-paste | satty -f -"  #截图后使用此快捷键编辑
 
 "Mod+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
 "Mod+Shift+E" = "session-quit"
