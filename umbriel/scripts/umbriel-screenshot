@@ -1,0 +1,23 @@
+#!/bin/sh
+# Umbriel 截图：落盘 + 同时写入剪贴板（image/png）
+# 用法: umbriel-screenshot region|window|monitor
+dir="$HOME/Pictures/Screenshots"
+mkdir -p "$dir" || exit 1
+f="$dir/$(date +%Y-%m-%d_%H-%M-%S).png"
+
+case "$1" in
+  region)  g=$(slurp) ;;
+  window)  g=$(umbriel windows --json \
+              | jq -r '.[]|select(.active and .focused)|"\(.x),\(.y) \(.w)x\(.h)"' \
+              | head -n1) ;;
+  monitor) g="" ;;
+  *) echo "usage: $0 region|window|monitor" >&2; exit 2 ;;
+esac
+
+# 用户取消选择：直接退出，不动剪贴板
+[ "$1" = monitor ] || [ -n "$g" ] || exit 0
+
+if [ -n "$g" ]; then grim -g "$g" "$f" || exit 1; else grim "$f" || exit 1; fi
+
+wl-copy -t image/png < "$f" || exit 1
+pkill -f -USR1 screenshot-sound.sh 2>/dev/null
