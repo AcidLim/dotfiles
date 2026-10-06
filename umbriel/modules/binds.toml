@@ -1,6 +1,6 @@
 [keybinds]
 # 显示快捷键教程
-"Mod+Shift+Slash" = "spawn:~/.config/niri/scripts/niri-binds"
+"Mod+Shift+Slash" = "cheatsheet-toggle"
 
 # alt+tab切换窗口
 "Alt+Tab" = "spawn:noctalia msg window-switcher hold"
@@ -240,12 +240,18 @@
 "Mod+Alt+N" = "window-focus-switch-floating"
 
 # 截图相关（Umbriel 无内置截图，使用 grim + slurp）
-"Mod+Alt+A" = "spawn:grim -g \"$(slurp)\" && pkill -f -USR1 screenshot-sound.sh"  #选取区域截图
-"Mod+Alt+Ctrl+A" = "spawn:grim -g \"$(slurp -w 0)\" && pkill -f -USR1 screenshot-sound.sh"  #选取聚焦窗口
-"Mod+Alt+Ctrl+Shift+A" = "spawn:grim && pkill -f -USR1 screenshot-sound.sh"  #截取显示器
-"Print" = "spawn:grim -g \"$(slurp)\" && pkill -f -USR1 screenshot-sound.sh"
-"Ctrl+Print" = "spawn:grim -g \"$(slurp -w 0)\" && pkill -f -USR1 screenshot-sound.sh"
-"Shift+Print" = "spawn:grim && pkill -f -USR1 screenshot-sound.sh"
+#"Mod+Alt+A" = "spawn:grim -g \"$(slurp)\" && pkill -f -USR1 screenshot-sound.sh"  #选取区域截图
+#"Mod+Alt+Ctrl+A" = "spawn:grim -g \"$(slurp -w 0)\" && pkill -f -USR1 screenshot-sound.sh"  #选取聚焦窗口
+#"Mod+Alt+Ctrl+Shift+A" = "spawn:grim && pkill -f -USR1 screenshot-sound.sh"  #截取显示器
+#"Print" = "spawn:grim -g \"$(slurp)\" && pkill -f -USR1 screenshot-sound.sh"
+#"Ctrl+Print" = "spawn:grim -g \"$(slurp -w 0)\" && pkill -f -USR1 screenshot-sound.sh"
+#"Shift+Print" = "spawn:grim && pkill -f -USR1 screenshot-sound.sh"
+"Mod+Alt+A"               = "spawn:umbriel-screenshot region"    # 区域截图
+"Mod+Alt+Ctrl+A"          = "spawn:umbriel-screenshot window"    # 聚焦窗口截图（原来无效）
+"Mod+Alt+Ctrl+Shift+A"    = "spawn:umbriel-screenshot monitor"   # 全部显示器
+"Print"                   = "spawn:umbriel-screenshot region"
+"Ctrl+Print"              = "spawn:umbriel-screenshot window"
+"Shift+Print"             = "spawn:umbriel-screenshot monitor"
 "Mod+Shift+S" = "spawn:wl-paste | satty -f -"  #截图后使用此快捷键编辑
 
 "Mod+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
