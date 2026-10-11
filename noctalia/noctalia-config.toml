@@ -2,78 +2,158 @@
 enable_overdrive = true
 
 [backdrop]
-enabled = true
 blur_intensity = 0.68999998457729816
+enabled = true
 tint_intensity = 0.0
 
 [bar]
-order = ["main", "bar"]
+order = [ "main", "top_main", "bar" ]
 
-[bar.main]
-position           = "right"       # top | bottom | left | right
-enabled            = true
-reserve_space      = true        # reserve compositor exclusive zone / push windows away
-layer              = "top"       # top | overlay; overlay appears above fullscreen apps
+    [bar.bar]
+    background_opacity = 0.0
+    border_width = 0.0
+    capsule = true
+    capsule_border = "outline"
+    capsule_foreground = "secondary"
+    capsule_opacity = 0.79000000000000004
+    capsule_padding = 10.0
+    capsule_radius = 80
+    capsule_thickness = 0.90999998338520527
+    center = [ "clock", "audio_visualizer" ]
+    enabled = false
+    end = [
+        "media",
+        "tray",
+        "wallpaper",
+        "mpvpaper",
+        "cpu",
+        "ram",
+        "volume",
+        "notifications",
+        "control-center",
+        "caffeine",
+        "session"
+    ]
+    font_family = "JetBrains Mono"
+    margin_edge = 10
+    margin_ends = 14
+    panel_overlap = 12
+    scale = 1.1000000000000001
+    shadow = false
+    start = [ "launcher", "workspaces", "active_window", "taskbar" ]
+    thickness = 36
 
-thickness          = 40          # bar cross-axis size in pixels (height for horizontal, width for vertical)
-background_opacity = 0.7        # 0.0 (transparent) to 1.0 (opaque)
-border             = "outline"   # color role or #RRGGBB for the bar outline
-border_width       = 0.0         # inside outline width in pixels; 0 disables it
-shadow             = true        # cast the global [shell.shadow]
-panel_overlap      = 12           # logical px an attached panel overlaps the bar edge to hide the seam
-margin_ends        = 100         # inset from each end of the bar along its main axis
-margin_edge        = 5           # distance from the nearest screen edge (positive values float the bar)
-margin_opposite_edge = 0         # extra reserved space on the inward side of the bar (below for top, above for bottom)
-padding            = 10          # main-axis padding from bar edges to start/end widget sections
-widget_spacing     = 10           # gap between widgets within a section
-scale              = 1.1         # content scale multiplier for icons and text
-font_weight        = 500         # CSS weight 100–1000 (e.g. 400 regular, 700 bold); primary label weight for bar widgets
-font_family        = "JetBrains Mono"          # typeface for this bar's widgets; empty inherits the global font
+    [bar.main]
+    background_opacity = 0.69999999999999996
+    border = "outline"
+    border_width = 0.0
+    center = [ "clock" ]
+    enabled = false
+    end = [ "media", "tray", "network", "volume", "brightness", "battery", "notifications", "control-center", "session" ]
+    font_family = "JetBrains Mono"
+    font_weight = 500
+    layer = "top"
+    margin_edge = 5
+    margin_ends = 100
+    margin_opposite_edge = 0
+    padding = 10
+    panel_overlap = 12
+    position = "right"
+    reserve_space = false
+    scale = 1.1000000000000001
+    shadow = true
+    start = [ "launcher", "wallpaper", "workspaces" ]
+    thickness = 40
+    widget_spacing = 10
 
-# Default capsule style for all widgets on this bar (see Widget Capsule section)
-#capsule            = false
-#capsule_fill       = "surface_variant"
-#capsule_thickness  = 0.76          # capsule size across the bar as a fraction of bar thickness (1.0 fills the bar)
-#capsule_radius     = 8.0            # omit for automatic pill radius
-#capsule_opacity    = 1.0
-#capsule_foreground = "secondary"
-# capsule_border   = "outline"   # omit this key for no border by default
+    [bar.top_main]
+    background_opacity = 0.0
+    capsule = true
+    capsule_border = "outline"
+    capsule_border_width = 1.5
+    capsule_foreground = "secondary"
+    capsule_opacity = 0.79999998211860657
+    capsule_padding = 8.0
+    capsule_radius = 0
+    capsule_thickness = 0.81999998539686203
+    center = [ "group:g2" ]
+    contact_shadow = true
+    end = [
+        "tray",
+        "notifications",
+        "clipboard",
+        "network",
+        "bluetooth",
+        "group:g3",
+        "group:g1",
+        "control-center",
+        "caffeine",
+        "session"
+    ]
+    font_family = "JetBrains Maple Mono"
+    margin_edge = 2
+    margin_ends = 5
+    padding = 5
+    scale = 1.1000000089406967
+    start = [ "launcher", "wallpaper", "workspaces", "active_window", "group:g4" ]
+    thickness = 40
+    widget_spacing = 4
 
-start  = ["launcher", "wallpaper", "workspaces"]
-center = ["clock"]
-end    = ["media", "tray", "network", "volume", "brightness", "battery","notifications", "control-center", "session"]
+        [[bar.top_main.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "outline"
+        border_width = 1.5
+        enabled = true
+        fill = "surface_variant"
+        foreground = "secondary"
+        id = "g1"
+        members = [ "brightness", "volume", "battery" ]
+        opacity = 0.79999995231628418
+        padding = 8.0
+        radius = 0.0
 
+        [[bar.top_main.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "outline"
+        border_width = 1.5
+        enabled = true
+        fill = "surface_variant"
+        foreground = "secondary"
+        id = "g2"
+        members = [ "clock", "media" ]
+        opacity = 0.79999995231628418
+        padding = 8.0
+        radius = 0.0
 
-[bar.bar]
-background_opacity = 0.0
-border_width = 0.0
-capsule = true
-capsule_border = "outline"
-capsule_foreground = "secondary"
-capsule_opacity = 0.79
-capsule_padding = 10.0
-capsule_radius = 80
-capsule_thickness = 0.95999998226761818
-enabled = false
-panel_overlap = 12
-font_family = "JetBrains Mono"
-margin_ends = 14
-margin_edge = 10
-scale = 1.1
-shadow = false
-end = [
-    "media",
-    "tray",
-    "wallpaper",
-    "mpvpaper",
-    "volume",
-    "notifications",
-    "session",
-]
-center = ["clock"]
-start = ["launcher", "workspaces", "active_window"]
-thickness = 36
+        [[bar.top_main.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "outline"
+        border_width = 1.5
+        enabled = true
+        fill = "surface_variant"
+        foreground = "secondary"
+        id = "g3"
+        members = [ "ram", "sysmon" ]
+        opacity = 0.79999995231628418
+        padding = 8.0
+        radius = 0.0
 
+        [[bar.top_main.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "outline"
+        border_width = 1.5
+        enabled = true
+        fill = "surface_variant"
+        foreground = "secondary"
+        id = "g4"
+        members = [ "network_tx", "network_rx" ]
+        opacity = 0.79999995231628418
+        padding = 8.0
+        radius = 0.0
 
 [battery.device."/org/freedesktop/UPower/devices/battery_hidpp_battery_0"]
 warning_threshold = 30
@@ -81,26 +161,471 @@ warning_threshold = 30
 [brightness]
 enable_ddcutil = false
 
+[config]
+
 [desktop_widgets]
 schema_version = 2
-widget_order = ["desktop-widget-0000000000000003"]
+widget_order = [
+    "desktop-widget-000000000000001d",
+    "desktop-widget-0000000000000012",
+    "desktop-widget-0000000000000004",
+    "desktop-widget-0000000000000003",
+    "desktop-widget-0000000000000006",
+    "desktop-widget-0000000000000008",
+    "desktop-widget-0000000000000009",
+    "desktop-widget-000000000000000a",
+    "desktop-widget-0000000000000007",
+    "desktop-widget-000000000000000d",
+    "desktop-widget-000000000000000e",
+    "desktop-widget-000000000000000f",
+    "desktop-widget-0000000000000010",
+    "desktop-widget-0000000000000011",
+    "desktop-widget-0000000000000013",
+    "desktop-widget-0000000000000014",
+    "desktop-widget-0000000000000015",
+    "desktop-widget-0000000000000016",
+    "desktop-widget-0000000000000017",
+    "desktop-widget-0000000000000018",
+    "desktop-widget-0000000000000019",
+    "desktop-widget-000000000000001a",
+    "desktop-widget-000000000000001b",
+    "desktop-widget-000000000000001c",
+    "desktop-widget-000000000000001e",
+    "desktop-widget-000000000000001f",
+    "desktop-widget-0000000000000020",
+    "desktop-widget-0000000000000021"
+]
 
-[desktop_widgets.grid]
-cell_size = 16
-major_interval = 4
-visible = true
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = false
 
-[desktop_widgets.widget.desktop-widget-0000000000000003]
-box_height = 0.0
-box_width = 0.0
-cx = 1280.0
-cy = 720.0
-rotation = 0.0
-type = "fancy_audio_visualizer"
+    [desktop_widgets.widget.desktop-widget-0000000000000003]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1280.0
+    cy = 720.0
+    output = "HDMI-A-1"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
 
-[desktop_widgets.widget.desktop-widget-0000000000000003.settings]
-background = false
-visualization_mode = "wave_rings"
+        [desktop_widgets.widget.desktop-widget-0000000000000003.settings]
+        background = false
+        bloom_intensity = 0.70000000000000007
+        inner_diameter = 0.55000000000000004
+        visualization_mode = "wave_rings"
+
+    [desktop_widgets.widget.desktop-widget-0000000000000004]
+    box_height = 241.16436767578125
+    box_width = 1813.988525390625
+    cx = 0.8515625
+    cy = 720.0
+    flip_y = true
+    output = "HDMI-A-1"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 1.5701034069061279
+    type = "audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000004.settings]
+        background = false
+        bands = 52
+        centered = true
+        mirrored = true
+        show_when_idle = true
+
+    [desktop_widgets.widget.desktop-widget-0000000000000006]
+    box_height = 212.83395385742188
+    box_width = 503.10635375976562
+    cx = 568.2628173828125
+    cy = 1165.95703125
+    output = "HDMI-A-2"
+    placement_height = 0.0
+    placement_width = 0.0
+    rotation = 1.5702677965164185
+    type = "audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000006.settings]
+        background = false
+        bands = 24
+        centered = true
+        mirrored = true
+        show_when_idle = true
+
+    [desktop_widgets.widget.desktop-widget-0000000000000007]
+    box_height = 240.0
+    box_width = 448.0
+    cx = 240.0
+    cy = 1296.0
+    output = "HDMI-A-2"
+    placement_height = 0.0
+    placement_width = 0.0
+    rotation = 0.0
+    type = "media_player"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000007.settings]
+        shadow = false
+
+    [desktop_widgets.widget.desktop-widget-0000000000000008]
+    box_height = 96.0
+    box_width = 256.0
+    cx = 144.0
+    cy = 1112.0
+    output = "HDMI-A-2"
+    placement_height = 0.0
+    placement_width = 0.0
+    rotation = 0.0
+    type = "clock"
+
+    [desktop_widgets.widget.desktop-widget-0000000000000009]
+    box_height = 144.0
+    box_width = 256.0
+    cx = 144.0
+    cy = 984.0
+    output = "HDMI-A-2"
+    placement_height = 0.0
+    placement_width = 0.0
+    rotation = 0.0
+    type = "sysmon"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000009.settings]
+        stat = "cpu_usage"
+        stat2 = "cpu_temp"
+
+    [desktop_widgets.widget.desktop-widget-000000000000000a]
+    box_height = 247.453125
+    box_width = 172.6484375
+    cx = 374.32421875
+    cy = 1036.2734375
+    output = "HDMI-A-2"
+    placement_height = 0.0
+    placement_width = 0.0
+    rotation = 0.0
+    type = "sticker"
+
+        [desktop_widgets.widget.desktop-widget-000000000000000a.settings]
+        image_path = "/home/acid/Pictures/fastfetch_logo/logo.png"
+        opacity = 1.0
+
+    [desktop_widgets.widget.desktop-widget-000000000000000d]
+    box_height = 176.0
+    box_width = 368.0
+    cx = 205.75
+    cy = 1177.1015625
+    output = "eDP-1"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "media_player"
+
+        [desktop_widgets.widget.desktop-widget-000000000000000d.settings]
+        shadow = false
+
+    [desktop_widgets.widget.desktop-widget-000000000000000e]
+    box_height = 80.0
+    box_width = 208.0
+    cx = 129.3984375
+    cy = 1041.19921875
+    output = "eDP-1"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "clock"
+
+    [desktop_widgets.widget.desktop-widget-000000000000000f]
+    box_height = 128.0
+    box_width = 208.0
+    cx = 130.15185546875
+    cy = 928.06494140625
+    output = "eDP-1"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "sysmon"
+
+        [desktop_widgets.widget.desktop-widget-000000000000000f.settings]
+        stat = "cpu_usage"
+        stat2 = "cpu_temp"
+
+    [desktop_widgets.widget.desktop-widget-0000000000000010]
+    box_height = 217.40234375
+    box_width = 143.546875
+    cx = 317.2568359375
+    cy = 974.46014404296875
+    output = "eDP-1"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "sticker"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000010.settings]
+        image_path = "/home/acid/Pictures/fastfetch_logo/logo.png"
+        opacity = 1.0
+
+    [desktop_widgets.widget.desktop-widget-0000000000000011]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1280.0
+    cy = 720.0
+    output = "HDMI-A-2"
+    placement_height = 0.0
+    placement_width = 0.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000011.settings]
+        background = false
+        bloom_intensity = 0.80000000000000004
+        inner_diameter = 0.55000000000000004
+
+    [desktop_widgets.widget.desktop-widget-0000000000000012]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1280.0
+    cy = 720.0
+    output = "HDMI-A-2"
+    placement_height = 0.0
+    placement_width = 0.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000012.settings]
+        background = false
+        bloom_intensity = 0.70000000000000007
+        inner_diameter = 0.55000000000000004
+        visualization_mode = "wave_rings"
+
+    [desktop_widgets.widget.desktop-widget-0000000000000013]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 640.0
+    cy = 400.0
+    output = "eDP-1"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000013.settings]
+        background = false
+        bloom_intensity = 0.80000000000000004
+        inner_diameter = 0.55000000000000004
+
+    [desktop_widgets.widget.desktop-widget-0000000000000014]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 640.0
+    cy = 400.0
+    output = "eDP-1"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000014.settings]
+        background = false
+        bloom_intensity = 0.70000000000000007
+        inner_diameter = 0.55000000000000004
+        visualization_mode = "wave_rings"
+
+    [desktop_widgets.widget.desktop-widget-0000000000000015]
+    box_height = 157.40684509277344
+    box_width = 402.60025024414062
+    cx = 401.6949462890625
+    cy = 1069.02197265625
+    output = "eDP-1"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 1.572174072265625
+    type = "audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000015.settings]
+        background = false
+        bands = 24
+        centered = true
+        mirrored = true
+        show_when_idle = true
+
+    [desktop_widgets.widget.desktop-widget-0000000000000016]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1280.0
+    cy = 720.0
+    output = "HDMI-A-1"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000016.settings]
+        background = false
+        bloom_intensity = 0.80000000000000004
+        inner_diameter = 0.55000000000000004
+
+    [desktop_widgets.widget.desktop-widget-0000000000000017]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1024.0
+    cy = 640.0
+    output = "eDP-2"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000017.settings]
+        background = false
+        bloom_intensity = 0.70000000000000007
+        inner_diameter = 0.55000000000000004
+        visualization_mode = "wave_rings"
+
+    [desktop_widgets.widget.desktop-widget-0000000000000018]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1024.0
+    cy = 640.0
+    output = "eDP-2"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000018.settings]
+        background = false
+        bloom_intensity = 0.80000000000000004
+        inner_diameter = 0.55000000000000004
+
+    [desktop_widgets.widget.desktop-widget-0000000000000019]
+    box_height = 192.0
+    box_width = 464.0
+    cx = 248.0
+    cy = 1312.0
+    output = "HDMI-A-1"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "media_player"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000019.settings]
+        shadow = false
+
+    [desktop_widgets.widget.desktop-widget-000000000000001a]
+    box_height = 80.0
+    box_width = 240.0
+    cx = 136.0
+    cy = 1168.0
+    output = "HDMI-A-1"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "clock"
+
+    [desktop_widgets.widget.desktop-widget-000000000000001b]
+    box_height = 128.0
+    box_width = 240.0
+    cx = 136.0
+    cy = 1056.0
+    output = "HDMI-A-1"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "sysmon"
+
+        [desktop_widgets.widget.desktop-widget-000000000000001b.settings]
+        stat = "cpu_usage"
+        stat2 = "cpu_temp"
+
+    [desktop_widgets.widget.desktop-widget-000000000000001c]
+    box_height = 217.5
+    box_width = 217.09765625
+    cx = 372.548828125
+    cy = 1100.75
+    output = "HDMI-A-1"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "sticker"
+
+        [desktop_widgets.widget.desktop-widget-000000000000001c.settings]
+        image_path = "/home/acid/Pictures/fastfetch_logo/logo.png"
+        opacity = 1.0
+
+    [desktop_widgets.widget.desktop-widget-000000000000001d]
+    box_height = 265.6136474609375
+    box_width = 1603.4853515625
+    cx = 0.0
+    cy = 557.883544921875
+    flip_y = true
+    output = "eDP-2"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 1.5701159238815308
+    type = "audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-000000000000001d.settings]
+        background = false
+        bands = 52
+        centered = true
+        mirrored = true
+        show_when_idle = true
+
+    [desktop_widgets.widget.desktop-widget-000000000000001e]
+    box_height = 192.0
+    box_width = 464.0
+    cx = 240.55078125
+    cy = 1167.80078125
+    output = "eDP-2"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "media_player"
+
+        [desktop_widgets.widget.desktop-widget-000000000000001e.settings]
+        shadow = false
+
+    [desktop_widgets.widget.desktop-widget-000000000000001f]
+    box_height = 80.0
+    box_width = 240.0
+    cx = 129.40234375
+    cy = 1018.6015625
+    output = "eDP-2"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "clock"
+
+    [desktop_widgets.widget.desktop-widget-0000000000000020]
+    box_height = 128.0
+    box_width = 240.0
+    cx = 131.09765625
+    cy = 905.75
+    output = "eDP-2"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "sysmon"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000020.settings]
+        stat = "cpu_usage"
+        stat2 = "cpu_temp"
+
+    [desktop_widgets.widget.desktop-widget-0000000000000021]
+    box_height = 219.125
+    box_width = 214.54296875
+    cx = 365.525390625
+    cy = 949.359375
+    output = "eDP-2"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "sticker"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000021.settings]
+        image_path = "/home/acid/Pictures/fastfetch_logo/logo.png"
+        opacity = 1.0
 
 [dock]
 auto_hide = false
@@ -110,6 +635,13 @@ radius = 20
 reserve_space = false
 show_dots = true
 smart_auto_hide = true
+
+[hooks]
+theme_mode_changed = [ "~/.config/noctalia/theme-sync.sh" ]
+wallpaper_changed = [ "~/.config/noctalia/scripts/matugen/matugen.sh" ]
+
+[hot_corners.bottom_right]
+action = "window_switcher"
 
 [idle]
 behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
@@ -129,31 +661,143 @@ behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
     enabled = true
     timeout = 360.0
 
-[hooks]
-theme_mode_changed = ["~/.config/noctalia/theme-sync.sh"]
-wallpaper_changed = ["~/.config/noctalia/scripts/matugen/matugen.sh"]
+[location]
+auto_locate = true
+custom_schedule = false
 
-[hot_corners.bottom_right]
-action = "window_switcher"
+[lockscreen]
+blurred_desktop = true
 
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = []
+widget_order = [
+    "lockscreen-login-box@eDP-2",
+    "lockscreen-login-box@HDMI-A-1",
+    "lockscreen-login-box@eDP-1",
+    "lockscreen-login-box@HDMI-A-2"
+]
 
-[lockscreen_widgets.grid]
-cell_size = 16
-major_interval = 4
-visible = true
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
 
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1280.0
+    cy = 1258.0
+    output = "HDMI-A-1"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "login_box"
 
-[location]
-custom_schedule = false
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-2"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1280.0
+    cy = 1258.0
+    output = "HDMI-A-2"
+    placement_height = 0.0
+    placement_width = 0.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-2".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 854.0
+    cy = 885.0
+    output = "eDP-1"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-2"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1024.0
+    cy = 1098.0
+    output = "eDP-2"
+    placement_height = 1280.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-2".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
 [nightlight]
 enabled = false
 temperature_day = 6500
 temperature_night = 5500
+
+[notification]
+position = "bottom_right"
 
 [osd]
 background_opacity = 0.84999998100101948
@@ -161,127 +805,163 @@ offset_y = 20
 position = "bottom_center"
 scale = 0.90000000596046448
 
-[osd.kinds]
-media = false
+    [osd.kinds]
+    media = false
 
-[notification]
-position = "bottom_right"
+[plugin_settings."noctalia/mpvpaper"]
+mpv_options = "--script=~/.config/noctalia/mpv-hook.lua"
+picker_placement = "floating"
+video_directory = "/home/acid/Pictures/Wallpapers/video"
+
+[plugins]
+enabled = []
 
 [shell]
 font_family = "Noto Sans CJK SC"
 polkit_agent = true
 settings_show_advanced = true
 
-[shell.greeter_sync]
-auto_sync = true
-privilege_command = "pkexec"
+    [shell.greeter_sync]
+    auto_sync = true
+    privilege_command = "pkexec"
 
-[shell.panel]
-transparency_mode = "glass"
+    [shell.launcher]
+    pinned = [ "flclash", "linuxqq-wayland-fix" ]
 
-control_center_placement = "floating"
-open_near_click_control_center = true
+    [shell.panel]
+    control_center_placement = "floating"
+    control_center_position = "auto"
+    open_near_click_control_center = true
+    session_placement = "floating"
+    session_position = "center"
+    transparency_mode = "glass"
+    wallpaper_placement = "floating"
+    wallpaper_position = "center"
 
-control_center_position = "auto"
-session_placement = "floating"
-session_position = "center"
+    [[shell.session.actions]]
+    action = "lock"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "1"
+    variant = "default"
 
-wallpaper_placement = "floating"
-wallpaper_position = "center"
+    [[shell.session.actions]]
+    action = "logout"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "2"
+    variant = "default"
 
-[[shell.session.actions]]
-action = "lock"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "1"
-variant = "default"
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "3"
+    variant = "default"
 
-[[shell.session.actions]]
-action = "logout"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "2"
-variant = "default"
+    [[shell.session.actions]]
+    action = "reboot"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "4"
+    variant = "default"
 
-[[shell.session.actions]]
-action = "lock_and_suspend"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "3"
-variant = "default"
+    [[shell.session.actions]]
+    action = "shutdown"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "5"
+    variant = "destructive"
 
-[[shell.session.actions]]
-action = "reboot"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "4"
-variant = "default"
+    [[shell.session.actions]]
+    action = "command"
+    command = "notify-send 'Noctalia' 'Custom session entry'"
+    countdown_seconds = 0.0
+    enabled = false
+    variant = "default"
 
-[[shell.session.actions]]
-action = "shutdown"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "5"
-variant = "destructive"
-
-[[shell.session.actions]]
-action = "command"
-command = "notify-send 'Noctalia' 'Custom session entry'"
-countdown_seconds = 0.0
-enabled = false
-variant = "default"
+[templates]
 
 [theme]
 builtin = "Ayu"
 community_palette = "One Dark Two"
 mode = "auto"
 source = "wallpaper"
-wallpaper_scheme = "m3-content"
+wallpaper_scheme = "m3-tonal-spot"
 
-[theme.templates]
-builtin_ids = ["niri"]
-community_ids = []
+    [theme.templates]
+    builtin_ids = [ "gtk4", "niri", "umbriel" ]
+    community_ids = []
 
 [wallpaper]
 directory = "/home/acid/Pictures/Wallpapers"
+directory_dark = "/home/acid/Pictures/Wallpapers/Dark"
+directory_light = "/home/acid/Pictures/Wallpapers/Light"
 fill_mode = "crop"
 
+    [wallpaper.automation]
+    enabled = true
+    interval_seconds = 300
+    recursive = true
 
-[plugins]
-enabled = ["noctalia/mpvpaper"]
+    [wallpaper.default]
+    path = "/home/acid/Pictures/Wallpapers/Light/wall_1784908773.png"
 
-#小组件设置
-[widget.launcher]
-glyph = "brand-apple"             
-custom_image_colorize = true    # 如果后续设置自定义图片，则允许图标跟随主题上色
+    [wallpaper.last]
+    path = "/home/acid/Pictures/Wallpapers/Light/wall_1784908773.png"
 
-[widget.workspaces]
-style = "regular"
-capsule = true
-capsule_opacity = 0.5
-show_labels = false      # false = unlabeled pills (Focus Hint: app icon only)
-label_source = "id"     # id | name
+    [wallpaper.monitors.HDMI-A-1]
+    path = "/home/acid/Pictures/Wallpapers/Dark/1791019676098.jpeg"
+
+    [wallpaper.monitors.HDMI-A-2]
+    path = "/home/acid/Pictures/Wallpapers/Light/wall_1782406570.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/acid/Pictures/Wallpapers/Dark/wall_1786255667.png"
+
+    [wallpaper.monitors.eDP-2]
+    path = "/home/acid/Pictures/Wallpapers/Light/wall_1784908773.png"
 
 [widget.active_window]
 min_length = 0
 
+[widget.audio_visualizer]
+mirrored = false
+
+[widget.brightness]
+enabled = false
+
 [widget.clock]
-# 显示格式：简写星期, 日期 简写月份 时:分:秒
-format = "{:%a, %d %b %H:%M:%S}"
-vertical_format = "{:%H\n%M\n%S}"
+format = "{:%b%d%a %H:%M:%S}"
+vertical_format = """{:%H
+%M
+%S}"""
+
+[widget.launcher]
+custom_image_colorize = true
+glyph = "brand-apple"
+
+[widget.media]
+hide_when_no_media = true
+
+[widget.mpvpaper]
+type = "noctalia/mpvpaper:mpvpaper"
+
+[widget."ray/echolyrics:echolyrics"]
+capsule = false
+
+[widget.taskbar]
+group_by_workspace = true
+group_single_icon_per_app = true
+hide_empty_workspaces = true
 
 [widget.tray]
 detached_panel = true
 drawer = true
 
-[widget."ray/echolyrics:echolyrics"]
-capsule = false
-
-[widget.mpvpaper]
-type = "noctalia/mpvpaper:mpvpaper"
-
-#插件设置
-[plugin_settings."noctalia/mpvpaper"]
-mpv_options = "--script=~/.config/noctalia/mpv-hook.lua"
-picker_placement = "floating"
-video_directory = "/home/acid/Pictures/Wallpapers/video"
+[widget.workspaces]
+capsule = true
+capsule_opacity = 0.5
+label_source = "id"
+show_labels = false
+style = "regular"
