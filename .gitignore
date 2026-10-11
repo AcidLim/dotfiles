@@ -35,4 +35,5 @@ umbriel/noctalia.toml
 
 #备份文件
 umbriel/config.toml.bak
+noctalia/noctalia-config.toml.bak
 
