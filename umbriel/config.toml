@@ -66,9 +66,10 @@ scroll_wheel_step = 60
 follows_mouse = false
 
 [appearance]
+drag_opacity = 1
 prefer_no_csd = true
 border_width = 2
-corner_radius = 10
+corner_radius = 0
 
 #[appearance.blur]
 #enabled = true

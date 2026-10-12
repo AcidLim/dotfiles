@@ -76,24 +76,18 @@ order = [ "main", "top_main", "bar" ]
     capsule_padding = 8.0
     capsule_radius = 0
     capsule_thickness = 0.81999998539686203
-    center = [ "group:g2" ]
+    center = [ "clock", "group:g2", "weather" ]
     contact_shadow = true
-    end = [
-        "tray",
-        "notifications",
-        "clipboard",
-        "network",
-        "bluetooth",
-        "group:g3",
-        "group:g1",
-        "control-center",
-        "caffeine",
-        "session"
-    ]
+    end = [ "tray", "clipboard", "group:g3", "group:g1", "group:g5", "privacy", "caffeine", "session" ]
     font_family = "JetBrains Maple Mono"
-    margin_edge = 2
-    margin_ends = 5
+    margin_edge = 0
+    margin_ends = 1
     padding = 5
+    radius = 0
+    radius_bottom_left = 0
+    radius_bottom_right = 0
+    radius_top_left = 0
+    radius_top_right = 0
     scale = 1.1000000089406967
     start = [ "launcher", "wallpaper", "workspaces", "active_window", "group:g4" ]
     thickness = 40
@@ -108,7 +102,7 @@ order = [ "main", "top_main", "bar" ]
         fill = "surface_variant"
         foreground = "secondary"
         id = "g1"
-        members = [ "brightness", "volume", "battery" ]
+        members = [ "network", "brightness", "text_4", "volume", "text_2", "bluetooth", "text_3", "battery", "text_5" ]
         opacity = 0.79999995231628418
         padding = 8.0
         radius = 0.0
@@ -122,8 +116,8 @@ order = [ "main", "top_main", "bar" ]
         fill = "surface_variant"
         foreground = "secondary"
         id = "g2"
-        members = [ "clock", "media" ]
-        opacity = 0.79999995231628418
+        members = [ "media", "audio_visualizer" ]
+        opacity = 0.69999998807907104
         padding = 8.0
         radius = 0.0
 
@@ -150,7 +144,21 @@ order = [ "main", "top_main", "bar" ]
         fill = "surface_variant"
         foreground = "secondary"
         id = "g4"
-        members = [ "network_tx", "network_rx" ]
+        members = [ "network_tx", "text_9", "network_rx" ]
+        opacity = 0.79999995231628418
+        padding = 8.0
+        radius = 0.0
+
+        [[bar.top_main.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "outline"
+        border_width = 1.5
+        enabled = true
+        fill = "surface_variant"
+        foreground = "secondary"
+        id = "g5"
+        members = [ "text_8", "control-center", "text_6", "notifications", "text_7" ]
         opacity = 0.79999995231628418
         padding = 8.0
         radius = 0.0
@@ -797,7 +805,7 @@ temperature_day = 6500
 temperature_night = 5500
 
 [notification]
-position = "bottom_right"
+position = "top_right"
 
 [osd]
 background_opacity = 0.84999998100101948
@@ -817,6 +825,7 @@ video_directory = "/home/acid/Pictures/Wallpapers/video"
 enabled = []
 
 [shell]
+corner_radius_scale = 0.0
 font_family = "Noto Sans CJK SC"
 polkit_agent = true
 settings_show_advanced = true
@@ -905,10 +914,10 @@ fill_mode = "crop"
     recursive = true
 
     [wallpaper.default]
-    path = "/home/acid/Pictures/Wallpapers/Light/wall_1784908773.png"
+    path = "/home/acid/Pictures/Wallpapers/Light/wall_1782796769.png"
 
     [wallpaper.last]
-    path = "/home/acid/Pictures/Wallpapers/Light/wall_1784908773.png"
+    path = "/home/acid/Pictures/Wallpapers/Light/wall_1782796769.png"
 
     [wallpaper.monitors.HDMI-A-1]
     path = "/home/acid/Pictures/Wallpapers/Dark/1791019676098.jpeg"
@@ -920,13 +929,17 @@ fill_mode = "crop"
     path = "/home/acid/Pictures/Wallpapers/Dark/wall_1786255667.png"
 
     [wallpaper.monitors.eDP-2]
-    path = "/home/acid/Pictures/Wallpapers/Light/wall_1784908773.png"
+    path = "/home/acid/Pictures/Wallpapers/Light/wall_1782796769.png"
 
 [widget.active_window]
 min_length = 0
 
 [widget.audio_visualizer]
+bands = 24
 mirrored = false
+
+[widget.battery]
+show_label = false
 
 [widget.brightness]
 enabled = false
@@ -943,9 +956,16 @@ glyph = "brand-apple"
 
 [widget.media]
 hide_when_no_media = true
+max_length = 160
+rotate_album_art = true
+show_progress = true
+title_scroll = "always"
 
 [widget.mpvpaper]
 type = "noctalia/mpvpaper:mpvpaper"
+
+[widget.privacy]
+hide_inactive = true
 
 [widget."ray/echolyrics:echolyrics"]
 capsule = false
@@ -955,9 +975,47 @@ group_by_workspace = true
 group_single_icon_per_app = true
 hide_empty_workspaces = true
 
+[widget.text_2]
+color = "primary"
+text = "/"
+type = "text"
+
+[widget.text_3]
+color = "primary"
+text = "/"
+type = "text"
+
+[widget.text_4]
+text = "「"
+type = "text"
+
+[widget.text_5]
+text = "」"
+type = "text"
+
+[widget.text_6]
+text = "/"
+type = "text"
+
+[widget.text_7]
+text = "」"
+type = "text"
+
+[widget.text_8]
+text = "「"
+type = "text"
+
+[widget.text_9]
+color = "primary"
+text = "|"
+type = "text"
+
 [widget.tray]
 detached_panel = true
 drawer = true
+
+[widget.volume]
+show_label = false
 
 [widget.workspaces]
 capsule = true
