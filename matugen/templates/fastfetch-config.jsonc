@@ -43,17 +43,18 @@
       "format": "{name} @ {freq-max}"
     },
     {
+      "type": "command",
+      "key": "󰓅  Topology",
+      "keyColor": "{{colors.secondary.default.hex}}",
+      "text": "echo $(lscpu -p=Core,Socket | grep -v '^#' | sort -u | wc -l) cores , $(nproc --all) threads"    
+    },
+
+    {
       "type": "gpu",
       "key": "󰢮  GPU     ",
       "format": "{1} {2}",
       "keyColor": "{{colors.secondary.default.hex}}",
       //"outputColor": "{{colors.secondary_fixed_dim.default.hex}}"
-    },
-    {
-      "type": "command",
-      "key": "󰓅  Topology",
-      "keyColor": "{{colors.secondary.default.hex}}",
-      "text": "echo $(lscpu -p=Core,Socket | grep -v '^#' | sort -u | wc -l) cores , $(nproc --all) threads"    
     },
     {
       "type": "shell",
