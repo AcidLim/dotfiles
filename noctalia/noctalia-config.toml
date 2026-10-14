@@ -78,7 +78,7 @@ order = [ "main", "top_main", "bar" ]
     capsule_thickness = 0.81999998539686203
     center = [ "clock", "group:g2", "weather" ]
     contact_shadow = true
-    end = [ "tray", "clipboard", "group:g3", "group:g1", "group:g5", "privacy", "caffeine", "session" ]
+    end = [ "tray", "clipboard", "group:g3", "group:g1", "group:g5", "monitor", "privacy", "caffeine", "session" ]
     font_family = "JetBrains Maple Mono"
     margin_edge = 0
     margin_ends = 1
@@ -89,7 +89,7 @@ order = [ "main", "top_main", "bar" ]
     radius_top_left = 0
     radius_top_right = 0
     scale = 1.1000000089406967
-    start = [ "launcher", "wallpaper", "workspaces", "active_window", "group:g4" ]
+    start = [ "launcher", "wallpaper", "mpvpaper_2", "workspaces", "active_window", "group:g4" ]
     thickness = 40
     widget_spacing = 4
 
@@ -592,6 +592,7 @@ widget_order = [
     type = "media_player"
 
         [desktop_widgets.widget.desktop-widget-000000000000001e.settings]
+        background_radius = 0
         shadow = false
 
     [desktop_widgets.widget.desktop-widget-000000000000001f]
@@ -605,10 +606,13 @@ widget_order = [
     rotation = 0.0
     type = "clock"
 
+        [desktop_widgets.widget.desktop-widget-000000000000001f.settings]
+        background_radius = 0
+
     [desktop_widgets.widget.desktop-widget-0000000000000020]
     box_height = 128.0
     box_width = 240.0
-    cx = 131.09765625
+    cx = 130.24609375
     cy = 905.75
     output = "eDP-2"
     placement_height = 1280.0
@@ -617,14 +621,15 @@ widget_order = [
     type = "sysmon"
 
         [desktop_widgets.widget.desktop-widget-0000000000000020.settings]
+        background_radius = 0
         stat = "cpu_usage"
         stat2 = "cpu_temp"
 
     [desktop_widgets.widget.desktop-widget-0000000000000021]
-    box_height = 219.125
-    box_width = 214.54296875
-    cx = 365.525390625
-    cy = 949.359375
+    box_height = 216.5703125
+    box_width = 214.69140625
+    cx = 365.599609375
+    cy = 949.78515625
     output = "eDP-2"
     placement_height = 1280.0
     placement_width = 2048.0
@@ -632,6 +637,7 @@ widget_order = [
     type = "sticker"
 
         [desktop_widgets.widget.desktop-widget-0000000000000021.settings]
+        background_radius = 0
         image_path = "/home/acid/Pictures/fastfetch_logo/logo.png"
         opacity = 1.0
 
@@ -817,25 +823,29 @@ scale = 0.90000000596046448
     media = false
 
 [plugin_settings."noctalia/mpvpaper"]
-mpv_options = "--script=~/.config/noctalia/mpv-hook.lua"
+mpv_options = "--script=~/.config/noctalia/scripts/mpv/mpv-hook.lua vf=fps=60"
+mute = false
 picker_placement = "floating"
-video_directory = "/home/acid/Pictures/Wallpapers/video"
+picker_position = "center"
+video_directory = "~/Pictures/Wallpapers/video"
 
 [plugins]
-enabled = []
+enabled = [ "noctalia/mpvpaper", "liamwh/emoji-picker", "muhammadessam/umbriel-monitor-control" ]
 
 [shell]
 corner_radius_scale = 0.0
 font_family = "Noto Sans CJK SC"
 polkit_agent = true
+screen_time_enabled = true
 settings_show_advanced = true
+umbriel_overview_type_to_launch_enabled = true
 
     [shell.greeter_sync]
     auto_sync = true
     privilege_command = "pkexec"
 
     [shell.launcher]
-    pinned = [ "flclash", "linuxqq-wayland-fix" ]
+    pinned = [ "flclash", "linuxqq-wayland-fix", "zen" ]
 
     [shell.panel]
     control_center_placement = "floating"
@@ -914,10 +924,10 @@ fill_mode = "crop"
     recursive = true
 
     [wallpaper.default]
-    path = "/home/acid/Pictures/Wallpapers/Light/wall_1782796769.png"
+    path = "/home/acid/.cache/noctalia/mpvpaper/d628193d2f6a363ed0dc8f80897c8ac1.jpg"
 
     [wallpaper.last]
-    path = "/home/acid/Pictures/Wallpapers/Light/wall_1782796769.png"
+    path = "/home/acid/.cache/noctalia/mpvpaper/d628193d2f6a363ed0dc8f80897c8ac1.jpg"
 
     [wallpaper.monitors.HDMI-A-1]
     path = "/home/acid/Pictures/Wallpapers/Dark/1791019676098.jpeg"
@@ -929,9 +939,10 @@ fill_mode = "crop"
     path = "/home/acid/Pictures/Wallpapers/Dark/wall_1786255667.png"
 
     [wallpaper.monitors.eDP-2]
-    path = "/home/acid/Pictures/Wallpapers/Light/wall_1782796769.png"
+    path = "/home/acid/.cache/noctalia/mpvpaper/d628193d2f6a363ed0dc8f80897c8ac1.jpg"
 
 [widget.active_window]
+max_length = 200
 min_length = 0
 
 [widget.audio_visualizer]
@@ -961,7 +972,14 @@ rotate_album_art = true
 show_progress = true
 title_scroll = "always"
 
+[widget.monitor]
+show_text = false
+type = "muhammadessam/umbriel-monitor-control:monitor"
+
 [widget.mpvpaper]
+type = "noctalia/mpvpaper:mpvpaper"
+
+[widget.mpvpaper_2]
 type = "noctalia/mpvpaper:mpvpaper"
 
 [widget.privacy]

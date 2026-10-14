@@ -36,6 +36,9 @@
 # 壁纸选择
 "Mod+Alt+W" = "spawn:noctalia msg panel-toggle wallpaper"
 
+# 视频壁纸选择
+"Mod+Shift+W" = "spawn:noctalia msg panel-toggle noctalia/mpvpaper:picker"
+
 # 随机切换壁纸
 "Mod+F10" = "spawn:noctalia msg wallpaper-random"
 
