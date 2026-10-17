@@ -20,6 +20,7 @@ autostart = [
     "xhost +si:localuser:root",
     "sh -c 'sleep 3 && noctalia msg wallpaper-random'",
     "systemctl --user start linuxqq-clipsync",
+    "./dotfiles/umbriel/scripts/maximized-bar.sh",
 ]
 mod_key = "Super"
 xwayland = true
