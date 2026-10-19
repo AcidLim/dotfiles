@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 
 set -u
@@ -11,73 +10,71 @@ log() {
 }
 
 update_bar() {
-    local workspaces_json windows_json workspace_id max_windows new_state
-
-    # 查询当前最新状态，避免直接使用事件中的短暂中间状态
-    workspaces_json=$(umbriel workspaces --json) || {
-        log "获取工作区失败"
-        return
-    }
+    local windows_json
+    local active_window
+    local window_title
+    local maximized
+    local new_state
 
     windows_json=$(umbriel windows --json) || {
         log "获取窗口失败"
         return
     }
 
-    workspace_id=$(
-        jq -r '.[] | select(.focused == true) | .id' \
-            <<< "$workspaces_json" | head -n 1
+    # 当前聚焦窗口
+    active_window=$(
+        jq -c '
+            .[]
+            | select(.active == true)
+        ' <<< "$windows_json" | head -n 1
     )
 
-    if [[ -z "$workspace_id" ]]; then
-        log "无法确定当前工作区，暂不改变 Bar 状态"
+    if [[ -z "$active_window" ]]; then
+        log "无法确定当前聚焦窗口，保持当前状态"
         return
     fi
 
-    max_windows=$(
-        jq --arg ws "$workspace_id" \
-            '[.[] | select(.workspace == $ws and .maximized == true)] | length' \
-            <<< "$windows_json"
-    )
+    maximized=$(jq -r '.maximized // false' <<< "$active_window")
+    window_title=$(jq -r '.title // .app_id // "unknown"' <<< "$active_window")
 
-    if (( max_windows > 0 )); then
-        new_state="HIDDEN"
+    if [[ "$maximized" == "true" ]]; then
+        new_state="SMART"
     else
-        new_state="SHOWN"
+        new_state="NORMAL"
     fi
 
-    # 状态没变化就不重复调用 Noctalia
-    [[ "$new_state" == "$LAST_STATE" ]] && return
+    # 状态没有变化
+    if [[ "$new_state" == "$LAST_STATE" ]]; then
+        return
+    fi
 
-    log "工作区: $workspace_id"
-    log "检测到最大化窗口: $max_windows"
+    log "当前窗口: $window_title"
+    log "最大化: $maximized"
 
-    if [[ "$new_state" == "HIDDEN" ]]; then
-        if noctalia msg bar-hide "$BAR_NAME"; then
-            LAST_STATE="HIDDEN"
-            log "已隐藏 Bar: $BAR_NAME"
+    if [[ "$new_state" == "SMART" ]]; then
+        if noctalia msg bar-auto-hide-set smart "$BAR_NAME"; then
+            LAST_STATE="SMART"
+            log "已启用 Smart Auto Hide: $BAR_NAME"
         else
-            log "隐藏 Bar 失败"
+            log "启用 Smart Auto Hide 失败"
         fi
     else
-        if noctalia msg bar-show "$BAR_NAME"; then
-            LAST_STATE="SHOWN"
-            log "已显示 Bar: $BAR_NAME"
+        if noctalia msg bar-auto-hide-set off "$BAR_NAME"; then
+            LAST_STATE="NORMAL"
+            log "已关闭 Smart Auto Hide: $BAR_NAME"
         else
-            log "显示 Bar 失败"
+            log "关闭 Smart Auto Hide 失败"
         fi
     fi
 }
 
-log "开始监听 Umbriel 工作区与窗口事件"
+log "开始监听 Umbriel 窗口事件"
 log "目标 Bar: $BAR_NAME"
 
-# 订阅两个事件源；短暂合并连续事件，再查询最新状态
+# 启动时立即检查一次
+update_bar
+
+# 持续监听窗口事件
 while IFS= read -r event; do
-    while IFS= read -r -t 0.15 next_event; do
-        event="$next_event"
-    done
-
     update_bar
-done < <(umbriel subscribe workspaces,windows)
-
+done < <(umbriel subscribe windows)
