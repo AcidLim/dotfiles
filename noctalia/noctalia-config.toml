@@ -13,7 +13,7 @@ order = [ "main", "top_main", "bar" ]
     background_opacity = 0.0
     border_width = 0.0
     capsule = true
-    capsule_border = "outline"
+    capsule_border = "outline_variant"
     capsule_foreground = "secondary"
     capsule_opacity = 0.79000000000000004
     capsule_padding = 10.0
@@ -45,7 +45,7 @@ order = [ "main", "top_main", "bar" ]
 
     [bar.main]
     background_opacity = 0.69999999999999996
-    border = "outline"
+    border = "outline_variant"
     border_width = 0.0
     center = [ "clock" ]
     enabled = false
@@ -68,8 +68,8 @@ order = [ "main", "top_main", "bar" ]
 
     [bar.top_main]
     background_opacity = 0.0
-    capsule = true
-    capsule_border = "outline"
+    capsule = false
+    capsule_border = "outline_variant"
     capsule_border_width = 1.5
     capsule_foreground = "secondary"
     capsule_opacity = 0.79999998211860657
@@ -78,7 +78,21 @@ order = [ "main", "top_main", "bar" ]
     capsule_thickness = 0.81999998539686203
     center = [ "clock", "group:g2", "weather" ]
     contact_shadow = true
-    end = [ "tray", "clipboard", "group:g3", "group:g1", "group:g5", "monitor", "privacy", "caffeine", "session" ]
+    end = [
+        "media_2",
+        "clipboard",
+        "workspaces_2",
+        "group:g1",
+        "group:g5",
+        "tray",
+        "notifications",
+        "monitor",
+        "privacy",
+        "caffeine",
+        "spacer_2",
+        "clock_2",
+        "session"
+    ]
     font_family = "JetBrains Maple Mono"
     margin_edge = 0
     margin_ends = 1
@@ -88,21 +102,22 @@ order = [ "main", "top_main", "bar" ]
     radius_bottom_right = 0
     radius_top_left = 0
     radius_top_right = 0
+    reserve_space = false
     scale = 1.1000000089406967
-    start = [ "launcher", "wallpaper", "mpvpaper_2", "workspaces", "active_window", "group:g4" ]
+    start = [ "lyrics", "group:g3", "wallpaper", "mpvpaper_2", "active_window", "group:g4" ]
     thickness = 40
     widget_spacing = 4
 
         [[bar.top_main.capsule_group]]
         accordion = false
         accordion_direction = "end"
-        border = "outline"
+        border = "outline_variant"
         border_width = 1.5
-        enabled = true
-        fill = "surface_variant"
+        enabled = false
+        fill = "surface_container"
         foreground = "secondary"
         id = "g1"
-        members = [ "network", "brightness", "text_4", "volume", "text_2", "bluetooth", "text_3", "battery", "text_5" ]
+        members = [ "network", "brightness", "text_4", "text_2", "bluetooth", "text_3", "battery", "text_5" ]
         opacity = 0.79999995231628418
         padding = 8.0
         radius = 0.0
@@ -110,10 +125,10 @@ order = [ "main", "top_main", "bar" ]
         [[bar.top_main.capsule_group]]
         accordion = false
         accordion_direction = "end"
-        border = "outline"
+        border = "outline_variant"
         border_width = 1.5
         enabled = true
-        fill = "surface_variant"
+        fill = "surface_container"
         foreground = "secondary"
         id = "g2"
         members = [ "media", "audio_visualizer" ]
@@ -124,13 +139,13 @@ order = [ "main", "top_main", "bar" ]
         [[bar.top_main.capsule_group]]
         accordion = false
         accordion_direction = "end"
-        border = "outline"
+        border = "outline_variant"
         border_width = 1.5
         enabled = true
-        fill = "surface_variant"
+        fill = "surface_container"
         foreground = "secondary"
         id = "g3"
-        members = [ "ram", "sysmon" ]
+        members = [ "launcher" ]
         opacity = 0.79999995231628418
         padding = 8.0
         radius = 0.0
@@ -138,10 +153,10 @@ order = [ "main", "top_main", "bar" ]
         [[bar.top_main.capsule_group]]
         accordion = false
         accordion_direction = "end"
-        border = "outline"
+        border = "outline_variant"
         border_width = 1.5
         enabled = true
-        fill = "surface_variant"
+        fill = "surface_container"
         foreground = "secondary"
         id = "g4"
         members = [ "network_tx", "text_9", "network_rx" ]
@@ -152,14 +167,14 @@ order = [ "main", "top_main", "bar" ]
         [[bar.top_main.capsule_group]]
         accordion = false
         accordion_direction = "end"
-        border = "outline"
-        border_width = 1.5
+        border = "outline_variant"
+        border_width = 0.0
         enabled = true
-        fill = "surface_variant"
+        fill = "surface_container"
         foreground = "secondary"
         id = "g5"
-        members = [ "text_8", "control-center", "text_6", "notifications", "text_7" ]
-        opacity = 0.79999995231628418
+        members = [ "text_8", "control-center", "text_10", "volume", "text_11", "network_2", "text_7" ]
+        opacity = 0.0
         padding = 8.0
         radius = 0.0
 
@@ -183,10 +198,6 @@ widget_order = [
     "desktop-widget-0000000000000009",
     "desktop-widget-000000000000000a",
     "desktop-widget-0000000000000007",
-    "desktop-widget-000000000000000d",
-    "desktop-widget-000000000000000e",
-    "desktop-widget-000000000000000f",
-    "desktop-widget-0000000000000010",
     "desktop-widget-0000000000000011",
     "desktop-widget-0000000000000013",
     "desktop-widget-0000000000000014",
@@ -198,10 +209,8 @@ widget_order = [
     "desktop-widget-000000000000001a",
     "desktop-widget-000000000000001b",
     "desktop-widget-000000000000001c",
-    "desktop-widget-000000000000001e",
     "desktop-widget-000000000000001f",
-    "desktop-widget-0000000000000020",
-    "desktop-widget-0000000000000021"
+    "desktop-widget-0000000000000020"
 ]
 
     [desktop_widgets.grid]
@@ -409,8 +418,8 @@ widget_order = [
     [desktop_widgets.widget.desktop-widget-0000000000000013]
     box_height = 0.0
     box_width = 0.0
-    cx = 640.0
-    cy = 400.0
+    cx = 1024.0
+    cy = 640.0
     output = "eDP-1"
     placement_height = 1280.0
     placement_width = 2048.0
@@ -425,8 +434,8 @@ widget_order = [
     [desktop_widgets.widget.desktop-widget-0000000000000014]
     box_height = 0.0
     box_width = 0.0
-    cx = 640.0
-    cy = 400.0
+    cx = 1024.0
+    cy = 640.0
     output = "eDP-1"
     placement_height = 1280.0
     placement_width = 2048.0
@@ -440,10 +449,10 @@ widget_order = [
         visualization_mode = "wave_rings"
 
     [desktop_widgets.widget.desktop-widget-0000000000000015]
-    box_height = 157.40684509277344
-    box_width = 402.60025024414062
-    cx = 401.6949462890625
-    cy = 1069.02197265625
+    box_height = 225.61509704589844
+    box_width = 1286.7252197265625
+    cx = 1.1297378540039062
+    cy = 636.47869873046875
     output = "eDP-1"
     placement_height = 1280.0
     placement_width = 2048.0
@@ -452,8 +461,9 @@ widget_order = [
 
         [desktop_widgets.widget.desktop-widget-0000000000000015.settings]
         background = false
-        bands = 24
+        bands = 48
         centered = true
+        color_2 = "secondary"
         mirrored = true
         show_when_idle = true
 
@@ -565,7 +575,7 @@ widget_order = [
     box_height = 265.6136474609375
     box_width = 1603.4853515625
     cx = 0.0
-    cy = 557.883544921875
+    cy = 699.832763671875
     flip_y = true
     output = "eDP-2"
     placement_height = 1280.0
@@ -596,10 +606,10 @@ widget_order = [
         shadow = false
 
     [desktop_widgets.widget.desktop-widget-000000000000001f]
-    box_height = 80.0
-    box_width = 240.0
-    cx = 129.40234375
-    cy = 1018.6015625
+    box_height = 151.0625
+    box_width = 599.728515625
+    cx = 1856.9326171875
+    cy = 118.265625
     output = "eDP-2"
     placement_height = 1280.0
     placement_width = 2048.0
@@ -607,21 +617,26 @@ widget_order = [
     type = "clock"
 
         [desktop_widgets.widget.desktop-widget-000000000000001f.settings]
+        background_opacity = 0.0
         background_radius = 0
 
     [desktop_widgets.widget.desktop-widget-0000000000000020]
-    box_height = 128.0
-    box_width = 240.0
-    cx = 130.24609375
-    cy = 905.75
-    output = "eDP-2"
+    box_height = 139.4453125
+    box_width = 376.5
+    cx = 1855.15234375
+    cy = 145.22265625
+    output = "eDP-1"
     placement_height = 1280.0
     placement_width = 2048.0
     rotation = 0.0
-    type = "sysmon"
+    type = "weather"
 
         [desktop_widgets.widget.desktop-widget-0000000000000020.settings]
-        background_radius = 0
+        background = true
+        background_opacity = 0.0
+        background_padding = 0
+        background_radius = 7
+        show_forecast = false
         stat = "cpu_usage"
         stat2 = "cpu_temp"
 
@@ -643,7 +658,11 @@ widget_order = [
 
 [dock]
 auto_hide = false
+background_opacity = 0.64999998547136784
 enabled = true
+launcher_icon = "brand-finder"
+launcher_position = "start"
+magnification_scale = 1.6000000089406967
 margin_edge = 10
 radius = 20
 reserve_space = false
@@ -677,7 +696,9 @@ behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
 
 [location]
 auto_locate = true
-custom_schedule = false
+custom_schedule = true
+sunrise = "07:30"
+sunset = "20:00"
 
 [lockscreen]
 blurred_desktop = true
@@ -709,7 +730,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -736,7 +757,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-2".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -763,7 +784,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -790,7 +811,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-2".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -811,7 +832,7 @@ temperature_day = 6500
 temperature_night = 5500
 
 [notification]
-position = "top_right"
+position = "bottom_right"
 
 [osd]
 background_opacity = 0.84999998100101948
@@ -830,7 +851,7 @@ picker_position = "center"
 video_directory = "~/Pictures/Wallpapers/video"
 
 [plugins]
-enabled = [ "noctalia/mpvpaper", "liamwh/emoji-picker", "muhammadessam/umbriel-monitor-control" ]
+enabled = [ "noctalia/mpvpaper", "liamwh/emoji-picker", "muhammadessam/umbriel-monitor-control", "h465855hgg/lyrics" ]
 
 [shell]
 corner_radius_scale = 0.0
@@ -899,8 +920,6 @@ umbriel_overview_type_to_launch_enabled = true
     enabled = false
     variant = "default"
 
-[templates]
-
 [theme]
 builtin = "Ayu"
 community_palette = "One Dark Two"
@@ -924,10 +943,10 @@ fill_mode = "crop"
     recursive = true
 
     [wallpaper.default]
-    path = "/home/acid/.cache/noctalia/mpvpaper/d628193d2f6a363ed0dc8f80897c8ac1.jpg"
+    path = "/home/acid/Pictures/Wallpapers/Light/mmexport1782756183916.jpeg"
 
     [wallpaper.last]
-    path = "/home/acid/.cache/noctalia/mpvpaper/d628193d2f6a363ed0dc8f80897c8ac1.jpg"
+    path = "/home/acid/Pictures/Wallpapers/Light/mmexport1782756183916.jpeg"
 
     [wallpaper.monitors.HDMI-A-1]
     path = "/home/acid/Pictures/Wallpapers/Dark/1791019676098.jpeg"
@@ -936,18 +955,22 @@ fill_mode = "crop"
     path = "/home/acid/Pictures/Wallpapers/Light/wall_1782406570.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/acid/Pictures/Wallpapers/Dark/wall_1786255667.png"
+    path = "/home/acid/Pictures/Wallpapers/Light/mmexport1782756183916.jpeg"
 
     [wallpaper.monitors.eDP-2]
-    path = "/home/acid/.cache/noctalia/mpvpaper/d628193d2f6a363ed0dc8f80897c8ac1.jpg"
+    path = "/home/acid/Pictures/Wallpapers/Light/wall_1784883511.png"
 
 [widget.active_window]
+enabled = false
 max_length = 200
 min_length = 0
 
 [widget.audio_visualizer]
-bands = 24
-mirrored = false
+bands = 16
+color_2 = "secondary"
+enabled = false
+mirrored = true
+width = 80
 
 [widget.battery]
 show_label = false
@@ -955,22 +978,43 @@ show_label = false
 [widget.brightness]
 enabled = false
 
+[widget.clipboard]
+enabled = false
+
 [widget.clock]
+enabled = false
 format = "{:%b%d%a %H:%M:%S}"
 vertical_format = """{:%H
 %M
 %S}"""
 
+[widget.clock_2]
+format = "{:%H:%M:%S}"
+type = "clock"
+
 [widget.launcher]
 custom_image_colorize = true
+enabled = false
 glyph = "brand-apple"
 
+[widget.lyrics]
+display_mode = "lyrics"
+show_cover = false
+show_romanization = true
+type = "h465855hgg/lyrics:lyrics"
+
 [widget.media]
+enabled = false
 hide_when_no_media = true
 max_length = 160
 rotate_album_art = true
 show_progress = true
 title_scroll = "always"
+
+[widget.media_2]
+hide_when_no_media = true
+rotate_album_art = true
+type = "media"
 
 [widget.monitor]
 show_text = false
@@ -980,18 +1024,43 @@ type = "muhammadessam/umbriel-monitor-control:monitor"
 type = "noctalia/mpvpaper:mpvpaper"
 
 [widget.mpvpaper_2]
+enabled = false
 type = "noctalia/mpvpaper:mpvpaper"
+
+[widget.network]
+enabled = false
+
+[widget.network_2]
+show_label = false
+type = "network"
+
+[widget.network_rx]
+enabled = false
+
+[widget.network_tx]
+enabled = false
 
 [widget.privacy]
 hide_inactive = true
 
-[widget."ray/echolyrics:echolyrics"]
-capsule = false
+[widget.spacer_2]
+type = "spacer"
+
+[widget.sysmon]
+enabled = false
 
 [widget.taskbar]
 group_by_workspace = true
 group_single_icon_per_app = true
 hide_empty_workspaces = true
+
+[widget.text_10]
+text = "/"
+type = "text"
+
+[widget.text_11]
+text = "/"
+type = "text"
 
 [widget.text_2]
 color = "primary"
@@ -1025,6 +1094,7 @@ type = "text"
 
 [widget.text_9]
 color = "primary"
+enabled = false
 text = "|"
 type = "text"
 
@@ -1035,9 +1105,23 @@ drawer = true
 [widget.volume]
 show_label = false
 
+[widget.wallpaper]
+enabled = false
+
+[widget.weather]
+enabled = false
+show_condition = false
+
 [widget.workspaces]
 capsule = true
 capsule_opacity = 0.5
 label_source = "id"
 show_labels = false
 style = "regular"
+
+[widget.workspaces_2]
+capsule_border_width = 0.5
+capsule_opacity = 0.0
+capsule_padding = 5
+show_labels = false
+type = "workspaces"
