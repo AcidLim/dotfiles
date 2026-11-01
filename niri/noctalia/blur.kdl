@@ -62,6 +62,17 @@ layer-rule {
     }
 }
 
+layer-rule {
+    match namespace="^noctalia-bar-top_main$"
+    opacity 1.0
+    geometry-corner-radius 0
+    shadow { off; }
+    background-effect {
+        blur false
+    }
+}
+
+
 //noctalia(v5.0) Blurred Overview Wallpaper
 layer-rule {
   match namespace="^noctalia-backdrop"
