@@ -55,11 +55,22 @@ cd ~/dotfiles/patches/umbriel
 makepkg -si
 ```
 
-`$startdir` 是 `makepkg` 被调用的目录，也就是放着 PKGBUILD 和补丁的本目录；`-Np1` 对应 git diff 的
-`a/` `b/` 前缀。
+`-Np1` 对应 git diff 的 `a/` `b/` 前缀。几个目录变量（本机实测）：
+
+| 变量 | 含义 | 本例取值 |
+| --- | --- | --- |
+| `$startdir` | 运行 `makepkg` 的目录；makepkg 要求 PKGBUILD 必须就在当前目录（`-p` 指向别处会直接报错），所以它就等于 PKGBUILD 所在目录 | `~/dotfiles/patches/umbriel` |
+| `$srcdir` | 解包/检出源码的位置，默认 `$startdir/src`；`prepare()` 执行时 makepkg 已经把 cwd 切到这里 | `~/dotfiles/patches/umbriel/src` |
+| `$pkgdir` | 打包暂存目录，默认 `$startdir/pkg` | `~/dotfiles/patches/umbriel/pkg` |
+
+所以 `$startdir/0001-ipc-coalesce-snapshots.patch` 解析到的就是本目录里的补丁；它和 `prepare()` 里
+先 `cd "$srcdir/umbriel"` 互不影响，因为 `$startdir` 始终是绝对路径。
+
+如果不想依赖 `$startdir`，也可以把补丁列进 `source=()`（此时 `b2sums` 要多加一项 `'SKIP'`），
+再用 `"$srcdir/0001-ipc-coalesce-snapshots.patch"` 引用——makepkg 会把补丁复制进 `$srcdir`。
 
 如果不想在 dotfiles 里留构建产物，把 `PKGBUILD` 和补丁一起复制到别处（如 `~/build/umbriel/`）构建，
-把 `$startdir` 换成补丁的绝对路径即可。
+`$startdir` 会随之变成那个目录，相对路径写法照旧可用。
 
 ### 另一种方式（省事但会被覆盖）
 
