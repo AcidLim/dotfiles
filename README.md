@@ -66,6 +66,7 @@ dotfiles/
 ├── bin/                           # 仅本地：会话启动器 → /usr/local/bin
 ├── wayland-sessions/              # 仅本地：桌面入口 → /usr/share/wayland-sessions
 ├── Preview/                       # 效果图
+├── patches/umbriel/               # 本地补丁：IPC 背压改为合并快照（见目录内 README）
 ├── install.sh                     # 一键部署 / 校验
 ├── .gitignore
 └── README.md

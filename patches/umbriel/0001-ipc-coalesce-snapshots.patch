@@ -1,0 +1,55 @@
+diff --git a/src/server/ipc.cpp b/src/server/ipc.cpp
+index 5df91f54..e29e9f9d 100644
+--- a/src/server/ipc.cpp
++++ b/src/server/ipc.cpp
+@@ -657,7 +657,6 @@ namespace umbriel {
+       return;
+     }
+     last = update;
+-    std::vector<Connection*> evicted;
+     for (const auto& connection : m_connections) {
+       if ((connection->subscribedEvents & event) == 0) {
+         continue;
+@@ -666,11 +665,28 @@ namespace umbriel {
+         // output keeps everything written so far; only the undrained tail counts against the cap.
+         const size_t backlog = connection->output.size() - connection->writeOffset;
+         if (backlog + update.size() > kMaxOutboundBacklog) {
+-          kLog.warn("subscriber fd {} is not draining ({} bytes queued), disconnecting", connection->fd, backlog);
+-          evicted.push_back(connection.get());
+-          continue;
++          // Every event is a full snapshot, so a subscriber that fell behind only needs the newest snapshot of each
++          // family it asked for; the intermediate frames would have been replaced in its state anyway. Dropping the
++          // connection instead turns a slow consumer into one that also loses every later change.
++          kLog.warn(
++              "subscriber fd {} fell {} bytes behind, coalescing to the newest snapshots", connection->fd, backlog
++          );
++          const size_t sent = connection->writeOffset;
++          std::string pending = connection->output.substr(0, sent);
++          for (size_t bit = 0; bit < kEventCount; ++bit) {
++            if ((connection->subscribedEvents & static_cast<uint16_t>(1U << bit)) == 0) {
++              continue;
++            }
++            const std::string& snapshot = m_lastBroadcast.at(bit);
++            if (!snapshot.empty()) {
++              pending += snapshot;
++            }
++          }
++          connection->output = std::move(pending);
++          connection->writeOffset = sent;
++        } else {
++          connection->output += update;
+         }
+-        connection->output += update;
+       } else {
+         connection->output = update;
+         connection->writeOffset = 0;
+@@ -678,9 +694,6 @@ namespace umbriel {
+       }
+       wl_event_source_fd_update(connection->fdSource, WL_EVENT_READABLE | WL_EVENT_WRITABLE);
+     }
+-    for (Connection* connection : evicted) {
+-      removeConnection(connection);
+-    }
+   }
+ 
+   void Ipc::notifyThemeChanged() { broadcastEvent(kEventTheme, themeEvent()); }

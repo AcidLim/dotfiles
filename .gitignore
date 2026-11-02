@@ -35,3 +35,9 @@
 # 备份文件
 /.config/umbriel/config.toml.bak
 /.config/noctalia/noctalia-config.toml.bak
+
+# ═══════════════ 补丁目录里的 makepkg 构建产物 ═══════════════
+
+/patches/umbriel/src/
+/patches/umbriel/pkg/
+/patches/umbriel/*.pkg.tar.*
