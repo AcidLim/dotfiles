@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-exec niri -c "$HOME/.config/niri/niri-noctalia.kdl"

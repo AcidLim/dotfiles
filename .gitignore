@@ -1,39 +1,37 @@
-# DMS plugins
-DankMaterialShell/plugins/
+# ═══════════════ 仅本地保存，不同步到仓库 ═══════════════
 
-#fastfetch var_config
-fastfetch/config.jsonc
+# 会话启动器 / 桌面入口（部署到 /usr/local/bin 与 /usr/share/wayland-sessions）
+/bin/
+/wayland-sessions/
 
-#kitty var_config
-kitty/dank-theme.conf
-kitty/dank-tabs.conf
-kitty/themes
-kitty/current-theme.conf
+# DankMaterialShell（已弃用，仅本地保留一份，不参与版本管理）
+/.config/DankMaterialShell/
 
-#niri/dms var_config
-niri/dms/colors.kdl
-niri/dms/outputs.kdl
-niri/dms/input.kdl
+# ═══════════════ 运行时自动生成（由 Matugen / Noctalia 写入） ═══════════════
 
-#DMS var_config
-DankMaterialShell/firefox.css
-DankMaterialShell/.changelog-1.4
-DankMaterialShell/.changelog-1.5
-DankMaterialShell/.firstlaunch
-DankMaterialShell/monitors.json
-DankMaterialShell/plugin_settings.json
-DankMaterialShell/.changelog-*
+# fastfetch 动态配色
+/.config/fastfetch/config.jsonc
 
-#Noctalia Niri模板自动生成
-niri/noctalia.kdl
+# kitty 动态配色与主题
+/.config/kitty/dank-theme.conf
+/.config/kitty/dank-tabs.conf
+/.config/kitty/themes
+/.config/kitty/current-theme.conf
 
-#该项可运行noctalia/scripts/generate-outputs下的脚本自动生成合适outputs
-niri/noctalia/outputs.kdl 
+# niri DMS 会话（历史配置，运行时生成）
+/.config/niri/dms/colors.kdl
+/.config/niri/dms/outputs.kdl
+/.config/niri/dms/input.kdl
 
-#Umbriel的noctalia模板，在noctalia设置里启动模板自动生成
-umbriel/noctalia.toml
+# noctalia 为 niri 生成的模板
+/.config/niri/noctalia.kdl
 
-#备份文件
-umbriel/config.toml.bak
-noctalia/noctalia-config.toml.bak
+# 可运行 noctalia/scripts/generate-outputs 下的脚本自动生成合适的 outputs
+/.config/niri/noctalia/outputs.kdl
 
+# umbriel 的 noctalia 模板，在 noctalia 设置里启动模板自动生成
+/.config/umbriel/noctalia.toml
+
+# 备份文件
+/.config/umbriel/config.toml.bak
+/.config/noctalia/noctalia-config.toml.bak
