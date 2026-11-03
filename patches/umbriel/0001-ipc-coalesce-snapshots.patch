@@ -1,8 +1,8 @@
 diff --git a/src/server/ipc.cpp b/src/server/ipc.cpp
-index 5df91f54..e29e9f9d 100644
+index e59e7726..6d4715a1 100644
 --- a/src/server/ipc.cpp
 +++ b/src/server/ipc.cpp
-@@ -657,7 +657,6 @@ namespace umbriel {
+@@ -727,7 +727,6 @@ namespace umbriel {
        return;
      }
      last = update;
@@ -10,7 +10,7 @@ index 5df91f54..e29e9f9d 100644
      for (const auto& connection : m_connections) {
        if ((connection->subscribedEvents & event) == 0) {
          continue;
-@@ -666,11 +665,28 @@ namespace umbriel {
+@@ -736,11 +735,28 @@ namespace umbriel {
          // output keeps everything written so far; only the undrained tail counts against the cap.
          const size_t backlog = connection->output.size() - connection->writeOffset;
          if (backlog + update.size() > kMaxOutboundBacklog) {
@@ -43,7 +43,7 @@ index 5df91f54..e29e9f9d 100644
        } else {
          connection->output = update;
          connection->writeOffset = 0;
-@@ -678,9 +694,6 @@ namespace umbriel {
+@@ -748,9 +764,6 @@ namespace umbriel {
        }
        wl_event_source_fd_update(connection->fdSource, WL_EVENT_READABLE | WL_EVENT_WRITABLE);
      }
