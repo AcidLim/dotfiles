@@ -262,8 +262,9 @@ return {
         return string.rep("─", pad) .. label .. string.rep("─", pad)
       end
 
-      local layout = {
-        { type = "padding", val = 9 },
+      -- 先排内容，最后按窗口高度补「顶部留白」，
+      -- 免得底部那行耗时被顶到屏幕外面、还要翻页才看得到
+      local body = {
         dashboard.section.header,
         { type = "padding", val = 2 },
         {
@@ -271,28 +272,68 @@ return {
           val = greeting,
           opts = { position = "center", hl = "AlphaGreeting" },
         },
-        { type = "padding", val = 3 },
+        { type = "padding", val = 2 },
         dashboard.section.buttons,
       }
 
       -- 没有最近文件就整块（标题 + 分隔 + 列表）都不出现
       if #recent_buttons > 0 then
-        layout[#layout + 1] = { type = "padding", val = 2 }
-        layout[#layout + 1] = {
+        body[#body + 1] = { type = "padding", val = 2 }
+        body[#body + 1] = {
           type = "text",
           val = section_title("最近文件"),
           opts = { position = "center", hl = "AlphaSection" },
         }
-        layout[#layout + 1] = { type = "padding", val = 1 }
-        layout[#layout + 1] = {
+        body[#body + 1] = { type = "padding", val = 1 }
+        body[#body + 1] = {
           type = "group",
           val = recent_buttons,
           opts = { spacing = 1 },
         }
       end
 
-      layout[#layout + 1] = { type = "padding", val = 1 }
-      layout[#layout + 1] = dashboard.section.footer
+      body[#body + 1] = { type = "padding", val = 1 }
+      body[#body + 1] = dashboard.section.footer
+
+      -- 估算每块占几行（padding/text/group/button）
+      local function element_height(el)
+        if el.type == "padding" then
+          return el.val or 0
+        elseif el.type == "text" then
+          local val = el.val
+          if type(val) == "function" then
+            local ok, res = pcall(val)
+            val = ok and res or ""
+          end
+          if type(val) == "table" then
+            return #val
+          end
+          return 1
+        elseif el.type == "group" then
+          local spacing = (el.opts and el.opts.spacing) or 0
+          local height = 0
+          for _, child in ipairs(el.val) do
+            height = height + element_height(child) + spacing
+          end
+          return height
+        elseif el.type == "button" then
+          return 1
+        end
+        return 0
+      end
+
+      local content_height = 0
+      for _, el in ipairs(body) do
+        content_height = content_height + element_height(el)
+      end
+
+      -- 放得下时留一点上边距（最多 8 行，且偏上），放不下就贴顶
+      local available = vim.o.lines - vim.o.cmdheight
+      local slack = math.max(0, available - content_height)
+      local top = math.min(8, math.max(1, math.floor(slack / 2)))
+
+      local layout = { { type = "padding", val = top } }
+      vim.list_extend(layout, body)
 
       dashboard.config.layout = layout
 
