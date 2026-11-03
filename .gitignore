@@ -38,6 +38,13 @@
 
 # ═══════════════ 补丁目录里的 makepkg 构建产物 ═══════════════
 
-/patches/umbriel/src/
-/patches/umbriel/pkg/
-/patches/umbriel/*.pkg.tar.*
+# 源码检出（含 build/）与打包暂存，$srcdir / $pkgdir
+/patches/*/src/
+/patches/*/pkg/
+
+# makepkg 为 VCS 源码保留的裸镜像：git clone --mirror → $SRCDEST/<name>，
+# $SRCDEST 默认就是构建目录，所以每次构建都会在这里留一份 umbriel/
+/patches/umbriel/umbriel/
+
+# 打好的包
+/patches/*/*.pkg.tar.*

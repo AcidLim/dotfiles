@@ -61,7 +61,24 @@ prepare() {
 | `$pkgdir` | 打包暂存目录，默认 `$startdir/pkg` | `~/dotfiles/patches/umbriel/pkg` |
 
 不想在 dotfiles 里留构建产物，把 `PKGBUILD` 和补丁一起复制到别处（如 `~/build/umbriel/`）构建即可，
-`$startdir` 会随之变成那个目录。本目录下的 `src/`、`pkg/`、`*.pkg.tar.*` 已写进 `.gitignore`。
+`$startdir` 会随之变成那个目录。
+
+### 构建产物都落在本目录，已全部忽略
+
+`makepkg` 默认把东西都写进构建目录，所以这里会多出：
+
+| 路径 | 是什么 |
+| --- | --- |
+| `src/` | 源码检出（含 `src/umbriel/build/`），即 `$srcdir` |
+| `pkg/` | 打包暂存，即 `$pkgdir` |
+| `umbriel/` | VCS 源码的裸镜像：`makepkg` 先 `git clone --mirror` 到 `$SRCDEST/<name>`，再从它检出到 `src/`；`$SRCDEST` 默认就是构建目录，所以每次构建都会更新这一份 |
+| `*.pkg.tar.*` | 打好的包 |
+
+以上都已写进 `.gitignore`（`/patches/*/src/`、`/patches/*/pkg/`、`/patches/umbriel/umbriel/`、
+`/patches/*/*.pkg.tar.*`），`git status` 保持干净。
+
+如果想彻底不让这些东西落在仓库里，在 `~/.config/pacman/makepkg.conf` 里设置
+`BUILDDIR`、`SRCDEST`、`PKGDEST` 指向仓库外即可（例如 `BUILDDIR=/tmp/makepkg`）。
 
 ## 为什么不能用 paru 重建
 
