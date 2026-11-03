@@ -164,22 +164,7 @@ return {
         callback = save_session,
       })
 
-      -- 布局
-      dashboard.config.layout = {
-        { type = "padding", val = 9 },
-        dashboard.section.header,
-        { type = "padding", val = 2 },
-        {
-          type = "text",
-          val = greeting,
-          opts = { position = "center", hl = "AlphaGreeting" },
-        },
-        { type = "padding", val = 3 },
-        dashboard.section.buttons,
-        { type = "padding", val = 2 },
-        dashboard.section.footer,
-      }
-
+      -- 布局稍后拼（最近文件那块要按有无决定是否加入）
       dashboard.section.header.val = logo_lines
       dashboard.section.header.opts.hl = logo_hl
 
@@ -231,16 +216,16 @@ return {
       }
 
       -- ── 最近文件：取 v:oldfiles 里仍然存在的前 5 个 ─────────────────────
+      local recent_buttons = {}
       do
         local devicons = require("nvim-web-devicons")
-        local seen, added = {}, 0
+        local seen = {}
         for _, file in ipairs(vim.v.oldfiles) do
-          if added >= 5 then
+          if #recent_buttons >= 5 then
             break
           end
           if file:sub(1, 4) ~= "term" and vim.fn.filereadable(file) == 1 and not seen[file] then
             seen[file] = true
-            added = added + 1
 
             local name = vim.fn.fnamemodify(file, ":t")
             local dir = vim.fn.fnamemodify(file, ":h:t")
@@ -253,16 +238,63 @@ return {
             end
             label = vim.fn.strcharpart(label, 0, 34)
 
-            buttons[#buttons + 1] = dashboard.button(
-              tostring(added),
+            local item = dashboard.button(
+              tostring(#recent_buttons + 1),
               label,
               ":edit " .. vim.fn.fnameescape(file) .. "<CR>"
             )
+            -- 最近文件比主按钮暗一点，读起来有层级
+            item.opts.hl = "AlphaRecent"
+
+            recent_buttons[#recent_buttons + 1] = item
           end
         end
       end
 
       dashboard.section.buttons.val = buttons
+
+      -- ── 组装布局 ────────────────────────────────────────────────────────
+      -- 小节标题：── 最近文件 ──（按显示宽度居中，CJK 也算 2 列）
+      local function section_title(text)
+        local label = "  " .. text .. "  "
+        local width = 44
+        local pad = math.max(2, math.floor((width - vim.fn.strdisplaywidth(label)) / 2))
+        return string.rep("─", pad) .. label .. string.rep("─", pad)
+      end
+
+      local layout = {
+        { type = "padding", val = 9 },
+        dashboard.section.header,
+        { type = "padding", val = 2 },
+        {
+          type = "text",
+          val = greeting,
+          opts = { position = "center", hl = "AlphaGreeting" },
+        },
+        { type = "padding", val = 3 },
+        dashboard.section.buttons,
+      }
+
+      -- 没有最近文件就整块（标题 + 分隔 + 列表）都不出现
+      if #recent_buttons > 0 then
+        layout[#layout + 1] = { type = "padding", val = 2 }
+        layout[#layout + 1] = {
+          type = "text",
+          val = section_title("最近文件"),
+          opts = { position = "center", hl = "AlphaSection" },
+        }
+        layout[#layout + 1] = { type = "padding", val = 1 }
+        layout[#layout + 1] = {
+          type = "group",
+          val = recent_buttons,
+          opts = { spacing = 1 },
+        }
+      end
+
+      layout[#layout + 1] = { type = "padding", val = 1 }
+      layout[#layout + 1] = dashboard.section.footer
+
+      dashboard.config.layout = layout
 
       -- 底部：插件加载耗时（每次重绘都重新取，避免停留旧数字）
       dashboard.section.footer.val = function()
@@ -285,6 +317,16 @@ return {
 
       vim.api.nvim_set_hl(0, "AlphaGreeting", {
         fg = "#7f849c",
+      })
+
+      -- 小节标题（── 最近文件 ──）
+      vim.api.nvim_set_hl(0, "AlphaSection", {
+        fg = "#6c7086",
+      })
+
+      -- 最近文件的条目，比主按钮暗一档
+      vim.api.nvim_set_hl(0, "AlphaRecent", {
+        fg = "#9399b2",
       })
 
       vim.api.nvim_set_hl(0, "AlphaBlue", {
