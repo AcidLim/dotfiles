@@ -63,7 +63,9 @@ log "目标 Bar: $BAR_NAME"
 while :; do
     while IFS= read -r state; do
         # 事件是完整快照：积压时只保留最新的一条，不必逐条应用
-        while IFS= read -r -t 0 next; do
+        # 注意：`read -t 0` 只探测、不读取也不赋值（变量在 set -u 下会未定义），
+        # 所以这里给一个极小的超时，命中时才会真正读走一行。
+        while IFS= read -r -t 0.01 next; do
             state="$next"
         done
         apply_state "$state"

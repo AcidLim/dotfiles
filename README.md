@@ -72,6 +72,11 @@ dotfiles/
 └── README.md
 ```
 
+> **Umbriel 的 keybind 语法**：从 `r1504`（commit `e0da106`，上游 `e8ab5b00`）起，键位动作用
+> 空格分隔 `"动作 参数"`（如 `"spawn kitty --single-instance"`、`"workspace-switch 1"`），
+> 旧的 `"动作:参数"` 写法会被判为 `unknown action` 并**整条忽略**（配置仍能加载，但那条键就废了）。
+> 校验：`umbriel config validate -c ~/.config/umbriel/config.toml`。
+
 **只在本机、不入库的部分**（`.gitignore` 中已忽略）：
 
 | 路径 | 用途 |
