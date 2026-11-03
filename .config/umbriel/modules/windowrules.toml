@@ -7,6 +7,13 @@
 # 全局圆角
 #corner_radius = 0
 
+# ---------- quick terminal（Mod+Slash 呼出的浮动终端）----------
+[[window_rule]]
+match.app_id = "^quickterminal$"
+default_floating = true
+default_floating_size_px = { width = 1200, height = 560 }
+default_position = { x = 0, y = 0, anchor = "center" }
+
 # ---------- imv ----------
 [[window_rule]]
 match.app_id = "^imv$"
