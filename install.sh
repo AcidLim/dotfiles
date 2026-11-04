@@ -158,9 +158,30 @@ sync_system() {
 echo "dotfiles: $DOTFILES"
 [ "$MODE" = "check" ] && echo "模式: 只校验"
 
+# cava 的配色主题由 matugen 生成（模板 templates/cava-colors.ini → themes/your-theme），
+# 新机器首次部署时该文件还不存在，cava 会因 “Unable to open theme file” 直接退出，
+# 所以先用仓库里的 tricolor 兜底；matugen 跑过一次后会被壁纸配色覆盖。
+seed_cava_theme() {
+    local theme="$CONFIG_DIR/cava/themes/your-theme"
+    local fallback="$DOTFILES/.config/cava/themes/tricolor"
+
+    [ -d "$CONFIG_DIR/cava" ] || return 0
+    [ -e "$theme" ] && return 0
+
+    if [ "$MODE" = "check" ]; then
+        warn "cava 主题尚未生成: $theme（matugen 还没跑过）"
+        return 0
+    fi
+
+    [ -f "$fallback" ] || { warn "跳过: $fallback 不存在"; return 0; }
+    cp -- "$fallback" "$theme"
+    warn "cava 主题缺失，暂用 tricolor 兜底: $theme"
+}
+
 echo
 echo "==> ~/.config"
 sync_tree "$DOTFILES/.config" "$CONFIG_DIR"
+seed_cava_theme
 
 echo
 echo "==> ~/.local/bin"

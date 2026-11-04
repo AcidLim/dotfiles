@@ -12,6 +12,9 @@
 # fastfetch 动态配色
 /.config/fastfetch/config.jsonc
 
+# cava 动态配色主题（matugen 模板 templates/cava-colors.ini 的输出）
+/.config/cava/themes/your-theme
+
 # kitty 动态配色与主题
 /.config/kitty/dank-theme.conf
 /.config/kitty/dank-tabs.conf

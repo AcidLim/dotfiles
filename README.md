@@ -53,6 +53,7 @@ dotfiles/
 │   ├── matugen/                   # 动态配色：config.toml + templates/
 │   ├── fish/                      # Fish 配置（completions/conf.d/functions）
 │   ├── kitty/                     # Kitty 终端配置与主题
+│   ├── cava/                      # Cava 音频可视化（config 及 L/M/H 频段变体、shaders、themes）
 │   ├── nvim/                      # Neovim（Lazy）配置
 │   ├── superfile/                 # Superfile 文件管理器
 │   ├── fastfetch/                 # 系统信息展示（logo 为 ~/Pictures 的链接）
@@ -84,7 +85,7 @@ dotfiles/
 | `bin/` | 会话启动器，部署到 `/usr/local/bin/` |
 | `wayland-sessions/` | `.desktop` 入口，部署到 `/usr/share/wayland-sessions/` |
 | `.config/DankMaterialShell/` | 已弃用的 DMS 配置，仅本地留存 |
-| `.config/kitty/themes`、`fastfetch/config.jsonc` 等 | 运行时由 Matugen 生成 |
+| `.config/kitty/themes`、`.config/cava/themes/your-theme`、`fastfetch/config.jsonc` 等 | 运行时由 Matugen 生成 |
 
 另外，配色插件 **Matugen Themer** 的源码在本机 `~/DSH-Workspace/Matugen-Themer`，软链接入 `~/.local/share/noctalia/plugins/matugen-themer`，同样不属于本仓库（见 [配色生成机制](#-配色生成机制)）。
 
@@ -103,7 +104,9 @@ sudo ./install.sh --system  # 额外部署 bin/* 与 wayland-sessions/*.desktop
 1. 逐项处理，不批量删除；
 2. 已指向正确位置的链接直接跳过；
 3. 旧链接用「临时链接 + rename」原子覆盖，避免出现链接已断的窗口期；
-4. 目标位置若是实体文件/目录，先备份为 `<name>.bak-<时间戳>` 再建立链接。
+4. 目标位置若是实体文件/目录，先备份为 `<name>.bak-<时间戳>` 再建立链接；
+5. cava 的主题 `themes/your-theme` 由 Matugen 生成，缺失时先用仓库里的 `tricolor` 兜底，
+   否则 cava 会因打不开主题文件直接退出（Matugen 跑过一次即被壁纸配色覆盖）。
 
 ## 🔧 启动链路
 
