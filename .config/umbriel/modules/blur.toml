@@ -30,14 +30,14 @@ saturation = 1.5
 # niri: 全局窗口规则，让所有普通窗口以 xray 形式显示 blur。
 # niri 的 xray true 对应 Umbriel 的 blur_optimized = true（共享一份缓存背景模糊）。
 [[window_rule]]
-blur = true
-blur_optimized = true
+blur = false
+blur_optimized = false
 
 # niri: 浮动窗口的 xray + blur 规则
 [[window_rule]]
 match.is_floating = true
 blur = true
-blur_optimized = true
+blur_optimized = false
 
 # niri: fuzzle/launcher 专属 layer 规则
 # niri 还设置了 geometry-corner-radius 8，Umbriel 的 layer_rule 没有圆角项（见报告）。
