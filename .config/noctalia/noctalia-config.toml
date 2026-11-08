@@ -157,7 +157,7 @@ order = [ "main", "top_main", "bar" ]
         border_width = 0.0
         enabled = true
         fill = "surface_container"
-        foreground = "primary_container"
+        foreground = "on_primary_container"
         id = "g5"
         members = [ "text_8", "control-center", "text_10", "volume", "text_11", "network_2", "text_7" ]
         opacity = 0.0
@@ -171,7 +171,6 @@ order = [ "main", "top_main", "bar" ]
         border_width = 0.0
         enabled = true
         fill = "surface_container"
-        foreground = "on_hover"
         id = "g6"
         members = [ "tray", "notifications", "monitor", "privacy", "caffeine", "spacer_2", "clock_2", "session" ]
         opacity = 0.0
@@ -968,10 +967,10 @@ fill_mode = "crop"
     recursive = true
 
     [wallpaper.default]
-    path = "/home/acid/Pictures/Wallpapers/Light/wall_1782406570.png"
+    path = "/home/acid/Pictures/Wallpapers/Light/1793013358881.jpeg"
 
     [wallpaper.last]
-    path = "/home/acid/Pictures/Wallpapers/Light/wall_1782406570.png"
+    path = "/home/acid/Pictures/Wallpapers/Light/1793013358881.jpeg"
 
     [wallpaper.monitors.HDMI-A-1]
     path = "/home/acid/Pictures/Wallpapers/Dark/1791019676098.jpeg"
@@ -980,7 +979,7 @@ fill_mode = "crop"
     path = "/home/acid/Pictures/Wallpapers/Light/wall_1782406570.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/acid/Pictures/Wallpapers/Light/wall_1782406570.png"
+    path = "/home/acid/Pictures/Wallpapers/Light/1793013358881.jpeg"
 
     [wallpaper.monitors.eDP-2]
     path = "/home/acid/Pictures/Wallpapers/Light/wall_1784883511.png"
