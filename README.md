@@ -43,8 +43,9 @@ dotfiles/
 │   │   ├── dms/                   # DMS 时期的历史片段（保留备用）
 │   │   └── config.kdl             # 单文件版历史配置
 │   ├── umbriel/                   # Umbriel 合成器配置
-│   │   ├── config.toml            # 主配置（include modules/*.toml，autostart 拉起 noctalia）
-│   │   ├── modules/               # binds/layout/blur/windowrules/…
+│   │   ├── config.toml            # 主配置：只留 include 顺序 + general + environment
+│   │   ├── modules/               # appearance/input/layout/animations/binds/outputs/scratchpad
+│   │   │   └── rule/              # 窗口/层规则，00→80 编号即优先级（见该目录 README）
 │   │   └── scripts/               # maximized-bar.sh、umbriel-screenshot
 │   ├── noctalia/                  # Noctalia 外壳配置
 │   │   ├── noctalia-config.toml   # 主配置（含 [hooks] 壁纸钩子，回退用）
