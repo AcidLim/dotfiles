@@ -1,13 +1,36 @@
+# ==============================================================================
+# Umbriel 主配置
+#
+#   这里只留三件事：include 顺序、[general]、[environment]。
+#   include 顺序就是优先级：表按键合并、标量后者覆盖；规则数组按顺序追加。
+#   窗口/层规则集中在 modules/rule/，文件名前缀 00→80 即优先级，
+#   00 是无 match 的兜底（必须第一），80 是特殊场景覆写（必须最后）。
+# ==============================================================================
+
 [include]
 files = [
-    "modules/cursor.toml",
+    # ---- 外观 / 输入 / 输出 / 布局 / 动画 ----
+    "modules/appearance.toml",
+    "modules/input.toml",
     "modules/outputs.toml",
     "modules/layout.toml",
     "modules/animations.toml",
-    "modules/blur.toml",
-    "modules/windowrules.toml",
+    "modules/scratchpad.toml",
+
+    # ---- 规则：编号即优先级 ----
+    "modules/rule/00-defaults.toml",
+    "modules/rule/10-float.toml",
+    "modules/rule/20-size.toml",
+    "modules/rule/30-placement.toml",
+    "modules/rule/40-blur.toml",
+    "modules/rule/50-layer-blur.toml",
+    "modules/rule/60-opacity.toml",
+    "modules/rule/70-decoration.toml",
+    "modules/rule/80-override.toml",
+
+    # ---- 键位 ----
     "modules/binds.toml",
-    "modules/supertab.toml"
+    "modules/supertab.toml",
 ]
 
 [general]
@@ -38,53 +61,6 @@ QT_QPA_PLATFORMTHEME_QT6 = "gtk3"
 QS_ICON_THEME = "Adwaita"
 EDITOR = "nvim"
 
-[input]
-middle_click_paste = false
-client_window_drag = true
-window_drag_toggle = "none"
-
-[input.keyboard]
-layout = ""
-variant = ""
-options = ""
-repeat_rate = 35
-repeat_delay = 250
-numlock_toggle = true
-track_layout = "global"
-
-[input.touchpad]
-tap = true
-natural_scroll = true
-
-[input.mouse]
-natural_scroll = false
-left_handed = false
-accel_profile = "flat"
-sensitivity = -0.15
-scroll_wheel_step = 60
-
-[input.focus]
-follows_mouse = false
-
-[appearance]
-drag_opacity = 1
-prefer_no_csd = true
-border_width = 2
-corner_radius = 0
-
-#[appearance.blur]
-#enabled = true
-#optimized = true
-#passes = 3
-#radius = 3
-#noise = 0.02
-#brightness = 0.9
-#contrast = 0.9
-#saturation = 1.1
-
-# bind.toml 里 Mod+Alt+S / Mod+M / Mod+Alt+Z 引用的侧边栏 scratchpad
-[[scratchpad]]
-name = "stash"
-
+# noctalia 模板生成的配色（本仓库 gitignore，缺失时自动忽略并持续监视）
 [include.optional]
 files = ["noctalia.toml"]

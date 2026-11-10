@@ -1,0 +1,25 @@
+# 70 装饰 —— 圆角 / 边框 / 阴影 / 标题栏
+#
+# 这些只影响「围着窗口画什么」，不改布局间距（全局值见 appearance.toml）。
+
+# GNOME 应用统一圆角 12（覆盖全局 corner_radius = 0）
+[[window_rule]]
+corner_radius = 12
+match.app_id = ["^org\\.gnome\\."]
+
+# 全屏工具：不画边框效果、不要阴影
+[[window_rule]]
+border_effect = "off"
+shadow = false
+match.title = ["^gsr ui$"]
+
+[[window_rule]]
+border_effect = "off"
+shadow = false
+match.app_id = ["^waydroid$"]
+
+# 暂存区窗口用单独边框色（原写在 noctalia.toml，那个文件由模板生成、会被覆盖）
+[[window_rule]]
+match.is_scratchpad = true
+border_color_focused = "#dabde2FF"
+border_color_unfocused = "#553f5dFF"

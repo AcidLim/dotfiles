@@ -1,0 +1,68 @@
+# 20 尺寸 —— 只负责「开窗时多大」
+#
+# default_floating_size_px 像素 > default_floating_size 比例；
+# default_scrolling_extent(_px) 只对平铺窗口生效。
+
+# ---- 浮动窗口尺寸 ----
+[[window_rule]]
+default_floating_size_px = { width = 1200, height = 560 }
+match.app_id = ["^quickterminal$"]
+
+[[window_rule]]
+default_floating_size_px = { width = 625, height = 700 }
+match.app_id = ["^shorinclip$", "^clipse$"]
+
+[[window_rule]]
+default_floating_size_px = { width = 800, height = 800 }
+match.app_id = ["^bluetui$", "^impala$"]
+
+[[window_rule]]
+default_floating_size_px = { width = 1500, height = 800 }
+match.app_id = [
+    "^org\\.gnome\\.FileRoller$",
+    "^org\\.gnome\\.Nautilus$",
+    "^thunar$",
+    "^nm-connection-editor$",
+    "^io\\.github\\.nirimod$",
+]
+
+[[window_rule]]
+default_floating_size_px = { width = 1200, height = 800 }
+match.app_id = ["^com\\.follow\\.clash$", "^localsend$"]
+
+[[window_rule]]
+default_floating_size_px = { width = 1200, height = 800 }
+match.app_id = ["^QQ$"]
+match.title = ["^QQ$"]
+
+[[window_rule]]
+default_floating_size_px = { width = 800, height = 1000 }
+match.app_id = ["^QQ$"]
+match.title = ["^设置$", "^天气$"]
+
+[[window_rule]]
+default_floating_size_px = { width = 532, height = 925 }
+match.app_id = ["^io\\.ente\\.auth$"]
+
+# wine 用比例（输出可用区的 100% 宽）而非像素
+[[window_rule]]
+default_floating_size = { width = 1.0 }
+match.app_id = ["^wine$"]
+
+# ---- 平铺窗口宽度 ----
+# 强制平铺成一列半宽；注意 nm-connection-editor 这条与浮动规则冲突，
+# 只在手动切成平铺时才可见（保留是因为删掉会改变平铺时的宽度）。
+[[window_rule]]
+default_scrolling_extent = 0.5
+match.app_id = ["^gnome-control-center$", "^pavucontrol$", "^nm-connection-editor$"]
+
+# Steam 好友列表（已设为浮动，平铺时才用得上）
+[[window_rule]]
+default_scrolling_extent = 0.2
+match.app_id = ["^steam$"]
+match.title = ["^Friends List$", "^好友列表$"]
+
+# 1500 逻辑像素宽
+[[window_rule]]
+default_scrolling_extent_px = 1500
+match.app_id = ["^xdg-desktop-portal-gtk$"]

@@ -1,0 +1,46 @@
+# 30 摆位 —— 位置 / 焦点 / 全屏 / 初始工作区
+#
+# 坐标是输出可用区内的逻辑像素；anchor 支持 center/top_left/top_right/
+# bottom_left/bottom_right/top/bottom/left/right。
+
+# ---- 浮动窗口位置 ----
+# quickterminal 原本有两条：先 1200x560 居中，后又被改成顶部 20,20（后者生效）。
+# 这里保留最终生效的 顶部 20,20；想回到居中改这一行即可。
+[[window_rule]]
+default_position = { x = 20, y = 50, anchor = "top" }
+match.app_id = ["^quickterminal$"]
+
+[[window_rule]]
+default_position = { x = 0, y = 18, anchor = "top" }
+match.app_id = ["^shorinclip$"]
+
+[[window_rule]]
+default_position = { x = 700, y = 280, anchor = "top_left" }
+match.app_id = ["^localsend$"]
+
+# 画中画（Firefox 等）右下角
+[[window_rule]]
+default_position = { x = 20, y = 20, anchor = "bottom_right" }
+match.title = ["(画中画|Picture-in-Picture)"]
+
+# Steam 通知 toast：右下角且不抢焦点
+[[window_rule]]
+default_position = { x = 10, y = 10, anchor = "bottom_right" }
+default_focused = false
+match.app_id = ["^steam$"]
+match.title = ["^notificationtoasts_\\d+_desktop$"]
+
+# ---- 不抢焦点 ----
+[[window_rule]]
+default_focused = false
+match.app_id = ["^QQ$"]
+match.title = ["^资料卡$", "^天气$"]
+
+# ---- 直接全屏打开 ----
+[[window_rule]]
+default_fullscreen = true
+match.title = ["^gsr ui$"]
+
+[[window_rule]]
+default_fullscreen = true
+match.app_id = ["^waydroid$"]

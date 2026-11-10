@@ -1,0 +1,35 @@
+# 外观：全局标量 + 模糊参数 + 阴影
+#
+# 模糊分三层，别再混在一起看：
+#   [appearance.blur]      ← 本文件：全局效果参数（passes/radius/noise…）
+#   [[window_rule]] blur*  ← modules/rule/40-blur.toml：窗口（xdg_toplevel）
+#   [[layer_rule]]  blur*  ← modules/rule/50-layer-blur.toml：层表面（bar/dock/launcher…）
+#
+# 原 modules/blur.toml 已并入本文件。
+
+[appearance]
+drag_opacity = 1
+prefer_no_csd = true
+border_width = 2
+corner_radius = 0
+
+# niri: blur { passes 3; offset 3; noise 0.02; saturation 1.5 }
+# niri 的 offset 在 Umbriel 里近似映射到 radius。
+[appearance.blur]
+enabled = true
+optimized = true
+passes = 3
+radius = 3
+noise = 0.02
+brightness = 0.9
+contrast = 0.9
+saturation = 1.5
+
+# niri: shadow { on; softness 20; spread 2; offset x=-4 y=-4 }
+# 注意：niri 的 shadow spread 在 Umbriel 中没有对应项；阴影颜色见 colors（现由
+# noctalia.toml 提供，默认 #0000007f）。
+[appearance.shadow]
+enabled = true
+softness = 20
+offset_x = -4
+offset_y = -4

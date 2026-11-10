@@ -1,0 +1,7 @@
+# 暂存区（scratchpad）
+#
+# 只声明名字，不绑定应用；binds.toml 里 Mod+Alt+S / Mod+M / Mod+N 引用它。
+# 想让某应用开机就进暂存区，在 rule/30-placement.toml 里加 default_scratchpad = "stash"。
+
+[[scratchpad]]
+name = "stash"

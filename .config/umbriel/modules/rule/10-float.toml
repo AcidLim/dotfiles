@@ -1,0 +1,131 @@
+# 10 浮动 —— 只负责 default_floating
+#
+# 尺寸见 20-size.toml，位置/焦点/全屏见 30-placement.toml，
+# 透明度见 60-opacity.toml，模糊见 40-blur.toml。
+# 同一 (应用, 字段) 只在全仓库出现一次 → 除 00 / 80 外本目录顺序无关。
+
+# ---- 默认浮动的应用（原 windowrules.toml 44 条纯浮动规则合并而来）----
+[[window_rule]]
+default_floating = true
+match.app_id = [
+    "^quickterminal$",                    # Mod+Slash 呼出的浮动终端（尺寸在 20-size）
+    "^imv$",                              # 图片查看器
+    "^com\\.gabm\\.satty$",              # 截图标注
+    "^media_info$",
+    "^video2gif$",
+    "^floating-term$",
+    "^shorinclip$",                       # 625x700，顶部 18
+    "^nm-connection-editor$",             # 网络连接编辑器（历史上有过 平铺/浮动 反复，最终浮动）
+    "^niri-quick-switch$",
+    "^blueman-manager$",
+    "^flameshot$",
+    "^com\\.github\\.hluk\\.copyq$",      # CopyQ
+    "^be\\.alexandervanhee\\.gradia$",     # Gradia 截图
+    "^waypaper$",
+    "^clipse-gui$",
+    "^btrfs-assistant$",
+    "^markpix$",
+    "^better_control\\.py$",
+    "^niri-hotkey-menu$",
+    "^bluetui$",                          # 800x800
+    "^impala$",                           # 800x800
+    "^clipse$",                           # 625x700
+    "^waydroid$",                         # 同时全屏、无边框无阴影
+    "^gnome-calculator$",
+    "^org\\.gnome\\.Calculator$",
+    "^org\\.gnome\\.FileRoller$",          # 1500x800
+    "^org\\.gnome\\.Nautilus$",            # 1500x800 + 0.8 + blur
+    "^org\\.gnome\\.Loupe$",
+    "^org\\.gnome\\.Totem$",
+    "^org\\.gnome\\.Photos$",
+    "^galculator$",
+    "^xdg-desktop-portal$",
+    "^zoom$",
+    "org\\.quickshell$",
+    "^dev\\.noctalia\\.Noctalia$",          # 0.9
+    "^wine$",                             # 另有 80-override 强制不透明/无模糊
+    "^thunar$",                           # 1500x800 + 0.8
+    "^com\\.follow\\.clash$",              # 1200x800
+    "^localsend$",                        # 1200x800 + 0.8 + 左上 700,280
+    "^io\\.ente\\.auth$",                  # 532x925
+    "^io\\.github\\.nirimod$",             # 1500x800 + 0.8
+    "^scrcpy$",
+]
+
+# ---- 应用 + 标题 双重限定的浮动窗口 ----
+[[window_rule]]
+default_floating = true
+match.app_id = ["^steam$"]
+match.title = ["^Friends List$", "^好友列表$"]   # Steam 好友列表
+
+[[window_rule]]
+default_floating = true
+match.app_id = ["^org\\.gnome\\.clocks$"]
+match.title = ["^时钟$"]
+
+[[window_rule]]
+default_floating = true
+match.app_id = ["^blueberry\\.py$"]
+match.title = ["^蓝牙$"]
+
+[[window_rule]]
+default_floating = true
+match.app_id = ["^org\\.pulseaudio\\.pavucontrol$"]
+match.title = ["^音量控制$"]
+
+[[window_rule]]
+default_floating = true
+match.app_id = ["^fcitx$"]
+match.title = ["^Fcitx5 Input Window$"]
+
+[[window_rule]]
+default_floating = true
+match.app_id = ["^jetbrains-rustrover$"]
+match.title = ["^(欢迎访问|Welcome to) RustRover$"]
+
+[[window_rule]]
+default_floating = true
+match.app_id = ["^jetbrains-studio$"]
+match.title = ["^(欢迎访问|Welcome to) Android Studio$"]
+
+# QQ：主窗、聊天记录、文件、设置、天气 都以浮层出现
+[[window_rule]]
+default_floating = true
+match.app_id = ["^QQ$"]
+match.title = ["^QQ$", "^群聊的聊天记录$", "^文件$", "^设置$", "^天气$"]
+
+# ---- 只看标题的通用浮层（跨应用；原 windowrules.toml 里重复的
+#      「图片查看器」系列 4 条已被下面这条合并覆盖）----
+[[window_rule]]
+default_floating = true
+match.title = [
+    "^群聊的聊天记录$",
+    "^聊天记录$",
+    "^群相册$",
+    "^日历$",
+    "^重命名$",
+    "^Steam 设置$",
+    "^另存为$",
+    "^gsr ui$",                                   # 同时全屏、无边框无阴影
+    "(画中画|Picture-in-Picture)",
+    "(图片查看器|Image Viewer|图片和视频|Image and Video Viewer|视频播放器|Video Player|Videos)",
+]
+
+# ---- 强制平铺（覆盖「对话框默认浮动」）----
+[[window_rule]]
+default_floating = false
+match.app_id = ["^gnome-control-center$", "^pavucontrol$"]
+
+# ==============================================================================
+# 无效 / 占位规则（原样保留，仅供日后研究，已注释 —— 它们没有字段，等于 no-op）
+# ==============================================================================
+#[[window_rule]]
+#match.app_id = "^org\\.wezfurlong\\.wezterm$"
+#[[window_rule]]
+#match.app_id = "^Alacritty$"
+#[[window_rule]]
+#match.app_id = "^zen$"          # 注意：zen 真实 app_id 是 ^app\\.zen_browser\\.zen$
+#[[window_rule]]
+#match.app_id = "^com\\.mitchellh\\.ghostty$"
+#[[window_rule]]
+#match.app_id = "^kitty$"

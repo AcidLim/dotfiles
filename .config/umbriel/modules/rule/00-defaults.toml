@@ -1,0 +1,15 @@
+# 00 兜底规则 —— 无 match，命中所有窗口，必须排在本目录最前
+#
+# 规则语义：每条匹配的规则都贡献字段，同字段「后者胜」。
+# 这里设的 blur 会被 40-blur.toml 里按应用开的 blur 覆盖。
+#
+# blur_optimized = false 全局生效（按你的决定）：窗口模糊采样真实内容，
+# 有 GPU 开销；想省性能就把它改成 true，再对浮窗/面板单独设 false。
+
+[[window_rule]]
+blur = false
+blur_optimized = false
+
+# 全局圆角（原 windowrules.toml 顶部注释，一直未启用）
+#[[window_rule]]
+#corner_radius = 0

@@ -1,0 +1,25 @@
+# 40 窗口模糊 —— 只负责 [[window_rule]] 的 blur*
+#
+# 全局参数在 modules/appearance.toml 的 [appearance.blur]；
+# 层表面（bar/dock/launcher）的模糊在 50-layer-blur.toml。
+# 默认 blur = false 来自 00-defaults.toml，这里只做「开」。
+# blur_optimized 全局 false（00-defaults），所以这里不再逐个声明，
+# 需要「采样缓存壁纸」的窗口再单独设 true。
+
+# 浮窗：开模糊，且采样实时内容（能透出背后的窗口）
+[[window_rule]]
+match.is_floating = true
+blur = true
+blur_optimized = false
+
+# 玻璃质感的应用
+[[window_rule]]
+blur = true
+match.app_id = [
+    "^org\\.gnome\\.Nautilus$",
+    "^org\\.pwmt\\.zathura$",
+    "^codium$",
+    "^steam$",
+    "^obsidian$",
+    "^app\\.zen_browser\\.zen$",
+]

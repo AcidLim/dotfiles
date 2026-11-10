@@ -17,16 +17,13 @@ center_focused = "never"
 
 # ---- 焦点环 / 边框 / 阴影 ----
 # niri 里 focus-ring 宽度为 2，而 border 是 off，所以实际生效的是这条 2px 焦点环。
-# Umbriel 不区分 focus-ring 与 border，统一由 appearance.border_width 控制。
-
-# niri: shadow { on; softness 20; spread 2; offset x=-4 y=-4; color "rgba(0, 0, 0, 0.7)" }
-# 注意：niri 的 shadow spread 在 Umbriel 中没有对应项（已省略）。
-[appearance.shadow]
-enabled = true
-softness = 20
-offset_x = -4
-offset_y = -4
-
-[colors]
-# niri 阴影颜色 rgba(0, 0, 0, 0.7) → 0.7 * 255 ≈ B3
-shadow = "#000000B3"
+# Umbriel 不区分 focus-ring 与 border，统一由 appearance.border_width 控制
+#（值为 2，见 modules/appearance.toml）。
+#
+# [appearance.shadow] 已移到 modules/appearance.toml。
+#
+# [colors] 按约定注释掉：颜色由 noctalia.toml（可选 include，模板生成）提供。
+# 注意 Umbriel 的 colors.shadow 默认是 #0000007f（≈50% 黑），
+# 而 niri 原来是 rgba(0,0,0,0.7)。想恢复 0.7 就取消下面两行的注释。
+#[colors]
+#shadow = "#000000B3"

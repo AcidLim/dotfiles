@@ -1,0 +1,32 @@
+# 50 层模糊 —— [[layer_rule]]，作用于 layer-shell 表面
+#
+# 与窗口模糊是两套对象（wlr-layer-surface 与 xdg_toplevel），字段名相同但互不影响。
+# 命名空间可用 umbriel layers 查。
+#
+# 顺序：后写的覆盖先写的，所以「面板类采实时内容」放在最后。
+
+# ---- 启动器 ----
+[[layer_rule]]
+match.namespace = ["^launcher$"]
+blur = true
+blur_optimized = false
+
+# ---- 状态栏：不模糊（它贴在壁纸上，模糊没有意义还费 GPU）----
+# 原来 ^noctalia-bar-bar$ / ^noctalia-bar-main$ 会被后面的
+# ^noctalia-(bar-[^"]+|...)$ 覆盖成 blur = true；那条正则已去掉 bar- 分支，
+# 所以现在这两条真正生效。
+[[layer_rule]]
+match.namespace = ["^noctalia-bar-bar$", "^noctalia-bar-main$"]
+blur = false
+
+# ---- Noctalia 面板类组件：采实时内容（能透出背后的窗口）----
+# bar 不在此列（见上）。
+[[layer_rule]]
+match.namespace = ["^noctalia-(notification|dock|panel|attached-panel|osd)$"]
+blur = true
+blur_ignore_alpha = 0.5
+blur_optimized = false
+
+# ---- niri 里这些层规则在 Umbriel 中没有对应项，无法迁移 ----
+# layer-rule { namespace="^mpvpaper$"; place-within-backdrop true }
+# layer-rule { match namespace="^noctalia-backdrop"; place-within-backdrop true }

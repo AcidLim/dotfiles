@@ -1,0 +1,33 @@
+# 60 透明度 —— 只负责 opacity（0.0–1.0）
+#
+# 视频/图片查看器那种「强制不透明」属于特殊场景，放在 80-override.toml，
+# 本文件只记录真正调低透明度的应用。
+
+[[window_rule]]
+opacity = 0.8
+match.app_id = [
+    "^org\\.gnome\\.Nautilus$",
+    "^org\\.pwmt\\.zathura$",
+    "^thunar$",
+    "^localsend$",
+    "^nm-connection-editor$",
+    "^io\\.github\\.nirimod$",
+]
+
+[[window_rule]]
+opacity = 0.9
+match.app_id = [
+    "^dev\\.noctalia\\.Noctalia$",
+    "^steam$",
+    "^obsidian$",
+    "^code$",
+]
+
+[[window_rule]]
+opacity = 0.85
+match.app_id = ["^codium$", "^xdg-desktop-portal-gtk$"]
+
+[[window_rule]]
+opacity = 0.85
+match.app_id = ["^QQ$"]
+match.title = ["^QQ$"]

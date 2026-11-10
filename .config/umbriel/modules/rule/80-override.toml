@@ -1,0 +1,45 @@
+# 80 覆写 —— 特殊场景，必须排在本目录最后
+#
+# 这里会重新设置 40-blur / 60-opacity 已经设过的字段，是整套规则里
+# 唯一依赖顺序的文件：
+#   - 游戏 / Wine：强制不透明、关模糊
+#   - 视频 / 图片查看器：强制不透明
+# 改这些字段时请只改本文件，别回头去 40/60 里加。
+
+# ---- 游戏 ----
+[[window_rule]]
+opacity = 1.0
+blur = false
+match.app_id = ["^steam_app_.*", "^gamescope$", "^wine$"]
+
+[[window_rule]]
+opacity = 1.0
+blur = false
+match.title = ["[Gg]enshin [Ii]mpact|[Zz]enless [Zz]one [Zz]ero|[Vv]ictoria 3|[Mm]inecraft|[Ee]ndfield"]
+
+# ---- 媒体播放器：不要半透明 ----
+[[window_rule]]
+opacity = 1.0
+match.app_id = [
+    "^mpv$",
+    "^celluloid$",
+    "^kazumi$",
+    "^org\\.kde\\.kdenlive$",
+    "^virt-manager$",
+]
+
+# ---- 视频 / 图片查看器（含画中画）----
+[[window_rule]]
+opacity = 1.0
+match.title = [
+    "(画中画|Picture-in-Picture)",
+    "(图片查看器|Image Viewer|图片和视频|Image and Video Viewer|视频播放器|Video Player|Videos)",
+]
+
+[[window_rule]]
+opacity = 1.0
+match.app_id = [
+    "^org\\.gnome\\.Loupe$",
+    "^org\\.gnome\\.Totem$",
+    "^org\\.gnome\\.Photos$",
+]
