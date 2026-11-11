@@ -2,6 +2,16 @@
 #
 # 这些只影响「围着窗口画什么」，不改布局间距（全局值见 appearance.toml）。
 
+# ---- 只有浮动窗口显示标题栏 ----
+# 全局 appearance.title_bar.mode = "off"，这里用状态选择器把它打开。
+# 选了 negotiated 而不是 on：自带 CSD 的应用（GNOME 系、GTK4/Electron）
+# 保留自己的标题栏，不会被再叠一层；没有 CSD 的浮动窗口才由 Umbriel 补一条。
+# 这个选择器会在窗口浮动/平铺切换时立即重新求值（Mod+V 当场生效）。
+# 某个应用想要无条件 Umbriel 标题栏，就在下面单独给它写 title_bar = "forced"。
+[[window_rule]]
+match.is_floating = true
+title_bar = "negotiated"
+
 # GNOME 应用统一圆角 12（覆盖全局 corner_radius = 0）
 [[window_rule]]
 corner_radius = 12

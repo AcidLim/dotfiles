@@ -37,6 +37,13 @@ softness = 20
 offset_x = -4
 offset_y = -4
 
+# 全局关闭标题栏：平铺窗口不画，只有浮动窗口由 rule/70-decoration.toml 打开。
+#   off        = 不画
+#   negotiated = 只有「Wayland 装饰协商选中服务端装饰 / X11 有 WM 装饰提示」才画
+#                → 自带 CSD 的应用保留自己的标题栏，不会被叠一层
+#   on         = 跟随客户端偏好，实测会给 CSD 应用也叠 Umbriel 标题栏
+#   forced     = 无条件画（客户端自己画的 headerbar 不会被移除，会双层）
+# 想让某个浮动窗口强制出现 Umbriel 标题栏，就在 70-decoration.toml 给它单独写 forced。
 [appearance.title_bar]
-mode = "negotiated"        # 跟随客户端偏好；也可用 "negotiated" 或 "forced"
+mode = "off"
 buttons = ["minimize", "maximize", "close"]
