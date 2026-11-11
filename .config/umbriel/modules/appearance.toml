@@ -7,6 +7,9 @@
 #
 # 原 modules/blur.toml 已并入本文件。
 
+# 全局标量是这些字段的唯一来源：corner_radius / border_width / shadow / title_bar。
+# 按应用覆写写 modules/rule/70-decoration.toml；
+# 不要再写「无 match 的 [[window_rule]]」去设它们（与这里等价，纯重复）。
 [appearance]
 drag_opacity = 1
 prefer_no_csd = true
@@ -33,3 +36,7 @@ enabled = true
 softness = 20
 offset_x = -4
 offset_y = -4
+
+[appearance.title_bar]
+mode = "negotiated"        # 跟随客户端偏好；也可用 "negotiated" 或 "forced"
+buttons = ["minimize", "maximize", "close"]

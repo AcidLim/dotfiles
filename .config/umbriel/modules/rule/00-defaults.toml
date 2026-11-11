@@ -5,11 +5,15 @@
 #
 # blur_optimized = false 全局生效（按你的决定）：窗口模糊采样真实内容，
 # 有 GPU 开销；想省性能就把它改成 true，再对浮窗/面板单独设 false。
+#
+# 为什么只有 blur 在这里？
+#   corner_radius / border_width / shadow / title_bar 都有对应的
+#   [appearance.*] 标量，无 match 的规则与它完全等价，写两处只会互相打架。
+#   所以装饰类的全局值一律写 modules/appearance.toml，
+#   本目录的 70-decoration.toml 只做「按应用/状态覆写」。
+#   blur 例外：appearance.blur 是引擎参数（passes/radius…）+ 总开关，
+#   没有「每个窗口默认开关」的标量，只能靠这条无 match 规则表达默认 off。
 
 [[window_rule]]
 blur = false
 blur_optimized = false
-
-# 全局圆角（原 windowrules.toml 顶部注释，一直未启用）
-#[[window_rule]]
-#corner_radius = 0

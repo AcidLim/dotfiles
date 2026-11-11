@@ -26,6 +26,22 @@
 2. 其余文件之间**同一 (应用, 字段) 只出现一次**，所以顺序无所谓——
    想让某个应用换行/换尺寸/换透明度，只改对应的那一个文件。
 
-全局模糊参数（passes/radius/noise…）不在这里，在 `modules/appearance.toml` 的 `[appearance.blur]`。
+## 全局值 vs 规则覆写
+
+Umbriel 里有三处能设同一个装饰字段，**只有两种该用**：
+
+| 写法 | 位置 | 用途 |
+|---|---|---|
+| `[appearance.*]` 标量 | `modules/appearance.toml` | 全局默认值（唯一来源） |
+| 带 match 的 `[[window_rule]]` | 本目录 `70-decoration.toml` | 按应用/状态覆写 |
+| ~~无 match 的 `[[window_rule]]`~~ | 不要写 | 与第一行等价，纯重复 |
+
+适用于 `corner_radius`、`border_width`、`shadow`、`title_bar`、`border_effect`。
+
+**唯一的例外是 `blur`**：`[appearance.blur]` 是引擎参数（passes/radius/noise…）
++ 总开关，没有「每个窗口默认开关」的标量，所以窗口级默认 off 只能写在
+`00-defaults.toml` 的无 match 规则里。
+
+全局模糊参数本身不在本目录，在 `modules/appearance.toml` 的 `[appearance.blur]`。
 
 改完校验：`umbriel config validate`。
