@@ -46,4 +46,11 @@ offset_y = -4
 # 想让某个浮动窗口强制出现 Umbriel 标题栏，就在 70-decoration.toml 给它单独写 forced。
 [appearance.title_bar]
 mode = "off"
+button_position = "left"
+title_align = "center"
 buttons = ["minimize", "maximize", "close"]
+button_background = true
+# 圆点按钮（配色见 config.toml 的 [colors.title_bar]，只有那里压得过 noctalia）
+button_size = 14
+button_corner_radius = 7   # = 尺寸一半 → 正圆
+button_gap = 6

@@ -4,6 +4,11 @@
 # default_scrolling_extent(_px) 只对平铺窗口生效。
 
 # ---- 浮动窗口尺寸 ----
+# OBS 录屏：默认浮动，尺寸固定 1316x834
+[[window_rule]]
+default_floating_size_px = { width = 1316, height = 834 }
+match.app_id = ["^com\\.obsproject\\.Studio$"]
+
 [[window_rule]]
 default_floating_size_px = { width = 1200, height = 560 }
 match.app_id = ["^quickterminal$"]

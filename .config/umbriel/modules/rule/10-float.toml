@@ -50,6 +50,7 @@ match.app_id = [
     "^io\\.ente\\.auth$",                  # 532x925
     "^io\\.github\\.nirimod$",             # 1500x800 + 0.8
     "^scrcpy$",
+    "^com\\.obsproject\\.Studio$",          # OBS：1316x834，见 20-size
 ]
 
 # ---- 应用 + 标题 双重限定的浮动窗口 ----

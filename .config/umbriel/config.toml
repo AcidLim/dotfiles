@@ -61,6 +61,19 @@ QT_QPA_PLATFORMTHEME_QT6 = "gtk3"
 QS_ICON_THEME = "Adwaita"
 EDITOR = "nvim"
 
+# ==============================================================================
+# 浮动窗口标题栏的三个按钮：macOS 红绿灯配色
+#
+# 为什么写在这里而不是 modules/：
+#   noctalia.toml（模板生成、gitignore）会设置 colors.title_bar.close/minimize/
+#   maximize，而包含它的本文件最后应用 —— 只有写在这儿才能稳定压过生成值。
+# 形状/尺寸在 modules/appearance.toml 的 [appearance.title_bar]。
+# ==============================================================================
+[colors.title_bar]
+close = "#FF5F57FF"      # 红
+minimize = "#FFBD2EFF"   # 黄
+maximize = "#28C840FF"   # 绿
+
 # noctalia 模板生成的配色（本仓库 gitignore，缺失时自动忽略并持续监视）
 [include.optional]
 files = ["noctalia.toml"]
