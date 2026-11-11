@@ -12,10 +12,27 @@
 match.is_floating = true
 title_bar = "negotiated"
 
-# GNOME 应用统一圆角 12（覆盖全局 corner_radius = 0）
+# ---- 圆角：只有浮动窗口有 ----
+# 全局 appearance.corner_radius = 0，所以平铺窗口保持直角（niri 风格）。
+# 状态选择器，Mod+V 切浮动/平铺会立即生效。
 [[window_rule]]
+match.is_floating = true
 corner_radius = 12
-match.app_id = ["^org\\.gnome\\."]
+
+# 贴边最大化（window-toggle-maximize-to-edges）不要圆角。
+# 必须排在浮动规则之后；该选择器随窗口状态实时刷新。
+# 注意：Mod+F 用的是 window-toggle-maximize（列满宽、保留间隙），
+# 那个状态 JSON 里叫 maximized，Umbriel 没有对应的选择器，命中不了这条。
+[[window_rule]]
+match.is_maximized_to_edges = true
+corner_radius = 0
+
+# Noctalia / Quickshell 自己的窗口保持直角：
+# 它们是浮层性质、自己画背景，再裁圆角会露出后面对内容。
+# （Noctalia 的 bar / panel / dock 是 layer-shell 表面，本来就不受窗口圆角影响。）
+[[window_rule]]
+corner_radius = 0
+match.app_id = ["^dev\\.noctalia\\.", "^org\\.quickshell$"]
 
 # 全屏工具：不画边框效果、不要阴影
 [[window_rule]]
